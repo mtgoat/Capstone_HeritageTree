@@ -1,3 +1,7 @@
+import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Header";
+import ApplicationViews from "./components/ApplicationViews";
 import logo from './logo.svg';
 import './App.css';
 
