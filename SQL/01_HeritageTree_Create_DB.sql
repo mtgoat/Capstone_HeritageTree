@@ -1,10 +1,10 @@
 USE [master]
 
-IF db_id('Testdb3') IS NULl
-  CREATE DATABASE [Testdb3]
+IF db_id('HeritageTree') IS NULl
+  CREATE DATABASE [HeritageTree]
 GO
 
-USE [Testdb3]
+USE [HeritageTree]
 GO
 
 DROP TABLE IF EXISTS [PostMaintenance]
@@ -69,8 +69,7 @@ CREATE TABLE [Post] (
   [City]nvarchar(50) NOT NULl,
   [State]nvarchar(50) NOT NULl,
   [Zip]integer NOT NULl,
-  [Longitude] integer,
-  [Latitude] integer,
+  [Location] [geography] NULL,--this stores log and lati
   [WardId] integer,
   [CreateDateTime] datetime NOT NULl,
   [UserProfileId] integer NOT NULl,
