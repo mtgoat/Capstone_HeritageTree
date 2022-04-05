@@ -30,8 +30,8 @@ values (1, 'Heritage'), (2, 'Not Heritage'), (3, 'For further review');
 set identity_insert [HeritageStatus] off
 
 set identity_insert [TreeCommonName] on
-insert into [TreeCommonName] ([Id], [Name])
-values (1, 'American Beech'), (2,'American Elm'), (3, 'Aspen Trees'), (4, 'Basswood'), (5, 'Black Cherry'), (6, 'Black Oak'), (7,'Black Locust'), (8,'Black Walnut'), (9, 'Cedar Trees'),(10, 'Cottonwood'), (11, 'Cucumber Tree'), (12, 'Downy Serviceberry'), (13,'Eastern Redbud'), (14,'Flowering Dogwood'), (15, 'Hickory'), (16, 'Pitch pine'), (17,'Red Maple'), (18, 'Sourwood'), (19,'Sugar Maple'),(20,'Sycamore'),(21,'Sweetgum'),(22, 'Tulip Poplar'),(23,'Western Hemlock'),(24, 'White Ash'), (25,'Yellow Birch');
+insert into [TreeCommonName] ([Id], [Name],[IsActive])
+values (1, 'American Beech', 1), (2,'American Elm', 1), (3, 'Aspen Trees', 1), (4, 'Basswood', 1), (5, 'Black Cherry', 1), (6, 'Black Oak', 1), (7,'Black Locust', 1), (8,'Black Walnut', 1), (9, 'Cedar Trees', 1),(10, 'Cottonwood', 1), (11, 'Cucumber Tree', 1), (12, 'Downy Serviceberry', 1), (13,'Eastern Redbud', 1), (14,'Flowering Dogwood', 1), (15, 'Hickory', 1), (16, 'Pitch pine', 1), (17,'Red Maple', 1), (18, 'Sourwood', 1), (19,'Sugar Maple', 1),(20,'Sycamore', 1),(21,'Sweetgum', 1),(22, 'Tulip Poplar', 1),(23,'Western Hemlock', 1),(24, 'White Ash', 1), (25,'Yellow Birch', 1);
 set identity_insert [TreeCommonName] off
 
 set identity_insert [HealthStatus] on

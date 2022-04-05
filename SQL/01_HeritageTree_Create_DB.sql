@@ -50,7 +50,8 @@ CREATE TABLE [HealthStatus] (
 
 CREATE TABLE [TreeCommonName] (
  [Id] integer PRIMARY KEY IDENTITY,
- [Name] nvarchar(50) NOT NULl
+ [Name] nvarchar(50) NOT NULl,
+ [IsActive] bit
 )
 
 CREATE TABLE [HeritageStatus] (
