@@ -17,7 +17,9 @@ namespace HeritageTree.Models
         [Required]
         public int UserProfileId { get; set; }
             
-        public UserProfile UserProfile { get; set; } 
+        public UserProfile UserProfile { get; set; }
+       
+        [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
 
         [Required]

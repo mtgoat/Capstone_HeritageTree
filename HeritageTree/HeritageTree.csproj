@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

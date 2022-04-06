@@ -18,6 +18,7 @@ namespace HeritageTree.Models
         public string State { get; set; }
 
         [Required]
+        [DataType(DataType.PostalCode)]
         public int Zip { get; set; }
 
         public Geography Location { get; set; }
@@ -27,6 +28,7 @@ namespace HeritageTree.Models
         public string WardName { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime CreateDateTime { get; set; }
 
         [Required]
@@ -38,12 +40,14 @@ namespace HeritageTree.Models
 
         public string TreeCommonNameName { get; set; }
 
+        [DataType(DataType.ImageUrl)]
         public string ImageLocation { get; set; }
 
         public int HeritageStatusId { get; set; }
 
         public string HeritageStatusName { get; set; }
 
+        [DataType(DataType.DateTime)]
         public DateTime HeritageDateTime { get; set; }
 
         [Required]
