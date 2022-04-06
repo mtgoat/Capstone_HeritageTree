@@ -37,7 +37,7 @@ namespace HeritageTree.Repositories
                             LastName = DbUtils.GetString(reader, "LastName"),
                             Email = DbUtils.GetString(reader, "Email"),
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypedId"),
+                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
 
                             UserTypeName = DbUtils.GetString(reader, "UserTypeName")
                         };
@@ -60,7 +60,7 @@ namespace HeritageTree.Repositories
                     cmd.CommandText = @"INSERT INTO UserProfile (DisplayName, FirstName, LastName, Email, CreateDateTime, UserTypeId) 
                                         OUTPUT INSERTED.ID
                                         VALUES (@DisplayName, @FirstName, @LastName, @Email, @CreateDateTime, @UserTypeId)";
-
+                    //DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
                     DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);

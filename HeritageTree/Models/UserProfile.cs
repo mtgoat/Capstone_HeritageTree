@@ -26,7 +26,7 @@ namespace HeritageTree.Models
                
         [Required]
         [DataType(DataType.DateTime)]
-        public DateTime DateCreated { get; set; }
+        public DateTime CreateDateTime { get; set; }
 
         [Required]
         public int UserTypeId { get; set; }
