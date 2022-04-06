@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rFNX4d0WgueYpnxfZL+0QSE9sIgX7G15elwP36d4MxSFtVUcBjb3g4rgbZzExxtOzZKrK8c6SCBkIsUbZAYFTg==",
+  "dgSpecHash": "DUyhu+M82/EgoXiNpsfM8EecrnLxcARgKu8XHv2xvGPH4fbAHAzDPOn4bkvCNamcIeF9y3tCEqo1A41BBls7Jw==",
   "success": true,
   "projectFilePath": "C:\\Users\\johnn\\workspace\\backend\\capstone\\HeritageTree\\HeritageTree\\HeritageTree.csproj",
   "expectedPackageFiles": [
@@ -47,6 +47,7 @@
     "C:\\Users\\johnn\\.nuget\\packages\\system.security.cryptography.protecteddata\\5.0.0\\system.security.cryptography.protecteddata.5.0.0.nupkg.sha512",
     "C:\\Users\\johnn\\.nuget\\packages\\system.security.permissions\\5.0.0\\system.security.permissions.5.0.0.nupkg.sha512",
     "C:\\Users\\johnn\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\johnn\\.nuget\\packages\\system.spatial\\5.8.5\\system.spatial.5.8.5.nupkg.sha512",
     "C:\\Users\\johnn\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\johnn\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512",
     "C:\\Users\\johnn\\.nuget\\packages\\system.text.encodings.web\\4.7.2\\system.text.encodings.web.4.7.2.nupkg.sha512",

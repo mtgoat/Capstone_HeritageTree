@@ -47,6 +47,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.Spatial": {
+              "target": "Package",
+              "version": "[5.8.5, )"
             }
           },
           "imports": [

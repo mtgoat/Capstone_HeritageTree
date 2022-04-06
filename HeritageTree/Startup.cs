@@ -1,3 +1,4 @@
+using HeritageTree.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace HeritageTree
         {
 
             services.AddControllers();
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HeritageTree", Version = "v1" });
