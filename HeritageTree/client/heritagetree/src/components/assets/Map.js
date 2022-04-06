@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, LayersControl, useMapEvents } from 'react-leaflet';
+import { MapContainer, LayersControl, useMapEvents, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import {
 	BasemapLayer,
@@ -49,16 +49,24 @@ const MapEvents = () => {
 const Map = ({ apikey }) => {
 	const featureLayerRef = React.useRef();
 
+    const testcordi = [38.92771909929851, -79.84325808489746]
+
 	return (
 		<MapContainer
 			id="mapId"
 			zoom={11}
-			center={{ lat: 33.97180352632852, lng: -118.43073695898059 }}
+			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
 		>
 			<MapEvents />
+            <Marker position={testcordi}>
+        <Popup>
+          Big tree in the wetland by the US Forestry Building <br /> This is a test
+        </Popup>
+      </Marker>
 			<LayersControl position="topleft" collapsed={false}>
 				<LayersControl.BaseLayer name="Tiled Map Layer">
 					<TiledMapLayer url="https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WUI_2010_01/MapServer" />
+                    
 				</LayersControl.BaseLayer>
 				<LayersControl.BaseLayer name="Base Map Layer" checked>
 					<BasemapLayer name="DarkGray" />

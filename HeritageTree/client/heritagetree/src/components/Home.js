@@ -1,16 +1,18 @@
 //for now
 
 import React, {useState} from "react";
-import Map from './Map';
-import UI from './UI';
+import Map from './assets/Map';
+import UI from './assets/UI';
 import './styles.css';
-import { APIKey } from "./APIKey";
+import { APIKey } from "./assets/APIKey";
 
 export default function Home() {
   const [apikey, setApikey] = useState(APIKey);
 	const [keyModalOpen, setKeyModalOpen] = useState(true);
 
 	return (
+    <>
+    <div><p>Map</p></div>
 		<div className="App">
 			<Map apikey={apikey } />
 			<UI
@@ -19,5 +21,6 @@ export default function Home() {
 				setKeyModalOpen={setKeyModalOpen}
 			/>
 		</div>
+    </>
 	);
 }

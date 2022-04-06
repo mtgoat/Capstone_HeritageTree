@@ -6,7 +6,7 @@ import {
 } from "../providers/UserProfileProvider";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import Home from "./assets/Home";
+import Home from "./Home";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -23,6 +23,7 @@ export default function ApplicationViews() {
     else{
      return(
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/" element={<Home />} />
         </Routes>
      );

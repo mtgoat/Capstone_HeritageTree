@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Spatial;
 
+
 namespace HeritageTree.Models
 {
     public class Post
@@ -29,6 +30,9 @@ namespace HeritageTree.Models
 
         public Geography Location { get; set; }
 
+        public double? Latitude { get; }
+
+        public double? Longitude { get; }
 
         [Required]
         public int WardId { get; set; }
