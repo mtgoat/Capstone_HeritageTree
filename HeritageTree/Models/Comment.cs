@@ -5,9 +5,11 @@ namespace HeritageTree.Models
 {
     public class Comment
     {
+        
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Subject { get; set; }
 
         [Required]
@@ -16,8 +18,11 @@ namespace HeritageTree.Models
         [Required]
         public int UserProfileId { get; set; }
             
-        public UserProfile UserProfile { get; set; } 
-public DateTime DateCreated { get; set; }
+        public UserProfile UserProfile { get; set; }
+       
+        [DataType(DataType.DateTime)]
+        public DateTime DateCreated { get; set; }
+
         [Required]
         public int PostId { get; set; }
         public Post Post { get; set; }
