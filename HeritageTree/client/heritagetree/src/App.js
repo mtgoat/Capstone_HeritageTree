@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import logo from './logo.svg';
 import './App.css';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
