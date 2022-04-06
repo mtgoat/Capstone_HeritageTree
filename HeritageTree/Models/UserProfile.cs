@@ -26,20 +26,13 @@ namespace HeritageTree.Models
                
         [Required]
         [DataType(DataType.DateTime)]
-        public DateTime CreateDateTime { get; set; }
+        public DateTime DateCreated { get; set; }
 
         [Required]
         public int UserTypeId { get; set; }
 
+        [MaxLength(50)]
         public string UserTypeName { get; set; }
-
-        public string FullName
-        {
-            get
-            {
-                return $"{FirstName} {LastName}";
-            }
-        }
 
     }
 }
