@@ -58,7 +58,16 @@ namespace HeritageTree.Utils
         {
             return !IsDbNull(reader, column);
         }
+        public static bool? GetNullableBool(SqlDataReader reader, string column)
+        {
+            var ordinal = reader.GetOrdinal(column);
+            if (reader.IsDBNull(ordinal))
+            {
+                return null;
+            }
 
+            return reader.GetBoolean(ordinal);
+        }
         public static void AddParameter(SqlCommand cmd, string name, object value)
         {
             if (value == null)
@@ -71,15 +80,7 @@ namespace HeritageTree.Utils
             }
         }
 
-        public static string GetNullableString(SqlDataReader reader, string column)
-        {
-            var ordinal = reader.GetOrdinal(column);
-            if (reader.IsDBNull(ordinal))
-            {
-                return null;
-            }
-            return reader.GetString(ordinal);
-        }
+      
 
         public static double? GetNullableDouble(SqlDataReader reader, string column)
         {

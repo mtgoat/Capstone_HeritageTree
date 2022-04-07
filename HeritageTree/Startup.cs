@@ -30,6 +30,7 @@ namespace HeritageTree
 
             services.AddControllers();
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IPostRepository, PostRepository>(); 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HeritageTree", Version = "v1" });

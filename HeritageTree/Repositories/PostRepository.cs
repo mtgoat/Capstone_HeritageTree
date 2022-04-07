@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.SqlServer.Types;
+//using Microsoft.SqlServer.Types;
 using Microsoft.Extensions.Configuration;
 using HeritageTree.Models;
 using HeritageTree.Utils;
@@ -10,7 +10,7 @@ using HeritageTree.Utils;
 
 namespace HeritageTree.Repositories
 {
-    public class PostRepository : BaseRepository
+    public class PostRepository : BaseRepository, IPostRepository
     {
         public PostRepository(IConfiguration configuration) : base(configuration)
         { }
@@ -24,7 +24,7 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"  SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
-                              p.State, p.Zip, p.[Location].Lat as Lat,  p.[Location].Long as Lon,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
+                              p.State, p.Zip, p.[Location].ToString() AS LocationString,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
                                
                               w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,
 
@@ -50,7 +50,7 @@ namespace HeritageTree.Repositories
                     var posts = new List<Post>();
                     while (reader.Read())
                     {
-                        posts.Add(NewPostFromReader(reader));
+                        posts.Add(NewPostFromReaderGet(reader));
                     }
 
                     reader.Close();
@@ -68,7 +68,7 @@ namespace HeritageTree.Repositories
 
 
 
-        private Post NewPostFromReader(SqlDataReader reader)
+        private Post NewPostFromReaderGet(SqlDataReader reader)
         {
             return new Post()
             {
@@ -77,18 +77,14 @@ namespace HeritageTree.Repositories
                 City = reader.GetString(reader.GetOrdinal("City")),
                 State = reader.GetString(reader.GetOrdinal("State")),
                 Zip = reader.GetInt32(reader.GetOrdinal("Zip")),
-                Location = reader.STPointN(reader.GetOrdinal("Location")), 
-
+                Location = DbUtils.GetString(reader, "LocationString"),
+                //Latitude = reader.GetDouble(reader.GetOrdinal("[Location].Lat")),
+                //Longitude = reader.GetDouble(reader.GetOrdinal("[Location].Lon")),
+                WardId = reader.GetInt32(reader.GetOrdinal("WardId")),
+                WardName = DbUtils.GetString(reader, "WardName"),
                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
-                PublishDateTime = (System.DateTime)DbUtils.GetNullableDateTime(reader, "PublishDateTime"),
-                CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId")),
-                IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved")),
-                Category = new Category()
-                {
-                    Id = reader.GetInt32(reader.GetOrdinal("CategoryId")),
-                    Name = reader.GetString(reader.GetOrdinal("CategoryName"))
-                },
                 UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+
                 UserProfile = new UserProfile()
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
@@ -97,14 +93,21 @@ namespace HeritageTree.Repositories
                     DisplayName = reader.GetString(reader.GetOrdinal("DisplayName")),
                     Email = reader.GetString(reader.GetOrdinal("Email")),
                     CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
-                    ImageLocation = DbUtils.GetNullableString(reader, "UserProfileImage"),
                     UserTypeId = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                    UserType = new UserType()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                        Name = reader.GetString(reader.GetOrdinal("UserTypeName"))
-                    }
-                }
+                    UserTypeName = reader.GetString(reader.GetOrdinal("UserTypeName"))
+                },
+                TreeCommonNameId = reader.GetInt32(reader.GetOrdinal("TreeCommonNameId")),
+                TreeCommonNameName = DbUtils.GetString(reader, "TreeCommonName"),
+                ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                HeritageStatusId = DbUtils.GetNullableInt(reader, "HealthStatusId"),
+                HeritageStatusName = DbUtils.GetString(reader, "HeritageStatusName"),
+                HeritageDateTime = DbUtils.GetNullableDateTime(reader, "HeritageDateTime"),
+                HealthStatusId = reader.GetInt32(reader.GetOrdinal("HealthStatusId")),
+                HealthStatusName = DbUtils.GetString(reader, "HealthStatusName"),
+                OwnershipId = reader.GetInt32(reader.GetOrdinal("OwnershipId")),
+                OwnershipName = DbUtils.GetString(reader, "OwnershipName"),
+                IsApproved = DbUtils.GetNullableBool(reader, "IsApproved")
+
             };
         }
 
