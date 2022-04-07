@@ -87,7 +87,7 @@ namespace HeritageTree.Repositories
 
                               LEFT JOIN UserProfile u ON p.UserProfileId = u.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                        WHERE  p.Id = 1 AND IsApproved = 1 AND p.CreateDateTime < SYSDATETIME()";
+                        WHERE  p.Id = @Id AND IsApproved = 1 AND p.CreateDateTime < SYSDATETIME()";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
