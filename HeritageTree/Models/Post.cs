@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Spatial;
 
+
 namespace HeritageTree.Models
 {
     public class Post
@@ -26,9 +27,13 @@ namespace HeritageTree.Models
         [DataType(DataType.PostalCode)]
         public int Zip { get; set; }
 
+        public string Location { get; set; }
 
-        public Geography Location { get; set; }
+        //public  Geography Location { get;  set; }// this is to add to the data
 
+        //public double? Latitude { get; set; } //this is to display
+
+        //public double? Longitude { get; set; }//this is to display
 
         [Required]
         public int WardId { get; set; }
@@ -61,14 +66,14 @@ namespace HeritageTree.Models
         public string ImageLocation { get; set; }
 
 
-        public int HeritageStatusId { get; set; }
+        public int? HeritageStatusId { get; set; }
 
         [MaxLength(50)]
         public string HeritageStatusName { get; set; }
 
 
         [DataType(DataType.DateTime)]
-        public DateTime HeritageDateTime { get; set; }
+        public DateTime? HeritageDateTime { get; set; }
 
 
         [Required]
@@ -85,7 +90,7 @@ namespace HeritageTree.Models
         public string OwnershipName { get; set; }
 
 
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
         
     }
 }
