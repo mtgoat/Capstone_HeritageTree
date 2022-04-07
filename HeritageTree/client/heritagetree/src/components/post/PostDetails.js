@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { useParams } from "react-router-dom";
-import { Card, Button, Badge } from "react-bootstrap";
+import { Card, Button, Badge, Col } from "react-bootstrap";
 
 export const PostDetails = () => {
     const [post, setPost] = useState();
@@ -31,9 +31,10 @@ export const PostDetails = () => {
             <Badge bg="secondary">{post.createDateTime}</Badge>
             <Card.Img variant="top" src={post.imageLocation} />
             <Card.Body>
-            <Card.Title>{post.post.treeCommonNameName}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Written by: {post.userProfile.displayName}</Card.Subtitle>
-            <Card.Text style={{textIndent: '2rem'}}>{post.content}</Card.Text>
+            <Card.Title>{post.treeCommonNameName}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
+            <Card.Text style={{textIndent: '2rem'}}><Col>Address: </Col><Col>{post.streetAddress}{" "}{post.city}{" "}{post.state}{" "}{post.zip} </Col>
+            <Col>Latitude: {post.latitude}{" "}Longitude: {post.longitude}</Col></Card.Text>
             <div className="d-grid gap-2">
                 <Button variant="primary" size="md" disabled>
                     Edit

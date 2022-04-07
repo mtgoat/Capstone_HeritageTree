@@ -24,7 +24,7 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"  SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
-                              p.State, p.Zip, p.[Location].ToString() AS LocationString,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
+                              p.State, p.Zip, p.[Location].Lat as Lat, p.[Location].Long as Lon,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
                                
                               w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,
 
@@ -61,9 +61,50 @@ namespace HeritageTree.Repositories
         }
 
 
+        public Post GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @" SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
+                              p.State, p.Zip, p.[Location].Lat as Lat, p.[Location].Long as Lon,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
+                               
+                              w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,
 
+                              u.FirstName, u.LastName, u.DisplayName, 
+                              u.Email, u.CreateDateTime, 
+                              u.UserTypeId, 
+                              ut.[Name] AS UserTypeName
 
+                         FROM Post p
+                              LEFT JOIN Ward w ON p.WardId = w.id
+  							LEFT JOIN TreeCommonName t ON p.TreeCommonNameId = t.id
+  							LEFT JOIN HeritageStatus hrtg ON p.HeritageStatusId = hrtg.id
+  							LEFT JOIN HealthStatus h ON p.HealthStatusId = h.id
+   							LEFT JOIN Ownership o ON p.OwnershipId = o.id
 
+                              LEFT JOIN UserProfile u ON p.UserProfileId = u.id
+                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id
+                        WHERE  p.Id = 1 AND IsApproved = 1 AND p.CreateDateTime < SYSDATETIME()";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Post post = null;
+                    if (reader.Read())
+                    {
+                        post = NewPostFromReaderGet(reader);
+
+                    }
+                    reader.Close();
+
+                    return post;
+                }
+            }
+        }
 
 
 
@@ -77,9 +118,9 @@ namespace HeritageTree.Repositories
                 City = reader.GetString(reader.GetOrdinal("City")),
                 State = reader.GetString(reader.GetOrdinal("State")),
                 Zip = reader.GetInt32(reader.GetOrdinal("Zip")),
-                Location = DbUtils.GetString(reader, "LocationString"),
-                //Latitude = reader.GetDouble(reader.GetOrdinal("[Location].Lat")),
-                //Longitude = reader.GetDouble(reader.GetOrdinal("[Location].Lon")),
+                //Location = DbUtils.GetString(reader, "LocationString"),
+                Latitude = DbUtils.GetNullableDouble(reader, "Lat"),
+                Longitude = DbUtils.GetNullableDouble(reader, "Lon"),
                 WardId = reader.GetInt32(reader.GetOrdinal("WardId")),
                 WardName = DbUtils.GetString(reader, "WardName"),
                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),

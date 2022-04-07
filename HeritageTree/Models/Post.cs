@@ -27,13 +27,13 @@ namespace HeritageTree.Models
         [DataType(DataType.PostalCode)]
         public int Zip { get; set; }
 
-        public string Location { get; set; }
+        //public string Location { get; set; }
 
         //public  Geography Location { get;  set; }// this is to add to the data
 
-        //public double? Latitude { get; set; } //this is to display
+        public double? Latitude { get; set; } //this is to display
 
-        //public double? Longitude { get; set; }//this is to display
+        public double? Longitude { get; set; }//this is to display
 
         [Required]
         public int WardId { get; set; }

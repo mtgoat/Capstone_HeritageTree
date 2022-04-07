@@ -17,7 +17,7 @@ export const PostProvider = (props) => {
     return fetch(`${apiUrl}/api/Post/${id}`)
     .then((res) => res.json())
   }
-
+  
   const getPostsByUserId = (id) => {
     return fetch(`${apiUrl}/api/Post/myposts?id=${id}`)
     .then((res) => res.json())
