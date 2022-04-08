@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.Data.SqlClient;
- 
+//using System.Data.SqlTypes; 
+//using System.Data.SqlServer.Types;
+//using System.Spatial;
+
 namespace HeritageTree.Utils
 {
     public class DbUtils
@@ -80,7 +83,17 @@ namespace HeritageTree.Utils
             }
         }
 
-      
+        //public static void AddGeoParameter(SqlCommand cmd, string name, object value, Geography geography)
+        //{
+        //    if (value == null)
+        //    {   
+        //        cmd.Parameters.AddWithValue(name, DBNull.Value);
+        //    }
+        //    else
+        //    {
+        //        cmd.Parameters.Add(name, geography, value);
+        //    }
+        //}
 
         public static double? GetNullableDouble(SqlDataReader reader, string column)
         {

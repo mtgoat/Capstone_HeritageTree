@@ -41,8 +41,10 @@ namespace HeritageTree.Controllers
 
         // POST api/<PostController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post(Post post)
         {
+            _postRepository.Add(post);
+            return Ok(_postRepository.GetAll());
         }
 
         // PUT api/<PostController>/5

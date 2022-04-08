@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System;
 using HeritageTree.Models;
 using HeritageTree.Utils;
-
+using System.Spatial;
 namespace HeritageTree.Repositories
 {
     public class PostRepository : BaseRepository, IPostRepository
@@ -68,18 +68,15 @@ namespace HeritageTree.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @" SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
-                              p.State, p.Zip, p.[Location].Lat as Lat, p.[Location].Long as Lon,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
+                    cmd.CommandText = @" SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, p.State, p.Zip, p.[Location].Lat as Lat, p.[Location].Long as Lon,	p.WardId, p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
                                
-                              w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,
+                     w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,
 
-                              u.FirstName, u.LastName, u.DisplayName, 
-                              u.Email, u.CreateDateTime, 
-                              u.UserTypeId, 
+                     u.FirstName, u.LastName, u.DisplayName, u.Email, u.CreateDateTime, u.UserTypeId, 
                               ut.[Name] AS UserTypeName
 
-                         FROM Post p
-                              LEFT JOIN Ward w ON p.WardId = w.id
+                     FROM Post p
+                     LEFT JOIN Ward w ON p.WardId = w.id
   							LEFT JOIN TreeCommonName t ON p.TreeCommonNameId = t.id
   							LEFT JOIN HeritageStatus hrtg ON p.HeritageStatusId = hrtg.id
   							LEFT JOIN HealthStatus h ON p.HealthStatusId = h.id
@@ -107,7 +104,39 @@ namespace HeritageTree.Repositories
         }
 
 
+        public void Add(Post post)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Post (StreetAddress, City, [State], Zip, [Location], WardId, CreateDateTime, UserProfileId, TreeCommonNameId, ImageLocation, HeritageStatusId, HeritageDateTime,  OwnershipId, HealthStatusId,IsApproved) 
+                        OUTPUT INSERTED.ID
+                        VALUES (@StreetAddress, @City, @State, @Zip, geography::Point(@Latitude,@Longitude, 4326), @WardId, @CreateDateTime, @UserProfileId, @TreeCommonNameId,@ImageLocation, @HeritageStatusId, @HeritageDateTime,  @OwnershipId, @HealthStatusId,@IsApproved)";
 
+                    DbUtils.AddParameter(cmd, "@StreetAddress", post.StreetAddress);
+                    DbUtils.AddParameter(cmd, "@City", post.City); 
+                    DbUtils.AddParameter(cmd, "@State", post.State);
+                    DbUtils.AddParameter(cmd, "@Zip", post.Zip);
+                    DbUtils.AddParameter(cmd, "@Latitude", post.Latitude);
+                    DbUtils.AddParameter(cmd, "@Longitude", post.Longitude);
+                    DbUtils.AddParameter(cmd, "@WardId", post.WardId);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", DateTime.Now);
+                    DbUtils.AddParameter(cmd, "@UserProfileId", post.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@TreeCommonNameId", post.TreeCommonNameId);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", post.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@HeritageStatusId", post.HeritageStatusId);
+                    DbUtils.AddParameter(cmd, "@HeritageDateTime", post.HeritageDateTime);
+                    DbUtils.AddParameter(cmd, "@OwnershipId", post.OwnershipId);
+                    DbUtils.AddParameter(cmd, "@HealthStatusId", post.HealthStatusId);
+                    DbUtils.AddParameter(cmd, "@IsApproved", post.IsApproved);
+
+                    post.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
 
         private Post NewPostFromReaderGet(SqlDataReader reader)
         {
