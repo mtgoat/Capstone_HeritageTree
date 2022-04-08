@@ -14,7 +14,7 @@ export const PostList = () => {
 
     return (
         <>
-        <Link to={`/posts/create`}>
+        <Link to={`/posts/cor/create`}>
           <Button className="post__create">Create Post</Button>
         </Link>
         <div className="container">

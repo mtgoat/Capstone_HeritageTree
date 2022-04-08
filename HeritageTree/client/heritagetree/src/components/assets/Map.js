@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext, useEffect} from 'react';
+import { PostContext } from '../../providers/PostProvider'; 
+import { PostMarker } from './PostMarker';
 import { MapContainer, LayersControl, useMapEvents, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import {
@@ -10,6 +12,7 @@ import {
 } from 'react-esri-leaflet';
 
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
+
 // import HeatmapLayer from 'react-esri-leaflet/plugins/HeatmapLayer';
 // import ClusterLayer from 'react-esri-leaflet/plugins/ClusterLayer';
 // import VectorBasemapLayer from 'react-esri-leaflet/plugins/VectorBasemapLayer';
@@ -51,18 +54,27 @@ const Map = ({ apikey }) => {
 
     const testcordi = [38.92771909929851, -79.84325808489746]
 
+	const { posts, getAllPosts } = useContext(PostContext);
+
+  useEffect(() => {
+    getAllPosts();
+  }, []);
+
 	return (
 		<MapContainer
 			id="mapId"
 			zoom={11}
 			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
 		>
-			<MapEvents />
+			{posts.map((p) => (
+              <PostMarker key={p.id} post={p} />
+            ))}
+			{/* <MapEvents />
             <Marker position={testcordi}>
         <Popup>
           Big tree in the wetland by the US Forestry Building <br /> This is a test
         </Popup>
-      </Marker>
+      </Marker> */}
 			<LayersControl position="topleft" collapsed={false}>
 				<LayersControl.BaseLayer name="Tiled Map Layer">
 					<TiledMapLayer url="https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WUI_2010_01/MapServer" />

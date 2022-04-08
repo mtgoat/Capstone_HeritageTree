@@ -34,7 +34,7 @@ namespace HeritageTree.Repositories
                               ut.[Name] AS UserTypeName
 
                          FROM Post p
-                              LEFT JOIN Ward w ON p.WardId = w.id
+                            LEFT JOIN Ward w ON p.WardId = w.id
   							LEFT JOIN TreeCommonName t ON p.TreeCommonNameId = t.id
   							LEFT JOIN HeritageStatus hrtg ON p.HeritageStatusId = hrtg.id
   							LEFT JOIN HealthStatus h ON p.HealthStatusId = h.id
@@ -114,14 +114,13 @@ namespace HeritageTree.Repositories
             return new Post()
             {
                 Id = reader.GetInt32(reader.GetOrdinal("PostId")),
-                StreetAddress = reader.GetString(reader.GetOrdinal("Street")),
-                City = reader.GetString(reader.GetOrdinal("City")),
-                State = reader.GetString(reader.GetOrdinal("State")),
-                Zip = reader.GetInt32(reader.GetOrdinal("Zip")),
-                //Location = DbUtils.GetString(reader, "LocationString"),
-                Latitude = DbUtils.GetNullableDouble(reader, "Lat"),
-                Longitude = DbUtils.GetNullableDouble(reader, "Lon"),
-                WardId = reader.GetInt32(reader.GetOrdinal("WardId")),
+                StreetAddress = DbUtils.GetString(reader,"Street"),
+                City = DbUtils.GetString(reader,"City"),
+                State = DbUtils.GetString(reader,"State"),
+                Zip = DbUtils.GetNullableInt(reader, "Zip"),
+                Latitude = reader.GetDouble(reader.GetOrdinal("Lat")),
+                Longitude = reader.GetDouble(reader.GetOrdinal("Lon")),
+                WardId = DbUtils.GetNullableInt(reader, "WardId"),
                 WardName = DbUtils.GetString(reader, "WardName"),
                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                 UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),

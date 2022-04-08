@@ -1,34 +1,34 @@
 import React, { useContext } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import Login from "./auth/Login";
-import Register from "./auth/Register";
-import Home from "./Home";
-import { PostProvider } from "../providers/PostProvider";
-import { PostList } from "./post/PostList";
-import { PostDetails } from "./post/PostDetails";
+import { ApplicationViewsNotLogIn, ApplicationViewsPub, ApplicationViewsArb, ApplicationViewsAdmin } from "./ApplicationViewsSelect";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
   
+    const userTypeId = JSON.parse(localStorage.getItem('userProfile')).userTypeId
+
     if (!isLoggedIn) {
       return (
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/login" />} />
-        </Routes>
+        <ApplicationViewsNotLogIn/>
       );
     }
-    else{
-     return(
-      <PostProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/posts" element={<PostList />} />
-          <Route path="/posts/:id" element={<PostDetails />} />
-        </Routes>
-      </PostProvider>
-     );
+    else {
+    
+      switch (userTypeId) {
+        case 1: //Admin
+          return( 
+          <><ApplicationViewsPub />
+          <ApplicationViewsArb/>
+          <ApplicationViewsAdmin/></>);
+          
+         case 3: //Arbor
+          return (
+          <><ApplicationViewsArb/><ApplicationViewsPub/></>);
+          
+         default://Public
+          return (
+          <ApplicationViewsPub/>);
+      }}
+    
     }
-  }
+    

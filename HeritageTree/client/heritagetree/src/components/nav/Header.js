@@ -1,15 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { Collapse, Navbar, NavbarToggler, NavbarBrand,
+ Nav, NavItem, NavLink} from 'reactstrap';
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export default function Header() {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -26,8 +19,8 @@ export default function Header() {
             { /* When isLoggedIn === true, we will render the Home link */ }
             {isLoggedIn &&
               <NavItem>
-                <NavLink tag={RRNavLink} to="/">Home</NavLink>
-                <NavLink tag={RRNavLink} to="/posts">Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/">Home |</NavLink>
+                <NavLink tag={RRNavLink} to="/posts">Posts |</NavLink>
               </NavItem>
               
             }
