@@ -47,7 +47,9 @@ export function MaintenanceProvider(props) {
               .then(getAllMaintenances)
     }
 
-
+    const softDeleteMaintenance = (maintenanceId) => {
+      
+    }
 
 
 

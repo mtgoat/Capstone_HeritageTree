@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CategoryContext } from "../../providers/CategoryProvider";
+import { MaintenanceContext } from "../../providers/MaintenanceProvider";
 import {PostContext} from "../../providers/PostProvider";
+import {WardContext} from "../../providers/WardProvider";
 import { Button, Form, FormSelect} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -11,10 +12,12 @@ export const PostFormCord = () => {
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserId = currentUser.id;
    
-    const { categories, getAllCategories } = useContext(CategoryContext);
+    const {maintenances, getAllMaintenances} = useContext(MaintenanceContext)
+
+    const {wards, getAllWards} = useContext(WardContext)
 
   useEffect(() => {
-    getAllCategories();
+    getAllMaintenances();
   }, []);
 
 
@@ -60,7 +63,7 @@ export const PostFormCord = () => {
     <Form.Label>Category:</Form.Label>
     <FormSelect required autoFocus name="categoryId" onChange={handleControlledInputChange}>
         <option>Select a category</option>
-        {categories.map((category) => {
+        {maintenances.map((category) => {
             return (
                 <option value={category.id}>{category.name}</option>
             )

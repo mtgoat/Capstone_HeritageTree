@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { MaintenanceContext } from "../../providers/MaintenanceProvider";
 import {ListGroup} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
-import {Maintenance} from "./Maintenancey";
+import {Maintenance} from "./Maintenance";
 import "./Maintenance.css";
 import { useNavigate} from "react-router-dom";
 

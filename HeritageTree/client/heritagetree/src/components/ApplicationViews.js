@@ -5,15 +5,18 @@ import { ApplicationViewsNotLogIn, ApplicationViewsPub, ApplicationViewsArb, App
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
   
-    const userTypeId = JSON.parse(localStorage.getItem('userProfile')).userTypeId
+    console.log((sessionStorage.getItem('userProfile')));
 
-    if (!isLoggedIn) {
+    const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
+console.log(userTypeId);
+    if (!isLoggedIn || userTypeId === null) {
       return (
         <ApplicationViewsNotLogIn/>
       );
     }
     else {
-    
+
+      
       switch (userTypeId) {
         case 1: //Admin
           return( 
@@ -31,4 +34,4 @@ export default function ApplicationViews() {
       }}
     
     }
-    
+  

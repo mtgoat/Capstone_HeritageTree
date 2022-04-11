@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {ListGroup} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import {Link } from "react-router-dom";
-import "./Category.css";
+import "./Maintenance.css";
 import { MaintenanceContext } from "../../providers/MaintenanceProvider";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
