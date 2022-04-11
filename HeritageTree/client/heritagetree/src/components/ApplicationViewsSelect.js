@@ -27,7 +27,7 @@ export const ApplicationViewsNotLogIn = () => {
 
 export const ApplicationViewsPub = () => {
   return (
-    <WardProvider>
+  
     <MaintenanceProvider> 
     <PostProvider>
       <Routes>
@@ -41,7 +41,7 @@ export const ApplicationViewsPub = () => {
       </Routes>
   </PostProvider>
   </MaintenanceProvider>
-  </WardProvider>
+
   )
 }
 
@@ -61,17 +61,17 @@ export const ApplicationViewsArb = () => {
 
 export const ApplicationViewsAdmin = () => {
   return (
-    <WardProvider>
-  <PostProvider>
-      <Routes>
-        <Route path="#" element={<Home />} />
-        <Route path="/posts/:id" element={<PostDetails />} />
-        <Route path="/wards" element={< WardList/>} />
-    
-     {/* to edit and approve report */}
-     {/* to change the user type Id to admin or arbor */}
-      </Routes>
-  </PostProvider>
-  </WardProvider>
+  <WardProvider>
+      <PostProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
+          <Route path="/wards" element={< WardList/>} />
+      
+      {/* to edit and approve report */}
+      {/* to change the user type Id to admin or arbor */}
+        </Routes>
+      </PostProvider>
+ </WardProvider>
   )
 }

@@ -1,6 +1,6 @@
-import React, { useState} from "react";
+import React, { useState, createContext} from "react";
 
-export const WardContext = React.createContext();
+export const WardContext =  createContext();
 
 export const WardProvider = (props) => {
 
@@ -13,10 +13,9 @@ export const WardProvider = (props) => {
       .then(setWards);
   };
 
-  console.log(wards)
   return (
-    <WardProvider.Provider value={{ wards, getAllWards }}>
+    <WardContext.Provider value={{ wards, getAllWards  }}>
       {props.children}
-    </WardProvider.Provider>
+    </WardContext.Provider>
   );
 };

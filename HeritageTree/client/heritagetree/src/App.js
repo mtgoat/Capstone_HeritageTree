@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserProfileProvider } from "./providers/UserProfileProvider";
-import Header from "./components/nav/Header";
+import { Header } from "./components/nav/Header";
 import ApplicationViews from "./components/ApplicationViews";
 
-function App() {
+export const App = () => {
   return (
     <Router>
       <UserProfileProvider>
@@ -15,4 +15,3 @@ function App() {
   );
 }
 
-export default App;

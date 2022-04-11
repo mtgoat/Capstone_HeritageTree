@@ -10,6 +10,7 @@ export const WardList = () => {
     useEffect(() => {
       getAllWards();
     }, []);
+    console.log("wardList", wards );
 
     return (
         <>
@@ -20,9 +21,8 @@ export const WardList = () => {
             <div className="col-sm-10 col-lg-10">
               <Accordion defaultActiveKey="0">
                 {wards.map((w) => (
-                  <Accordion.Body key={w.id} ward={w} >
-                    {w.name}
-                    </Accordion.Body >
+                  <Accordion.Item eventKey={w.id}>{w.name}
+                  </Accordion.Item  >
                 ))}
               </Accordion>
             </div>
