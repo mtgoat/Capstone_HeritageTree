@@ -9,38 +9,43 @@ namespace HeritageTree.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        
         [MaxLength(255)]
         public string StreetAddress { get; set; }
 
 
-        [Required]
         [MaxLength(50)]
         public string City { get; set; }
 
 
-        [Required]
         [MaxLength(50)]
         public string State { get; set; }
 
-        [Required]
+        
         [DataType(DataType.PostalCode)]
-        public int Zip { get; set; }
+        public int? Zip { get; set; }
 
-        //public string Location { get; set; }
-
-        //public  Geography Location { get;  set; }// this is to add to the data
-
-        public double? Latitude { get; set; } //this is to display
-
-        public double? Longitude { get; set; }//this is to display
 
         [Required]
-        public int WardId { get; set; }
+        public double Latitude { get; set; } 
+
+
+        [Required]
+        public double Longitude { get; set; }
+
+        public string test { get; set; }
+        public Geography Location
+        {
+            get;
+            set;
+
+        }
+        public int? WardId { get; set; }
 
 
         [MaxLength(50)]
         public string WardName { get; set; }
+
 
         [Required]
         [DataType(DataType.DateTime)]

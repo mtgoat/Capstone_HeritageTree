@@ -1,0 +1,1 @@
+export const PostFormSt = "This page is under construction right now.  Please come back later."

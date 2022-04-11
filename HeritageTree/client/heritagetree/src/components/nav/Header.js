@@ -1,20 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { Collapse, Navbar, NavbarToggler, NavbarBrand,
+ Nav, NavItem, NavLink} from 'reactstrap';
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export default function Header() {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const [isArbor, setIsArbor] = useState(false);
+  
+  const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
+  if (userTypeId === 3 ){
+    setIsArbor(true);
+  }
 
   return (
     <div>
@@ -24,13 +23,18 @@ export default function Header() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */ }
-            {isLoggedIn &&
+            {   isLoggedIn &&
               <NavItem>
-                <NavLink tag={RRNavLink} to="/">Home</NavLink>
-                <NavLink tag={RRNavLink} to="/posts">Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/">Home |</NavLink>
+                <NavLink tag={RRNavLink} to="/posts">Posts |</NavLink>
               </NavItem>
               
             }
+            {/* { isArbor && 
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/maintenance">/Maintenance |</NavLink>
+              </NavItem>
+            } */}
           </Nav>
           <Nav navbar>
             {isLoggedIn &&

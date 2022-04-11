@@ -9,6 +9,6 @@ namespace HeritageTree.Repositories
 
         Post GetById(int id);
 
-
+        void Add(Post post);
     }
 }

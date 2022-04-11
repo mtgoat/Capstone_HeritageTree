@@ -23,7 +23,7 @@ namespace HeritageTree.Models
         [DataType(DataType.EmailAddress)]
         [MaxLength(255)]
         public string Email { get; set; }
-               
+
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime CreateDateTime { get; set; }
@@ -34,5 +34,12 @@ namespace HeritageTree.Models
         [MaxLength(50)]
         public string UserTypeName { get; set; }
 
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
     }
 }

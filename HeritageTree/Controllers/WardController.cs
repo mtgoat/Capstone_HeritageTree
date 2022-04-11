@@ -4,56 +4,54 @@ using HeritageTree.Models;
 using HeritageTree.Repositories;
 
 
-
 namespace HeritageTree.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class WardController : ControllerBase
     {
 
+        private readonly IWardRepository _wardRepository;
 
-        private readonly IPostRepository _postRepository;
-
-        public PostController(IPostRepository postRepository)
+        public WardController(IWardRepository wardRepository)
         {
-            _postRepository = postRepository;
+            _wardRepository = wardRepository;
         }
 
-        // GET: api/<PostController>
+        // GET: api/<WardController>
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_postRepository.GetAll());
+            return Ok(_wardRepository.GetAll());
         }
 
-        // GET api/<PostController>/5
+        // GET api/<WardController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var post = _postRepository.GetById(id);
-            if (post == null)
+            var ward = _wardRepository.GetById(id);
+            if (ward == null)
             {
                 return NotFound();
             }
-            return Ok(post);
+            return Ok(ward);
         }
 
-        // POST api/<PostController>
+        // POST api/<WardController>
         [HttpPost]
-        public IActionResult Post(Post post)
+        public IActionResult Post(Ward ward)
         {
-            _postRepository.Add(post);
-            return Ok(_postRepository.GetAll());
+            _wardRepository.Add(ward);
+            return Ok(_wardRepository.GetAll());
         }
 
-        // PUT api/<PostController>/5
+        // PUT api/<WardController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<PostController>/5
+        // DELETE api/<WardController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
