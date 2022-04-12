@@ -33,13 +33,8 @@ namespace HeritageTree.Models
         [Required]
         public double Longitude { get; set; }
 
-        public string test { get; set; }
-        public Geography Location
-        {
-            get;
-            set;
-
-        }
+        
+        public Geography Location { get; set; }
         public int? WardId { get; set; }
 
 

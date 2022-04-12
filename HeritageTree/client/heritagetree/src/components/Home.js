@@ -13,14 +13,14 @@ export default function Home() {
 	return (
     <>
     <div><p>Map</p></div>
-		{/* <div className="App">
+		<div className="App">
 			<Map apikey={apikey } />
 			<UI
 				setApikey={setApikey}
 				keyModalOpen={keyModalOpen}
 				setKeyModalOpen={setKeyModalOpen}
-			/> */}
-		{/* </div> */}
+			/> 
+		 </div>
     </>
 	);
 }

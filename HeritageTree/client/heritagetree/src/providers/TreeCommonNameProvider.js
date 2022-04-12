@@ -1,21 +1,21 @@
 import React, { useState, createContext} from "react";
 
-export const TCNameContext =  createContext();
+export const TreeCommonNameContext =  createContext();
 
-export const TCNameProvider = (props) => {
+export const TreeCommonNameProvider = (props) => {
 
-    const [tcnames, setTcnames] = useState([]);
+    const [treeCommonNames, setTreeCommonNames] = useState([]);
     const apiUrl = "https://localhost:5001";
 
-  const getAllTcnames = () => {
-    return fetch(`${apiUrl}/api/Ward`)
+  const getAllTreeCommonNames = () => {
+    return fetch(`${apiUrl}/api/TreeCommonName`)
       .then((res) => res.json())
-      .then(setTcnames);
+      .then(setTreeCommonNames);
   };
 
   return (
-    <TCNameContext.Provider value={{ tcnames, setTcnames  }}>
+    <TreeCommonNameContext.Provider value={{ treeCommonNames, getAllTreeCommonNames  }}>
       {props.children}
-    </TCNameContext.Provider>
+    </TreeCommonNameContext.Provider>
   );
 };

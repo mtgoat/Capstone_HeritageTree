@@ -14,6 +14,10 @@ import { MaintenanceForm } from "./maintenance/MaintenanceForm";
 import { WardProvider } from "../providers/WardProvider";
 import { WardList } from "./ward/WardList";
 import { Sorry } from "./Sorry";
+import { TreeCommonNameProvider } from "../providers/TreeCommonNameProvider";
+import { HeritageStatusProvider } from "../providers/HeritageStatusProvider";
+import { OwnershipProvider } from "../providers/OwnershipProvider";
+import { HealthStatusProvider } from "../providers/HealthStatusProvider";
 export const ApplicationViewsNotLogIn = () => {
     
       return (
@@ -27,7 +31,11 @@ export const ApplicationViewsNotLogIn = () => {
 
 export const ApplicationViewsPub = () => {
   return (
-  
+    <HealthStatusProvider>
+    <OwnershipProvider>
+    <HeritageStatusProvider>
+    <TreeCommonNameProvider>
+  <WardProvider>
     <MaintenanceProvider> 
     <PostProvider>
       <Routes>
@@ -41,7 +49,11 @@ export const ApplicationViewsPub = () => {
       </Routes>
   </PostProvider>
   </MaintenanceProvider>
-
+  </WardProvider>
+  </TreeCommonNameProvider>
+  </HeritageStatusProvider>
+  </OwnershipProvider>
+  </HealthStatusProvider>
   )
 }
 

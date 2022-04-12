@@ -127,11 +127,11 @@ namespace HeritageTree.Repositories
                     DbUtils.AddParameter(cmd, "@UserProfileId", post.UserProfileId);
                     DbUtils.AddParameter(cmd, "@TreeCommonNameId", post.TreeCommonNameId);
                     DbUtils.AddParameter(cmd, "@ImageLocation", post.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@HeritageStatusId", post.HeritageStatusId);
-                    DbUtils.AddParameter(cmd, "@HeritageDateTime", post.HeritageDateTime);
+                    DbUtils.AddParameter(cmd, "@HeritageStatusId", 3);
+                    DbUtils.AddParameter(cmd, "@HeritageDateTime", null);
                     DbUtils.AddParameter(cmd, "@OwnershipId", post.OwnershipId);
                     DbUtils.AddParameter(cmd, "@HealthStatusId", post.HealthStatusId);
-                    DbUtils.AddParameter(cmd, "@IsApproved", post.IsApproved);
+                    DbUtils.AddParameter(cmd, "@IsApproved", 0);
 
                     post.Id = (int)cmd.ExecuteScalar();
                 }
