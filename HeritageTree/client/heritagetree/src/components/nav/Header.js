@@ -4,16 +4,17 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand,
  Nav, NavItem, NavLink} from 'reactstrap';
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
-export default function Header() {
+export const Header = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [isArbor, setIsArbor] = useState(false);
   
-  const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
-  if (userTypeId === 3 ){
-    setIsArbor(true);
-  }
+  // const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
+  // if (userTypeId === 3 ){
+  //   setIsArbor(true);
+  // }
+  const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
   return (
     <div>
@@ -27,6 +28,7 @@ export default function Header() {
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home |</NavLink>
                 <NavLink tag={RRNavLink} to="/posts">Posts |</NavLink>
+                <NavLink>Account Type: {currentUser.userTypeName} </NavLink>
               </NavItem>
               
             }

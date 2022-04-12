@@ -32,7 +32,11 @@ namespace HeritageTree
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IWardRepository, WardRepository>();
-       
+            services.AddTransient<ITreeCommonNameRepository, TreeCommonNameRepository>();
+            services.AddTransient<IOwnershipRepository, OwnershipRepository>();
+            services.AddTransient <IHeritageStatusRepository,HeritageStatusRepository>();
+            services.AddTransient <IHealthStatusRepository, HealthStatusRepository>();
+        
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HeritageTree", Version = "v1" });

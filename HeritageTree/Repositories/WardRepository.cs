@@ -21,7 +21,9 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"  
-                         SELECT Id, [Name] as WardName                          FROM Ward";
+                         SELECT Id as WardId, [Name] as WardName
+                         
+                         FROM Ward";
 
                     var reader = cmd.ExecuteReader();
 
@@ -47,11 +49,11 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @" 
-                        SELECT Id, [Name] as WardName
+                        SELECT Id as WardId, [Name] as WardName
 
                         FROM Ward
                      
-                        WHERE  p.Id = @Id ";
+                        WHERE  Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
@@ -95,7 +97,7 @@ namespace HeritageTree.Repositories
         {
             return new Ward()
             {
-                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                Id = reader.GetInt32(reader.GetOrdinal("WardId")),
                 Name = reader.GetString(reader.GetOrdinal("WardName")),
             };
         }

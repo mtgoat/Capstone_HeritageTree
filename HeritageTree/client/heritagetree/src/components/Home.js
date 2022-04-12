@@ -19,8 +19,8 @@ export default function Home() {
 				setApikey={setApikey}
 				keyModalOpen={keyModalOpen}
 				setKeyModalOpen={setKeyModalOpen}
-			/>
-		</div>
+			/> 
+		 </div>
     </>
 	);
 }

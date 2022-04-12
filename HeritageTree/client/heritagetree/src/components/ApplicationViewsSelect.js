@@ -14,6 +14,12 @@ import { MaintenanceForm } from "./maintenance/MaintenanceForm";
 import { WardProvider } from "../providers/WardProvider";
 import { WardList } from "./ward/WardList";
 import { Sorry } from "./Sorry";
+import { TreeCommonNameProvider } from "../providers/TreeCommonNameProvider";
+import { HeritageStatusProvider } from "../providers/HeritageStatusProvider";
+import { OwnershipProvider } from "../providers/OwnershipProvider";
+import { HealthStatusProvider } from "../providers/HealthStatusProvider";
+import { PostListNA } from "./post/PostListNA";
+import { PostDetailsNA } from "./post/PostDetailsNA";
 export const ApplicationViewsNotLogIn = () => {
     
       return (
@@ -27,7 +33,11 @@ export const ApplicationViewsNotLogIn = () => {
 
 export const ApplicationViewsPub = () => {
   return (
-    <WardProvider>
+    <HealthStatusProvider>
+    <OwnershipProvider>
+    <HeritageStatusProvider>
+    <TreeCommonNameProvider>
+  <WardProvider>
     <MaintenanceProvider> 
     <PostProvider>
       <Routes>
@@ -42,6 +52,10 @@ export const ApplicationViewsPub = () => {
   </PostProvider>
   </MaintenanceProvider>
   </WardProvider>
+  </TreeCommonNameProvider>
+  </HeritageStatusProvider>
+  </OwnershipProvider>
+  </HealthStatusProvider>
   )
 }
 
@@ -61,17 +75,18 @@ export const ApplicationViewsArb = () => {
 
 export const ApplicationViewsAdmin = () => {
   return (
-    <WardProvider>
-  <PostProvider>
-      <Routes>
-        <Route path="#" element={<Home />} />
-        <Route path="/posts/:id" element={<PostDetails />} />
-        <Route path="/wards" element={< WardList/>} />
-    
-     {/* to edit and approve report */}
-     {/* to change the user type Id to admin or arbor */}
-      </Routes>
-  </PostProvider>
-  </WardProvider>
+  <WardProvider>
+      <PostProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/posts" element={<PostListNA />} />
+          <Route path="/postsNA/:id" element={<PostDetailsNA />} />
+          <Route path="/wards" element={< WardList/>} />
+      
+      {/* to edit and approve report */}
+      {/* to change the user type Id to admin or arbor */}
+        </Routes>
+      </PostProvider>
+ </WardProvider>
   )
 }

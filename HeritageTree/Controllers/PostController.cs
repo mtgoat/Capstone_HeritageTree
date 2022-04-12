@@ -27,6 +27,11 @@ namespace HeritageTree.Controllers
             return Ok(_postRepository.GetAll());
         }
 
+        [HttpGet("GetNonApp")]
+        public IActionResult GetNonApp()
+        {
+            return Ok(_postRepository.GetAllNotApp());
+        }
         // GET api/<PostController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -39,6 +44,16 @@ namespace HeritageTree.Controllers
             return Ok(post);
         }
 
+        [HttpGet("GetNonAppById/{id}")]
+        public IActionResult GetNonApp(int id)
+        {
+            var post = _postRepository.GetByIdNotApp(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
         // POST api/<PostController>
         [HttpPost]
         public IActionResult Post(Post post)

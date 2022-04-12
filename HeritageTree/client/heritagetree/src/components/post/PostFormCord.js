@@ -1,8 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MaintenanceContext } from "../../providers/MaintenanceProvider";
-import {PostContext} from "../../providers/PostProvider";
-import {WardContext} from "../../providers/WardProvider";
+import { PostContext } from "../../providers/PostProvider";
+import { WardContext } from "../../providers/WardProvider";
+import { TreeCommonNameContext } from "../../providers/TreeCommonNameProvider";
+import { HeritageStatusContext } from "../../providers/HeritageStatusProvider";
+import { OwnershipContext } from "../../providers/OwnershipProvider";
+import { HealthStatusContext } from "../../providers/HealthStatusProvider"
 import { Button, Form, FormSelect} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -12,22 +16,38 @@ export const PostFormCord = () => {
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserId = currentUser.id;
    
-    const {maintenances, getAllMaintenances} = useContext(MaintenanceContext)
-
-    const {wards, getAllWards} = useContext(WardContext)
+    const {maintenances, getAllMaintenances} = useContext( MaintenanceContext);
+    const { wards, getAllWards} = useContext(WardContext);
+    const { treeCommonNames, getAllTreeCommonNames } = useContext(TreeCommonNameContext);
+    const { heritageStatuses, getAllHeritageStatuses } = useContext(HeritageStatusContext);
+    const { ownerships, getAllOwnerships } = useContext(OwnershipContext);
+    const {healthStatuses, getAllHealthStatuses} = useContext(HealthStatusContext);
 
   useEffect(() => {
-    getAllMaintenances();
+    getAllMaintenances()
+    .then(getAllWards())
+    .then(getAllTreeCommonNames())
+    .then(getAllHeritageStatuses())
+    .then(getAllOwnerships())
+    .then(getAllHealthStatuses())
   }, []);
 
 
+console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, healthStatuses)
+
     const [post, setPost] = useState({
+        // streetAddress: "",
+        // city:"",
+        // state:"",
+        // zip: "",
+        latitude: "",
+        longitude: "",
+        wardId: "",
         userProfileId: currentUserId,
-        title:"", 
-        content:"",
-        imageLocation:"",
-        categoryId: 0,
-        isApproved: true
+        treeCommonNameId: "",
+        imageLocation: "",
+        ownershipId:4, 
+        healthStatusId: ""
     });
 
     const navigate = useNavigate();
@@ -48,50 +68,73 @@ export const PostFormCord = () => {
 
     return (
         <>
+        <div className="postForm">
         <h3 className="postForm__title">Report Heritage Tree Form </h3>
-        <p> This form requires geographic coordinates of a tree,such as latitude and longitude.  If you would like to report with a street address, click the button below</p>
+        <p> This form requires geographic coordinates of a tree, such as latitude and longitude.  If you would like to report with a street address, click the button below </p>
         <Link to={`/posts/st/create`}>
           <Button className="post__create">Report a Heritage Tree with a street address</Button>
         </Link>
-        <Form className="post__form">
-  <Form.Group className="mb-3" controlId="title">
-    <Form.Label>Title:</Form.Label>
-    <Form.Control name="title" value={post.title} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a title for your post" />
-  </Form.Group>
 
-  <Form.Group className="mb-3" controlId="categoryId">
-    <Form.Label>Category:</Form.Label>
-    <FormSelect required autoFocus name="categoryId" onChange={handleControlledInputChange}>
-        <option>Select a category</option>
-        {maintenances.map((category) => {
+        <Form className="post__form">
+          <Form.Group className="mb-3" controlId="latitude">
+            <Form.Label>Latitude:</Form.Label>
+              <Form.Control name="latitude" value={post.latitude} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a latitude" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="longitude">
+            <Form.Label>Longitude:</Form.Label>
+              <Form.Control name="longitude" value={post.longitude} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a longitude" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="wardId">
+            <Form.Label>Please select a ward:</Form.Label>
+              <FormSelect required autoFocus name="wardId" onChange={handleControlledInputChange}>
+        <option >Select a ward</option>
+        {wards.map((ward) => {
             return (
-                <option value={category.id}>{category.name}</option>
+                <option key={ward.id} value={ward.id}>{ward.name}</option>
             )
           })
         }
-    </FormSelect>
-  </Form.Group>
+              </FormSelect>
+              <Form.Text>If you do not know which ward, please visit <a href="https://coewv.maps.arcgis.com/apps/webappviewer/index.html?id=15246ac759c345babbbbb8a5f7c11490" target="_blank" rel="noopener noreferrer">here</a></Form.Text>
+          </Form.Group>
 
-  <Form.Group className="mb-3" controlId="content">
-    <Form.Label>Content:</Form.Label>
-    <Form.Control name="content" value={post.content} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter content for your post" as="textarea" aria-label="With textarea" />
-  </Form.Group>
+          <Form.Group className="mb-3" controlId="treeCommonNameId">
+            <Form.Label>Please select a type of the tree:</Form.Label>
+              <FormSelect required autoFocus name="treeCommonNameId" onChange={handleControlledInputChange}>
+        <option>Select a type of the tree</option>
+        {treeCommonNames.map((t) => {
+            return (
+                <option key={t.id} value={t.id}>{t.name}</option>
+            )
+          })
+        }
+              </FormSelect>
+          </Form.Group>
 
   <Form.Group className="mb-3" controlId="imageLocation">
-    <Form.Label>Gif Image:</Form.Label>
-    <Form.Control name="imageLocation" value={post.imageLocation} onChange={handleControlledInputChange} type="text" autoFocus placeholder="Enter enter a url to your gif" />
+    <Form.Label>Image URL(optional):</Form.Label>
+    <Form.Control name="imageLocation" value={post.imageLocation} onChange={handleControlledInputChange} type="url" autoFocus placeholder="Enter a url of an image" />
   </Form.Group>
 
-  <Form.Group className="mb-3" controlId="publishDateTime">
-    <Form.Label>Publish Date:</Form.Label>
-    <Form.Control name="publishDateTime" value={post.publishDateTime} onChange={handleControlledInputChange} type="date" autoFocus />
-  </Form.Group>
-
+  <Form.Group className="mb-3" controlId="healthStatusId">
+            <Form.Label>Please select a health status of the tree:</Form.Label>
+              <FormSelect required autoFocus name="healthStatusId" onChange={handleControlledInputChange}>
+        <option>Select a health status of the tree</option>
+        {healthStatuses.map((h) => {
+            return (
+                <option key={h.id} value={h.id}>{h.name}</option>
+            )
+          })
+        }
+              </FormSelect>
+          </Form.Group>
 
   <Button onClick={handleClickSavePost} variant="primary" size="md" type="submit">
     Save Post
   </Button>
 </Form>
-        </>
+</div>  </>
     )
 }
