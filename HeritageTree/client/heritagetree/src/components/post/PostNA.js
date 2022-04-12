@@ -3,7 +3,7 @@ import { Accordion, Badge, Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const Post = ({post}) => {
+export const PostNA = ({post}) => {
     // let month = post.publishDateTime.slice(0,10).split("-")[1]
     // let day = post.publishDateTime.slice(0,10).split("-")[2]
     // let year = post.publishDateTime.slice(0,10).split("-")[0]
@@ -22,10 +22,10 @@ export const Post = ({post}) => {
                 </Col> 
                 <Col>
                
-                    <Link to={`/posts/${post.id}`}>
+                    <Link to={`/postsNA/${post.id}`}>
                     <Button className="mt-2" variant="secondary">More Info</Button>
                     </Link>
-                    
+                
                 
                 </Col> 
             </Row>

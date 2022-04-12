@@ -18,6 +18,8 @@ import { TreeCommonNameProvider } from "../providers/TreeCommonNameProvider";
 import { HeritageStatusProvider } from "../providers/HeritageStatusProvider";
 import { OwnershipProvider } from "../providers/OwnershipProvider";
 import { HealthStatusProvider } from "../providers/HealthStatusProvider";
+import { PostListNA } from "./post/PostListNA";
+import { PostDetailsNA } from "./post/PostDetailsNA";
 export const ApplicationViewsNotLogIn = () => {
     
       return (
@@ -77,7 +79,8 @@ export const ApplicationViewsAdmin = () => {
       <PostProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/posts/:id" element={<PostDetails />} />
+          <Route path="/posts" element={<PostListNA />} />
+          <Route path="/postsNA/:id" element={<PostDetailsNA />} />
           <Route path="/wards" element={< WardList/>} />
       
       {/* to edit and approve report */}

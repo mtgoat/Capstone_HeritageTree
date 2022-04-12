@@ -90,7 +90,7 @@ namespace HeritageTree.Models
         public string OwnershipName { get; set; }
 
 
-        public bool? IsApproved { get; set; }
+        public bool IsApproved { get; set; }
         
     }
 }

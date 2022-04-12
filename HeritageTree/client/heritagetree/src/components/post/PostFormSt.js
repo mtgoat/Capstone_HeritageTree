@@ -71,7 +71,7 @@ console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, 
     return (
         <>
         <h3 className="postForm__title">Report Heritage Tree Form </h3>
-        <p> This form requires geographic coordinates of a tree,such as latitude and longitude.  If you would like to report with a street address, click the button below</p>
+        <p> This form requires geographic coordinates of a tree, such as latitude and longitude.  If you would like to report with a street address, click the button below</p>
         <Link to={`/posts/st/create`}>
           <Button className="post__create">Report a Heritage Tree with a street address</Button>
         </Link>

@@ -13,11 +13,22 @@ export const PostProvider = (props) => {
       .then(setPosts);
   };
 
+  const getAllNonAppPosts = () => {
+    return fetch(`${apiUrl}/api/Post/GetNonApp`)
+      .then((res) => res.json())
+      .then(setPosts);
+  };
+
   const getPostById = (id) => {
     return fetch(`${apiUrl}/api/Post/${id}`)
     .then((res) => res.json())
   }
-  
+
+  const getNPPostById = (id) => {
+    return fetch(`${apiUrl}/api/Post/GetNonAppById/${id}`)
+    .then((res) => res.json())
+  }
+
   const getPostsByUserId = (id) => {
     return fetch(`${apiUrl}/api/Post/myposts?id=${id}`)
     .then((res) => res.json())
@@ -35,7 +46,7 @@ export const PostProvider = (props) => {
   };
 
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId }}>
+    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById }}>
       {props.children}
     </PostContext.Provider>
   );

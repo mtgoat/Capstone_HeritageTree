@@ -10,10 +10,11 @@ export const Header = () => {
   const toggle = () => setIsOpen(!isOpen);
   const [isArbor, setIsArbor] = useState(false);
   
-  const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
-  if (userTypeId === 3 ){
-    setIsArbor(true);
-  }
+  // const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
+  // if (userTypeId === 3 ){
+  //   setIsArbor(true);
+  // }
+  const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
   return (
     <div>
@@ -27,6 +28,7 @@ export const Header = () => {
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home |</NavLink>
                 <NavLink tag={RRNavLink} to="/posts">Posts |</NavLink>
+                <NavLink>Account Type: {currentUser.userTypeName} </NavLink>
               </NavItem>
               
             }

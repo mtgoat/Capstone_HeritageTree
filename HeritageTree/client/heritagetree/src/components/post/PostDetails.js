@@ -33,8 +33,13 @@ export const PostDetails = () => {
             <Card.Body>
             <Card.Title>{post.treeCommonNameName}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
-            <Card.Text style={{textIndent: '2rem'}}><Col>Address: </Col><Col>{post.streetAddress}{" "}{post.city}{" "}{post.state}{" "}{post.zip} </Col>
-            <Col>Latitude: {post.latitude}{" "}Longitude: {post.longitude}</Col></Card.Text>
+            <Card.Text style={{textIndent: '2rem'}}><Col>Address: </Col>
+            <Col>{post.streetAddress}{" "}{post.city}{" "}{post.state}{" "}{post.zip} </Col>
+            <Col>Latitude: </Col>
+            <Col>{post.latitude}</Col>
+            <Col>Longitude: </Col>
+            <Col>{post.longitude}</Col>
+            </Card.Text>
             <div className="d-grid gap-2">
                 <Button variant="primary" size="md" disabled>
                     Edit
