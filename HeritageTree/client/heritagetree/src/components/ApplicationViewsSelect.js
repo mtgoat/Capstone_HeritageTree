@@ -20,6 +20,11 @@ import { OwnershipProvider } from "../providers/OwnershipProvider";
 import { HealthStatusProvider } from "../providers/HealthStatusProvider";
 import { PostListNA } from "./post/PostListNA";
 import { PostDetailsNA } from "./post/PostDetailsNA";
+import { PostFormCordNA } from "./post/PostFormNA";
+import { UserProfileProvider } from "../providers/UserProfileProvider";
+import { UserList } from "./auth/UserList";
+
+
 export const ApplicationViewsNotLogIn = () => {
     
       return (
@@ -37,7 +42,7 @@ export const ApplicationViewsPub = () => {
     <OwnershipProvider>
     <HeritageStatusProvider>
     <TreeCommonNameProvider>
-  <WardProvider>
+    <WardProvider>
     <MaintenanceProvider> 
     <PostProvider>
       <Routes>
@@ -61,6 +66,7 @@ export const ApplicationViewsPub = () => {
 
 export const ApplicationViewsArb = () => {
   return (
+   
     <MaintenanceProvider> 
     <PostProvider>
     <Routes>
@@ -70,23 +76,34 @@ export const ApplicationViewsArb = () => {
     </Routes>
   </PostProvider>
   </MaintenanceProvider>
+  
   )
 }
 
 export const ApplicationViewsAdmin = () => {
   return (
+    <UserProfileProvider>
+    <HealthStatusProvider>
+    <OwnershipProvider>
+    <HeritageStatusProvider>
+    <TreeCommonNameProvider>
   <WardProvider>
       <PostProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/posts" element={<PostListNA />} />
           <Route path="/postsNA/:id" element={<PostDetailsNA />} />
+          <Route path="/postsNA/edit/:id/*" element={<PostFormCordNA />} />
           <Route path="/wards" element={< WardList/>} />
-      
+          <Route path="/users" element={<UserList />} />
       {/* to edit and approve report */}
       {/* to change the user type Id to admin or arbor */}
         </Routes>
       </PostProvider>
  </WardProvider>
+ </TreeCommonNameProvider>
+  </HeritageStatusProvider>
+  </OwnershipProvider> 
+  </HealthStatusProvider> 
+  </UserProfileProvider>
   )
 }

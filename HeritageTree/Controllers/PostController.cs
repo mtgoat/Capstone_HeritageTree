@@ -62,10 +62,16 @@ namespace HeritageTree.Controllers
             return Ok(_postRepository.GetAll());
         }
 
-        // PUT api/<PostController>/5
+        // PUT api/<PostController>/5 This is to update
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, Post post)
         {
+            if (id != post.Id)
+            {
+                return BadRequest();
+            }
+            _postRepository.UpdateNotAppPost(post);
+            return NoContent();
         }
 
         // DELETE api/<PostController>/5

@@ -14,7 +14,8 @@ export const PostDetailsNA = () => {
         .then(setPost);
     }, [])
 
-    // console.log(post, post.isApproved)
+    // console.log(post.heritageStatusId, post.HeritageStatusName)
+    // // console.log(post, post.isApproved)
 
     if (!post) {
         return null;
@@ -30,13 +31,14 @@ export const PostDetailsNA = () => {
       <div className="row justify-content-center">
         <div className="col-sm-12 col-lg-6">
        
-        <Card style={{ width: '35rem', margin: '3em auto' }}>
+        <Card border="danger" style={{ width: '35rem', margin: '3em auto' }}>
             <Badge bg="secondary">{post.createDateTime}</Badge>
             <Card.Img variant="top" src={post.imageLocation} />
             <Card.Body>
             <Card.Title>{post.treeCommonNameName}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
-            <Card.Text style={{textIndent: '2rem'}}>
+            <Card.Body
+ style={{textIndent: '2rem'}}>
                 <Col>Address: </Col>
                 <Col>{post.streetAddress}{" "}{post.city}{" "}{post.state}{" "}{post.zip} </Col>
                 <Col>Latitude: </Col>
@@ -50,12 +52,12 @@ export const PostDetailsNA = () => {
                 <Col> Location Ownership Type: </Col>
                 <Col>{ post.ownershipName }</Col>
                 <Col> Heritage Status: </Col>
-                <Col>{ post.HeritageStatusName ?? 'Not Assigned'}</Col>
+                <Col>{ post.heritageStatusName }</Col>
                 <Col> Heritage Status Approved Date: { post.HeritageDateTime ?? 'Not Assigned'}</Col>
                 <Col> Heritage Approval Status: { post.isApproved ? 'Approved' : 'Not Approved' }</Col>
-                </Card.Text>
+                </Card.Body>
             <div className="d-grid gap-2">
-                <Button variant="primary" size="md" onClick={() => navigate(`/post/edit/${post.id}`)}>
+                <Button variant="primary" size="md" onClick={() => navigate(`/postsNA/edit/${post.id}`)}>
                     Edit
                 </Button>
                 <Button variant="secondary" size="md" disabled>

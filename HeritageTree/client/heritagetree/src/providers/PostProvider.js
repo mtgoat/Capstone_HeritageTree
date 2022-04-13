@@ -45,8 +45,18 @@ export const PostProvider = (props) => {
     }).then(getAllPosts);
   };
 
+  const updatePostNA = (post) => {
+    return fetch(`${apiUrl}/api/Post/${post.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    }).then(getAllPosts);
+  }
+
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById }}>
+    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA }}>
       {props.children}
     </PostContext.Provider>
   );

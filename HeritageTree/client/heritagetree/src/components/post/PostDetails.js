@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useContext} from "react";
 import { PostContext } from "../../providers/PostProvider";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 import { Card, Button, Badge, Col } from "react-bootstrap";
 
 export const PostDetails = () => {
     const [post, setPost] = useState();
     const {getPostById} = useContext(PostContext);
     const {id} = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getPostById(id)
@@ -27,7 +28,7 @@ export const PostDetails = () => {
       <div className="row justify-content-center">
         <div className="col-sm-12 col-lg-6">
        
-        <Card style={{ width: '30rem', margin: '3em auto' }}>
+        <Card border="success"  style={{ width: '30rem', margin: '3em auto' }}>
             <Badge bg="secondary">{post.createDateTime}</Badge>
             <Card.Img variant="top" src={post.imageLocation} />
             <Card.Body>

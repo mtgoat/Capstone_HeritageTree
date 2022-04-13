@@ -11,5 +11,8 @@ namespace HeritageTree.Repositories
 
         Post GetByIdNotApp(int id);
         void Add(Post post);
+
+        public void UpdateNotAppPost(Post post);
+
     }
 }
