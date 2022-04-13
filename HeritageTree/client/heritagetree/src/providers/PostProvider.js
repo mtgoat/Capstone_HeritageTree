@@ -45,8 +45,26 @@ export const PostProvider = (props) => {
     }).then(getAllPosts);
   };
 
+  const updatePostNA = (post) => {
+    return fetch(`${apiUrl}/api/Post/${post.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    }).then(getAllPosts);
+  }
+
+  const hardDeletePost = (postId) => {
+
+    return fetch(`${apiUrl}/api/Post/${postId}`, {
+        method: "DELETE"
+    })
+        .then(getAllPosts)
+  }
+  
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById }}>
+    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost }}>
       {props.children}
     </PostContext.Provider>
   );

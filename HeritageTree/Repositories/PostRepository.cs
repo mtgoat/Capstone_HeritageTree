@@ -220,6 +220,77 @@ namespace HeritageTree.Repositories
             }
         }
 
+        public void UpdateNotAppPost(Post post)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Post
+                        
+                        SET StreetAddress = @StreetAddress, 
+                            City = @City, 
+                            [State] = @State,
+                            Zip = @Zip, 
+                            [Location] = geography::Point(@Latitude,@Longitude, 4326), 
+                            WardId = @WardId, 
+                            CreateDateTime = @CreateDateTime, 
+                            UserProfileId = @UserProfileId, 
+                            TreeCommonNameId = @TreeCommonNameId, 
+                            ImageLocation = @ImageLocation, 
+                            HeritageStatusId = @HeritageStatusId, 
+                            HeritageDateTime = @HeritageDateTime,  
+                            OwnershipId = @OwnershipId, 
+                            HealthStatusId = @HealthStatusId,
+                            IsApproved = @IsApproved
+
+                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@Id", post.Id);
+
+                    DbUtils.AddParameter(cmd, "@StreetAddress", post.StreetAddress);
+                    DbUtils.AddParameter(cmd, "@City", post.City);
+                    DbUtils.AddParameter(cmd, "@State", post.State); 
+                    DbUtils.AddParameter(cmd, "@Zip", post.Zip);
+                    DbUtils.AddParameter(cmd, "@Latitude", post.Latitude);//location 
+                    DbUtils.AddParameter(cmd, "@Longitude", post.Longitude);//location 
+                    DbUtils.AddParameter(cmd, "@WardId", post.WardId); 
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", post.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@UserProfileId", post.UserProfileId); 
+                    DbUtils.AddParameter(cmd, "@TreeCommonNameId", post.TreeCommonNameId);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", post.ImageLocation); 
+                    DbUtils.AddParameter(cmd, "@HeritageStatusId", post.HeritageStatusId);
+                    DbUtils.AddParameter(cmd, "@HeritageDateTime", post.HeritageDateTime);
+                    DbUtils.AddParameter(cmd, "@OwnershipId", post.OwnershipId);
+                    DbUtils.AddParameter(cmd, "@HealthStatusId", post.HealthStatusId);
+                    DbUtils.AddParameter(cmd, "@IsApproved", post.IsApproved);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
+
+        public void Delete(int postId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    Delete FROM POST
+                    WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", postId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
         private Post NewPostFromReaderGet(SqlDataReader reader)
         {
             return new Post()
@@ -262,7 +333,7 @@ namespace HeritageTree.Repositories
             };
         }
 
-
+    
 
 
     }

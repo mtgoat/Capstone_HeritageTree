@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using HeritageTree.Models;
 using HeritageTree.Utils;
+using System.Collections.Generic;
 
 namespace HeritageTree.Repositories
 {
@@ -49,8 +50,45 @@ namespace HeritageTree.Repositories
             }
         }
 
+        public List<UserProfile> GetAll()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT up.Id, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.UserTypeId, ut.[Name] as UserTypeName 
+                          FROM UserProfile up
+                          LEFT JOIN UserType ut on ut.Id = up.UserTypeId
+                          ORDER BY LastName";
 
-        public void Add(UserProfile userProfile)
+                    var reader = cmd.ExecuteReader();
+
+                    var userProfiles = new List<UserProfile>();
+                    while (reader.Read())
+                    {
+                        userProfiles.Add(new UserProfile()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+
+                            UserTypeName = DbUtils.GetString(reader, "UserTypeName")
+                        });
+                    }
+
+                    reader.Close();
+
+                    return userProfiles;
+                }
+            }
+        }
+
+            public void Add(UserProfile userProfile)
         {
             using (var conn = Connection)
             {

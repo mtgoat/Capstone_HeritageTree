@@ -15,6 +15,12 @@ namespace HeritageTree.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_userProfileRepository.GetAll());
+        }
+
         // GET: api/<UserProfileController>/email
         [HttpGet("GetByEmail")]
         public IActionResult GetByEmail(string email)
