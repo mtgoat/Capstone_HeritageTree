@@ -56,16 +56,16 @@ export const PostFormCordNA = () => {
         zip: "",
         latitude: "",
         longitude: "",
-        wardId: "",
+        wardId: 0,
         createDateTime: "",
-        userProfileId: "",
-        treeCommonNameId: "",
+        userProfileId: 0,
+        treeCommonNameId: 0,
         imageLocation: "",
-        heritageStatusId: "",
+        heritageStatusId: 0,
         heritageDateTime: "",
-        ownershipId:"", 
-        healthStatusId: "",
-        isApproved: ""
+        ownershipId:0, 
+        healthStatusId: 0,
+        isApproved: false
     });
 
     const navigate = useNavigate();
@@ -75,6 +75,12 @@ export const PostFormCordNA = () => {
         newPost[e.target.name] = e.target.value
         setPost(newPost)
     }
+    const handleControlledBoolInputChange = (e) => {
+      const newPost = { ...post }
+      newPost[e.target.name] = JSON.parse(e.target.value)
+      setPost(newPost)
+  }
+
 
     const handleClickSavePost = (e) => {
       if (post.latitude === "" || post.longitude === "" || post.treeCommonNameId === ""){
@@ -94,6 +100,8 @@ export const PostFormCordNA = () => {
       };
     }
   
+    // const booleanTrue = JSON.parse(post.IsApproved)
+    // post.isApproved = booleanTrue
 
     return (
         <>
@@ -137,7 +145,7 @@ export const PostFormCordNA = () => {
         <option >Select a ward</option>
         {wards.map((ward) => {
             return (
-                <option selected={post.wardId} key={ward.id} value={ward.id}>{ward.name}</option>
+                <option defalutvalue={post.wardId} key={ward.id} value={ward.id}>{ward.name}</option>
             )
           })
         }
@@ -227,8 +235,8 @@ export const PostFormCordNA = () => {
 
           <Form.Group className="mb-3" controlId="isApproved">
             <Form.Label>Please update the approval status:</Form.Label>
-              <FormSelect required autoFocus name="isApproved" onChange={handleControlledInputChange}>
-        <option value="null">Select the approval status</option>
+              <FormSelect required autoFocus name="isApproved" onChange={handleControlledBoolInputChange}>
+        <option >Select the approval status</option>
             <option  value={false}>Not Approved</option>
             <option  value={true}> Approved</option>
               </FormSelect>
