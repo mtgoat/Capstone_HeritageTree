@@ -55,8 +55,16 @@ export const PostProvider = (props) => {
     }).then(getAllPosts);
   }
 
+  const hardDeletePost = (postId) => {
+
+    return fetch(`${apiUrl}/api/Post/${postId}`, {
+        method: "DELETE"
+    })
+        .then(getAllPosts)
+  }
+  
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA }}>
+    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost }}>
       {props.children}
     </PostContext.Provider>
   );

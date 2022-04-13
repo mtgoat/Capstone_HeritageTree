@@ -1,13 +1,19 @@
 import React, {useState, useEffect, useContext} from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { useParams, useNavigate } from "react-router-dom";
-import { Card, Button, Badge, Col } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import { Card, Button, Badge, Col,  } from "react-bootstrap";
 
 export const PostDetailsNA = () => {
     const [post, setPost] = useState();
-    const {getNPPostById} = useContext(PostContext);
+    const {getNPPostById, hardDeletePost} = useContext(PostContext);
     const {id} = useParams();
     const navigate = useNavigate();
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+ 
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
     useEffect(() => {
         getNPPostById(id)
@@ -25,6 +31,19 @@ export const PostDetailsNA = () => {
     // let day = post.publishDateTime.slice(0,10).split("-")[2]
     // let year = post.publishDateTime.slice(0,10).split("-")[0]
     // const formattedDate = `${month}-${day}-${year}`;
+    const onClickDeleteHandler = () =>  {
+       
+        hardDeletePost(post.id).then(
+            navigate(handleClose)).then(navigate('/posts')); 
+        };
+
+        const handleShowIfAdmin = () =>  {
+            if(currentUser.userTypeId === 1){
+                handleShow()
+            }else{
+                alert("No can do")
+            } 
+    };
 
     return (
     <div className="container">
@@ -60,12 +79,31 @@ export const PostDetailsNA = () => {
                 <Button variant="primary" size="md" onClick={() => navigate(`/postsNA/edit/${post.id}`)}>
                     Edit
                 </Button>
-                <Button variant="secondary" size="md" disabled>
+                <Button variant="secondary" size="md" onClick={handleShowIfAdmin}>
                     Delete
                 </Button>
             </div>
             </Card.Body>
         </Card>
+
+        <Modal show={show} onHide={handleClose}>
+<Modal.Header closeButton>
+<Modal.Title>Delete Post Forever, Recovery impossible</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+    <Col>Tree Name: {post.treeCommonNameName} </Col>
+    <Col>Report ID: {post.id} </Col>
+    <Col> coordinates: {post.latitude}, {post.longitude} </Col>
+</Modal.Body>
+<Modal.Footer>
+  <Button variant="secondary" onClick={onClickDeleteHandler}>
+    Confirm Delete
+  </Button>
+  <Button variant="primary" onClick={handleClose}>
+    Cancel Delete
+  </Button>
+</Modal.Footer>
+</Modal>
         </div>
       </div>
     </div>

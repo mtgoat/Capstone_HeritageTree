@@ -75,6 +75,8 @@ export const PostFormCordNA = () => {
         newPost[e.target.name] = e.target.value
         setPost(newPost)
     }
+
+    //this is to make "isApproved input" to non string
     const handleControlledBoolInputChange = (e) => {
       const newPost = { ...post }
       newPost[e.target.name] = JSON.parse(e.target.value)

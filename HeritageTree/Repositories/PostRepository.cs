@@ -272,7 +272,25 @@ namespace HeritageTree.Repositories
 
             }
         }
-    
+
+        public void Delete(int postId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    Delete FROM POST
+                    WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", postId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
         private Post NewPostFromReaderGet(SqlDataReader reader)
         {
             return new Post()
@@ -315,7 +333,7 @@ namespace HeritageTree.Repositories
             };
         }
 
-
+    
 
 
     }

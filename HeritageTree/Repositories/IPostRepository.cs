@@ -14,5 +14,7 @@ namespace HeritageTree.Repositories
 
         public void UpdateNotAppPost(Post post);
 
+        public void Delete(int postId);
+
     }
 }

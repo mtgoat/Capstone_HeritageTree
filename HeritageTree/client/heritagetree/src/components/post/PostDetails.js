@@ -45,9 +45,7 @@ export const PostDetails = () => {
                 <Button variant="primary" size="md" disabled>
                     Edit
                 </Button>
-                <Button variant="secondary" size="md" disabled>
-                    Delete
-                </Button>
+                
             </div>
             </Card.Body>
         </Card>
