@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace HeritageTree.Repositories
 {
-    public class WardRepository : BaseRepository, IWardRepository
+    public class MaintenanceRepository : BaseRepository, IMaintenanceRepository
     {
-        public WardRepository(IConfiguration configuration) : base(configuration)
+        public MaintenanceRepository(IConfiguration configuration) : base(configuration)
         { }
 
 
-        public List<Ward> GetAll()
+        public List<Maintenance> GetAll()
         {
             using (var conn = Connection)
             {
@@ -21,27 +21,27 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"  
-                         SELECT Id as WardId, [Name] as WardName
+                         SELECT Id as MaintenanceId, [Name] as MaintenanceName
                          
-                         FROM Ward";
+                         FROM Maintenance";
 
                     var reader = cmd.ExecuteReader();
 
-                    var wards = new List<Ward>();
+                    var maintenances = new List<Maintenance>();
                     while (reader.Read())
                     {
-                        wards.Add(NewPostFromReaderGet(reader));
+                        maintenances.Add(NewPostFromReaderGet(reader));
                     }
 
                     reader.Close();
 
-                    return wards;
+                    return maintenances;
                 }
             }
         }
 
 
-        public Ward GetById(int id)
+        public Maintenance GetById(int id)
         {
             using (var conn = Connection)
             {
@@ -49,9 +49,9 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @" 
-                        SELECT Id as WardId, [Name] as WardName
+                        SELECT Id as MaintenanceId, [Name] as MaintenanceName
 
-                        FROM Ward
+                        FROM Maintenance
                      
                         WHERE  Id = @Id";
 
@@ -59,21 +59,21 @@ namespace HeritageTree.Repositories
 
                     var reader = cmd.ExecuteReader();
 
-                    Ward ward = null;
+                    Maintenance maintenance = null;
                     if (reader.Read())
                     {
-                        ward = NewPostFromReaderGet(reader);
+                        maintenance = NewPostFromReaderGet(reader);
 
                     }
                     reader.Close();
 
-                    return ward;
+                    return maintenance;
                 }
             }
         }
 
 
-        public void Add(Ward ward)
+        public void Add(Maintenance maintenance)
         {
             using (var conn = Connection)
             {
@@ -81,24 +81,24 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Ward ([Name]) 
+                        INSERT INTO Maintenance ([Name]) 
                         OUTPUT INSERTED.ID
                         VALUES (@Name)";
 
-                    DbUtils.AddParameter(cmd, "@Name", ward.Name);
+                    DbUtils.AddParameter(cmd, "@Name", maintenance.Name);
 
 
-                    ward.Id = (int)cmd.ExecuteScalar();
+                    maintenance.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
 
-        private Ward NewPostFromReaderGet(SqlDataReader reader)
+        private Maintenance NewPostFromReaderGet(SqlDataReader reader)
         {
-            return new Ward()
+            return new Maintenance()
             {
-                Id = reader.GetInt32(reader.GetOrdinal("WardId")),
-                Name = reader.GetString(reader.GetOrdinal("WardName")),
+                Id = reader.GetInt32(reader.GetOrdinal("MaintenanceId")),
+                Name = reader.GetString(reader.GetOrdinal("MaintenanceName")),
             };
         }
 

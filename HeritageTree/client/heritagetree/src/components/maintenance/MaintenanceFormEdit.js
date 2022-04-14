@@ -1,19 +1,31 @@
 import React, {useContext, useEffect, useState} from "react"
 import { MaintenanceContext } from "../../providers/MaintenanceProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form} from "react-bootstrap";
 
-export const MaintenanceForm = () => {
-    const {addMaintenance, getAllMaintenances} = useContext(MaintenanceContext)
+export const MaintenanceFormEdit = () => {
+    const {addMaintenance, getMaintenanceById, updateMaintenance, getAllMaintenances} = useContext(MaintenanceContext)
 
     const [maintenance, setMaintenance] = useState({});
 
-    useEffect(()=> {
-        getAllMaintenances()
-           
-          }, [])
+    const [isLoading, setIsLoading] = useState(false);
 
-console.log(maintenance)
+   const {maintenanceId} = useParams();
+
+   console.log("maintenanceId", maintenanceId)
+    useEffect(()=> {
+        if(maintenanceId){
+            getMaintenanceById(maintenanceId)
+            .then(mnt => {
+                setMaintenance(mnt)
+              setIsLoading(false)
+            })
+          } else {
+            getAllMaintenances()
+            setIsLoading (false)
+          }}, [])
+
+
     const navigate = useNavigate();
 
     const handleControlledInputChange = (event)=> {
@@ -25,20 +37,29 @@ console.log(maintenance)
 
     const handleSaveMaintenance = (event) => {
         event.preventDefault()
-
         if(maintenance.name === "" )
         {
             alert("Please fill out the Maintenance name.")
         } else {
 
+            setIsLoading(true);
+            if (maintenanceId){
+                //PUT - update
+          
+                updateMaintenance(maintenance)
+                .then(()=> navigate("/maintenances"))
+            } else {
+                
             addMaintenance(maintenance)
             .then(navigate("/maintenances"));
      }
     }
       
+    }
+    
     return(
         <>
-        <h2 className="maintenanceForm__title">New Maintenance Category</h2>
+        <h2 className="maintenancesForm__title">New Maintenance Category</h2>
         
         <Form className="maintenance__form">
             <Form.Group className="mb-3" controlId="title">
@@ -47,8 +68,9 @@ console.log(maintenance)
                 
             </Form.Group> 
                          
-            <Button primary  type="submit" className="btn btn-primary" onClick={handleSaveMaintenance}>
-                                Save Maintenance
+            <Button primary disabled={isLoading} type="submit" className="btn btn-primary" onClick={
+                                handleSaveMaintenance}>
+                              {maintenanceId ? <>Save Maintenance</> : <>Add Maintenance</>}
             </Button>
             <Button outline onClick={() => navigate("/maintenances")}>
             Back to List

@@ -4,7 +4,7 @@ import { Accordion, Button } from "react-bootstrap";
 import { Post } from "./Post";
 import "../../index.css";
 import { Link } from "react-router-dom";
-import { post } from "esri-leaflet";
+
 
 export const PostList = () => {
   

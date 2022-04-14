@@ -11,6 +11,7 @@ import { PostFormSt } from "./post/PostFormSt";
 import { MaintenanceProvider } from "../providers/MaintenanceProvider";
 import { MaintenanceList } from "./maintenance/MaintenanceList";
 import { MaintenanceForm } from "./maintenance/MaintenanceForm";
+import { MaintenanceFormEdit } from "./maintenance/MaintenanceFormEdit";
 import { WardProvider } from "../providers/WardProvider";
 import { WardList } from "./ward/WardList";
 import { Sorry } from "./Sorry";
@@ -51,7 +52,7 @@ export const ApplicationViewsPub = () => {
         <Route path="/posts/:id" element={<PostDetails />} />
         <Route path="/posts/cor/create" element={<PostFormCord />} />
         <Route path="/posts/st/create" element={<PostFormSt />} />
-        <Route path="/maintenance/*" element={<Sorry />} />
+        <Route path="/maintenances/*" element={<Sorry />} />
         {/* <Route path="/ward/*" element={<Sorry />} /> */}
       </Routes>
   </PostProvider>
@@ -70,9 +71,9 @@ export const ApplicationViewsArb = () => {
     <MaintenanceProvider> 
     <PostProvider>
     <Routes>
-      <Route path="/maintenance" element={<MaintenanceList />} />
-      <Route path="/maintenance/create" element={<MaintenanceForm />} />
-      <Route path="/maintenance/edit/:maintenanceId" element={<MaintenanceForm />} />
+      <Route path="/maintenances" element={<MaintenanceList />} />
+      <Route path="/maintenances/create" element={<MaintenanceForm />} />
+      <Route path="/maintenances/edit/:maintenanceId/*" element={<MaintenanceFormEdit />} />
     </Routes>
   </PostProvider>
   </MaintenanceProvider>

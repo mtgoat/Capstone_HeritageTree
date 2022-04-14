@@ -21,13 +21,13 @@ export const Maintenance = ({MaintenanceProp}) => {
     const onClickHandler = () => {
        
         hardDeleteCategory(MaintenanceProp.id).then(
-        navigate(handleClose)).then(navigate('/posts')); 
+        navigate(handleClose)).then(navigate('/maintenances')); 
     };
 
 
     return (
         
-        <ListGroup.Item id={MaintenanceProp.id} className="category__flex-container" >
+        <ListGroup.Item id={MaintenanceProp.id} className="maintenances__flex-container" >
             <div> {MaintenanceProp.name}</div>
             
             <div> <Button outline variant="secondary" size="md" onClick={() => navigate(`/maintenances/edit/${MaintenanceProp.id}`)}> Edit </Button></div>
@@ -45,8 +45,8 @@ export const Maintenance = ({MaintenanceProp}) => {
   <Button variant="secondary" onClick={onClickHandler}>
     Confirm Delete
   </Button>
-  <Button variant="primary" onClick={handleClose.then(navigate(`/maintenances`))}>
-    Back to List
+  <Button variant="primary" onClick={handleClose}>
+    Cancel Delete
   </Button>
 </Modal.Footer>
 </Modal>

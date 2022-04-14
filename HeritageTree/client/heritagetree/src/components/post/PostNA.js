@@ -8,7 +8,7 @@ export const PostNA = ({post}) => {
     // let day = post.publishDateTime.slice(0,10).split("-")[2]
     // let year = post.publishDateTime.slice(0,10).split("-")[0]
     // const formattedDate = `${month}-${day}-${year}`;
-    console.log("post is approved?", post.isApproved);
+    console.log("postId", post.id);
 
     return (
         <Accordion.Item eventKey={post.id}>
