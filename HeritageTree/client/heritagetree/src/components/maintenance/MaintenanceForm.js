@@ -41,15 +41,20 @@ console.log(maintenance)
         <h2 className="maintenanceForm__title">New Maintenance Category</h2>
         
         <Form className="maintenance__form">
-            <Form.Group className="mb-3" controlId="title">
+            <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Maintenance Category Name:</Form.Label>
                 <Form.Control name="name" value={maintenance.name} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a name for new maintenance category" />
                 
-            </Form.Group> 
-                         
+            </Form.Group>
+
+            <Form.Group >
+            <Form.Label></Form.Label>
+              <Form.Control show={false} disabled/>
+          </Form.Group>
+
             <Button primary  type="submit" className="btn btn-primary" onClick={handleSaveMaintenance}>
                                 Save Maintenance
-            </Button>
+            </Button> {" "}
             <Button outline onClick={() => navigate("/maintenances")}>
             Back to List
             </Button>

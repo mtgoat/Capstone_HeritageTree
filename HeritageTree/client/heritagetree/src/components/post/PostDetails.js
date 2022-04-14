@@ -1,13 +1,20 @@
 import React, {useState, useEffect, useContext} from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { useParams, useNavigate  } from "react-router-dom";
-import { Card, Button, Badge, Col } from "react-bootstrap";
+import { Card, Button, Badge } from "react-bootstrap";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Toast from 'react-bootstrap/Toast';
+import { ManageMaintenanceForm } from "./ManageMaintenanceForm";
 
 export const PostDetails = () => {
     const [post, setPost] = useState();
     const {getPostById} = useContext(PostContext);
     const {id} = useParams();
     
+    //this is for the add maintenance button
+    const [showA, setShowA] = useState(true);
+    const toggleShowA = () => setShowA(!showA);
 
     useEffect(() => {
         getPostById(id)
@@ -42,10 +49,31 @@ export const PostDetails = () => {
             <Col>{post.longitude}</Col>
             </Card.Body>
             <div className="d-grid gap-2">
-                <Button variant="primary" size="md" disabled>
-                    Edit
-                </Button>
-                
+
+                <Row>
+                    <Col md={6} className="mb-2">
+                    <Button variant="primary" size="md" disabled>
+                        Edit
+                    </Button>
+                    </Col>
+                    <Col md={6} className="mb-2">
+                    <Button onClick={toggleShowA} className="mb-2">
+                    Add Maintenance to this Post
+                    </Button>
+
+                    <Toast show={showA} onClose={toggleShowA}>
+                    <Toast.Header>
+                        
+                        <strong className="me-auto">Add maintenance to this post</strong>
+                        
+                    </Toast.Header>
+                    <Toast.Body>
+                        <ManageMaintenanceForm/>
+                    </Toast.Body>
+                    </Toast>
+
+                    </Col>
+                </Row>
             </div>
             </Card.Body>
         </Card>

@@ -93,6 +93,47 @@ namespace HeritageTree.Repositories
             }
         }
 
+        public void Update(Maintenance maintenance)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Maintenance
+                        SET [Name] = @Name
+                        
+                        WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Name", maintenance.Name);
+                    DbUtils.AddParameter(cmd, "@Id", maintenance.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DETELE FROM Maintenance
+                                                
+                        WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         private Maintenance NewPostFromReaderGet(SqlDataReader reader)
         {
             return new Maintenance()
