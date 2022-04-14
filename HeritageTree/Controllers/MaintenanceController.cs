@@ -47,14 +47,24 @@ namespace HeritageTree.Controllers
 
         // PUT api/<MaintenanceController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, Maintenance maintenance)
         {
+            if (id != maintenance.Id)
+            {
+                return BadRequest();
+            }
+            _maintenanceRepository.Update(maintenance);
+            return NoContent();
         }
 
         // DELETE api/<MaintenanceController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+
+            _maintenanceRepository.Delete(id);
+            return NoContent();
+
         }
     }
 }

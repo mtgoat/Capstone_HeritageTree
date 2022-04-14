@@ -8,5 +8,10 @@ namespace HeritageTree.Repositories
         void Add(Maintenance maintenance);
         List<Maintenance> GetAll();
         Maintenance GetById(int id);
+
+        void Update(Maintenance maintenance);
+
+        public void Delete(int id);
+
     }
 }

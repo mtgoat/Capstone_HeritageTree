@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react"
 import { MaintenanceContext } from "../../providers/MaintenanceProvider";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Form} from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
+import Form from 'react-bootstrap/Form'
 export const MaintenanceFormEdit = () => {
     const {addMaintenance, getMaintenanceById, updateMaintenance, getAllMaintenances} = useContext(MaintenanceContext)
 
@@ -62,21 +62,25 @@ export const MaintenanceFormEdit = () => {
         <h2 className="maintenancesForm__title">New Maintenance Category</h2>
         
         <Form className="maintenance__form">
-            <Form.Group className="mb-3" controlId="title">
+            <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Maintenance Category Name:</Form.Label>
                 <Form.Control name="name" value={maintenance.name} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a name for new maintenance category" />
                 
-            </Form.Group> 
+            </Form.Group>
+
+            <Form.Group >
+            <Form.Label></Form.Label>
+              <Form.Control show={false} disabled/>
+          </Form.Group>
                          
-            <Button primary disabled={isLoading} type="submit" className="btn btn-primary" onClick={
-                                handleSaveMaintenance}>
-                              {maintenanceId ? <>Save Maintenance</> : <>Add Maintenance</>}
+            <Button primary disabled={isLoading} type="submit" className="btn btn-primary" onClick={handleSaveMaintenance}>
+                              Save Update 
             </Button>
             <Button outline onClick={() => navigate("/maintenances")}>
             Back to List
             </Button>
                    
-        </Form>
+            </Form>
         </>
     )
 }

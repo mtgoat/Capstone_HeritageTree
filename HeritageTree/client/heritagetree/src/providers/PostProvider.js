@@ -64,8 +64,22 @@ export const PostProvider = (props) => {
         .then(getAllPosts)
   }
   
+  const addMaintenanceToPost = (maintenance) => {
+    debugger
+    return fetch(`${apiUrl}/api/Post/AddMaintenanceToPost`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(maintenance)
+   
+    })
+    //.then(GetAllPublishedPosts);
+  
+  }; 
+
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts }}>
+    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost }}>
       {props.children}
     </PostContext.Provider>
   );

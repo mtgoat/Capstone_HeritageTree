@@ -83,5 +83,16 @@ namespace HeritageTree.Controllers
                 return NoContent();
             
         }
+
+        [HttpPost("AddMaintenanceToPost")]
+        public IActionResult Post(PostMaintenance postMaintenance)
+        {
+            _postRepository.AddMaintenanceToPost(postMaintenance);
+            return NoContent();
+        }
+        
+       
+
+
     }
 }

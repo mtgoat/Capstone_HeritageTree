@@ -16,5 +16,7 @@ namespace HeritageTree.Repositories
 
         public void Delete(int postId);
 
+        public void AddMaintenanceToPost(PostMaintenance postMaintenance);
+
     }
 }

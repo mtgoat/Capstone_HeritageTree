@@ -291,6 +291,31 @@ namespace HeritageTree.Repositories
 
         }
 
+        public void AddMaintenanceToPost(PostMaintenance postMaintenance)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                       INSERT INTO PostMaintenance (PostId, MaintenanceId)
+                              OUTPUT INSERTED.Id
+                    VALUES (@PostId, @MaintenanceId)";
+
+
+                    cmd.Parameters.AddWithValue("@PostId", postMaintenance.PostId);
+                    cmd.Parameters.AddWithValue("@MaintenanceId", postMaintenance.MaintenanceId);
+
+
+
+                    postMaintenance.Id = (int)cmd.ExecuteScalar();
+                     
+                }
+            }
+        }
+
+
         private Post NewPostFromReaderGet(SqlDataReader reader)
         {
             return new Post()
