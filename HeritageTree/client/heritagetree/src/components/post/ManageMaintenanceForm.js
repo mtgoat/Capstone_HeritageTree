@@ -25,27 +25,28 @@ export const ManageMaintenanceForm = () => {
 
     const handleControlledInputChange = (event)=> {
         const newPostMaintenance = {...postMaintenance}
-        newPostMaintenance[event.target.id] = event.target.value
+        newPostMaintenance[event.target.name] = JSON.parse(event.target.value);
         
         setPostMaintenance(newPostMaintenance)
+        debugger
     }
 
     const handleClickSavePostMaintenance = (event) => {
-        
+        debugger
         event.preventDefault()
         postMaintenance.postId = id
         addMaintenanceToPost(postMaintenance)
             .then(navigate(`/posts/${id}`));
+            debugger
      }
       
-    
-    
+
     return(
         <Form className="postMaintenance">
             
-            <Form.Group className="mb-3" controlId="maintenaceId">
+            <Form.Group className="mb-3" controlId="maintenanceId">
             <Form.Label>Please select a Maintenance category:</Form.Label>
-              <Form.Select required autoFocus name="maintenaceId" onChange={handleControlledInputChange}>
+              <Form.Select required autoFocus name="maintenanceId" onChange={handleControlledInputChange}>
         <option>select a Maintenance category</option>
         {maintenances.map((m) => {
             return (

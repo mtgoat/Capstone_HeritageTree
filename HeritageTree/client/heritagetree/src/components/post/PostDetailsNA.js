@@ -2,8 +2,9 @@ import React, {useState, useEffect, useContext} from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { useParams, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import { Card, Button, Badge, Col,  } from "react-bootstrap";
-
+import { Card, Button, Badge } from "react-bootstrap";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 export const PostDetailsNA = () => {
     const [post, setPost] = useState();
     const {getNPPostById, hardDeletePost} = useContext(PostContext);
@@ -58,22 +59,50 @@ export const PostDetailsNA = () => {
             <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
             <Card.Body
  style={{textIndent: '2rem'}}>
-                <Col>Address: </Col>
-                <Col>{post.streetAddress}{" "}{post.city}{" "}{post.state}{" "}{post.zip} </Col>
-                <Col>Latitude: </Col>
-                <Col>{post.latitude}</Col>
-                <Col>Longitude: </Col>
-                <Col>{post.longitude}</Col>
-                <Col> Ward: </Col>
-                <Col>{ post.wardName }</Col>
-                <Col> HealthStatusName: </Col>
-                <Col>{ post.healthStatusName }</Col>
-                <Col> Location Ownership Type: </Col>
-                <Col>{ post.ownershipName }</Col>
-                <Col> Heritage Status: </Col>
-                <Col>{ post.heritageStatusName }</Col>
-                <Col> Heritage Status Approved Date: { post.HeritageDateTime ?? 'Not Assigned'}</Col>
-                <Col> Heritage Approval Status: { post.isApproved ? 'Approved' : 'Not Approved' }</Col>
+                <Row ><Col xs={4}>Address: </Col>
+            <Col xs={8}>{post.streetAddress}{" "}{post.city}{", "}{post.state}{" "}{post.zip} </Col></Row>
+
+            <Row>
+            <Col xs={4}>Ward: </Col>
+            <Col>{ post.wardName }</Col>  
+            </Row>
+
+                 <Row>
+            <Col xs={4}>Latitude: </Col>
+            <Col>{post.latitude}</Col>
+            </Row>
+
+            <Row>
+             <Col xs={4}>Longitude: </Col>
+            <Col>{post.longitude}</Col>   
+            </Row>
+
+
+            <Row>
+             <Col xs={5}>
+             Health Status:
+             </Col>
+             <Col>{ post.healthStatusName }</Col>   
+            </Row>
+
+            <Row>
+             <Col xs={5}>Property Type: </Col>
+            <Col>{ post.ownershipName }</Col>   
+            </Row>
+
+            <Row>
+             <Col xs={5}>Heritage Status: </Col>
+            <Col>{ post.heritageStatusName } </Col> 
+            </Row>
+            
+            <Row>
+            <Col> Heritage Status  Date: </Col><Col> { post.HeritageDateTime}</Col>
+            </Row>    
+                
+            <Row>
+            <Col> Heritage Approval Status:</Col><Col>{ post.isApproved}</Col>    
+            </Row>
+                 {/* { post.isApproved ? 'Approved' : 'Not Approved' } */}
                 </Card.Body>
             <div className="d-grid gap-2">
                 <Button variant="primary" size="md" onClick={() => navigate(`/postsNA/edit/${post.id}`)}>

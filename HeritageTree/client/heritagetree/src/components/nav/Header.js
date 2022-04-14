@@ -8,13 +8,10 @@ export const Header = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const [isArbor, setIsArbor] = useState(false);
-  
-  // const userTypeId = JSON.parse(sessionStorage.getItem('userProfile'))?.userTypeId
-  // if (userTypeId === 3 ){
-  //   setIsArbor(true);
-  // }
   const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+  const currentUserType = currentUser?.userTypeId;
+  
+  
 
   return (
     <div>
@@ -32,11 +29,11 @@ export const Header = () => {
               </NavItem>
               
             }
-            {/* { isArbor && 
+            { (isLoggedIn && currentUserType !==2)  && 
               <NavItem>
-                <NavLink tag={RRNavLink} to="/maintenance">/Maintenance |</NavLink>
+                <NavLink tag={RRNavLink} to="/maintenances">Maintenance |</NavLink>
               </NavItem>
-            } */}
+            } 
           </Nav>
           <Nav navbar>
             {isLoggedIn &&

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {ListGroup} from "react-bootstrap";
+import {ListGroup, Row, Col} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import {Link } from "react-router-dom";
 import "./Maintenance.css";
@@ -13,10 +13,11 @@ export const Maintenance = ({MaintenanceProp}) => {
     const navigate = useNavigate();
 
     const [show, setShow] = useState(false);
-  
+    const [show2, setShow2] = useState(false);
     const handleClose = () => setShow(false);
+    const handleClose2 = () => setShow2(false);
     const handleShow = () => setShow(true);
-  
+    const handleShow2 = () => setShow2(true);
 
     const onClickHandler = () => {
        
@@ -30,11 +31,20 @@ export const Maintenance = ({MaintenanceProp}) => {
         <ListGroup.Item id={MaintenanceProp.id} className="maintenances__flex-container" >
             <div> {MaintenanceProp.name}</div>
             
-            <div> <Button outline variant="secondary" size="md" onClick={() => navigate(`/maintenances/edit/${MaintenanceProp.id}`)}> Edit </Button></div>
+            <Row><Col> <Button outline variant="secondary" size="md" onClick={() => navigate(`/maintenances/edit/${MaintenanceProp.id}`)}> Edit </Button></Col>
 
-            <div> <Button outline variant="danger" size="md" onClick={handleShow}> 
+            <Col> <Button outline variant="danger" size="md" onClick={handleShow}> 
                 Delete
-             </Button></div>
+             </Button></Col>
+             
+             
+             <Col>
+             <Button outline variant="secondary" size="md" onClick={handleShow2}>View Posts</Button>
+
+             </Col>
+
+             </Row>
+
 
              <Modal show={show} onHide={handleClose}>
 <Modal.Header closeButton>
@@ -47,6 +57,19 @@ export const Maintenance = ({MaintenanceProp}) => {
   </Button>
   <Button variant="primary" onClick={handleClose}>
     Cancel Delete
+  </Button>
+</Modal.Footer>
+</Modal>
+
+<Modal show={show2} onHide={handleClose2}>
+<Modal.Header closeButton>
+<Modal.Title>List of Reports with this Maintenance</Modal.Title>
+</Modal.Header>
+<Modal.Body>Maintenance Name: {MaintenanceProp.name}</Modal.Body>
+<Modal.Footer>
+ 
+  <Button variant="primary" onClick={handleClose2}>
+    Go Back
   </Button>
 </Modal.Footer>
 </Modal>
