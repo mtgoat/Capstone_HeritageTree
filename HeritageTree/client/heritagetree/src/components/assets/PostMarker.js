@@ -11,6 +11,8 @@ import {
 } from 'react-esri-leaflet';
 
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
+
+
 const MapEvents = () => {
 	const map = useMapEvents({
 		click: (e) => console.log(e.latlng, map.getZoom()),
@@ -19,6 +21,7 @@ const MapEvents = () => {
 };
 
 export const PostMarker = ({post}) => {
+    var myIcon = null
     return (
         <div>
             <MapEvents eventKey={post.id} />

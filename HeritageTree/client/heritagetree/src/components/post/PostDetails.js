@@ -12,15 +12,21 @@ export const PostDetails = () => {
     const {getPostById} = useContext(PostContext);
     const {id} = useParams();
     
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const currentUserType = currentUser.userTypeId;
+
     //this is for the add maintenance button
-    const [showA, setShowA] = useState(true);
+    const [showA, setShowA] = useState(false);
     const toggleShowA = () => setShowA(!showA);
 
+
     useEffect(() => {
+        console.log(currentUser.userTypeId);
         getPostById(id)
         .then(setPost);
     }, [])
 
+    console.log(currentUser.userTypeId);
     if (!post) {
         return null;
     }
@@ -41,20 +47,50 @@ export const PostDetails = () => {
             <Card.Body>
             <Card.Title>{post.treeCommonNameName}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
-            <Card.Body style={{textIndent: '2rem'}}><Col>Address: </Col>
-            <Col>{post.streetAddress}{" "}{post.city}{" "}{post.state}{" "}{post.zip} </Col>
-            <Col>Latitude: </Col>
+            <Card.Body style={{textIndent: '2rem'}}>
+                <Row ><Col xs={4}>Address: </Col>
+            <Col xs={8}>{post.streetAddress}{" "}{post.city}{", "}{post.state}{" "}{post.zip} </Col></Row>
+
+            <Row>
+            <Col xs={4}>Ward: </Col>
+            <Col>{ post.wardName }</Col>  
+            </Row>
+
+            <Row>
+            <Col xs={4}>Latitude: </Col>
             <Col>{post.latitude}</Col>
-            <Col>Longitude: </Col>
-            <Col>{post.longitude}</Col>
+            </Row>
+
+            <Row>
+             <Col xs={4}>Longitude: </Col>
+            <Col>{post.longitude}</Col>   
+            </Row>
+            
+            <Row>
+             <Col xs={5}>
+             Health Status:
+             </Col>
+             <Col>{ post.healthStatusName }</Col>   
+            </Row>
+
+            <Row>
+             <Col xs={5}>Property Type: </Col>
+            <Col>{ post.ownershipName }</Col>   
+            </Row>
+
+            <Row>
+             <Col xs={5}>Heritage Status: </Col>
+            <Col>{ post.heritageStatusName } </Col>   
+            </Row>
             </Card.Body>
             <div className="d-grid gap-2">
 
+            {currentUserType !==2 ? 
                 <Row>
                     <Col md={6} className="mb-2">
-                    <Button variant="primary" size="md" disabled>
+                    {/* <Button variant="primary" size="md" disabled>
                         Edit
-                    </Button>
+                    </Button> */}
                     </Col>
                     <Col md={6} className="mb-2">
                     <Button onClick={toggleShowA} className="mb-2">
@@ -73,7 +109,8 @@ export const PostDetails = () => {
                     </Toast>
 
                     </Col>
-                </Row>
+                </Row>: null}
+
             </div>
             </Card.Body>
         </Card>

@@ -247,9 +247,14 @@ export const PostFormCordNA = () => {
   <Button onClick={ e => {
     e.preventDefault()
     handleClickSavePost()} } variant="primary" size="sm" type="submit" disabled={isLoading}>
-  {id ? <>Save Update</> : <>Create </>} 
-  </Button>
-  
+  Save Update 
+  </Button> 
+  {"  "}
+  <Link to={"/posts"}>
+  <Button  variant="secondary" size="sm" type="submit">
+    Back to List
+  </Button> 
+  </Link>
 </Form>
 </div>  </>
     )
