@@ -5,6 +5,7 @@ export const PostContext = createContext();
 export const PostProvider = (props) => {
 
     const [posts, setPosts] = useState([]);
+    const [nonAppPosts, setNonAppPosts ] = useState([]);
     const apiUrl = "https://localhost:5001";
 
   const getAllPosts = () => {
@@ -16,7 +17,7 @@ export const PostProvider = (props) => {
   const getAllNonAppPosts = () => {
     return fetch(`${apiUrl}/api/Post/GetNonApp`)
       .then((res) => res.json())
-      .then(setPosts);
+      .then(setNonAppPosts);
   };
 
   const getPostById = (id) => {
@@ -64,7 +65,7 @@ export const PostProvider = (props) => {
   }
   
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost }}>
+    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts }}>
       {props.children}
     </PostContext.Provider>
   );

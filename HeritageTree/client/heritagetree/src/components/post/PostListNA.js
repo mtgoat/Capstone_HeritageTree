@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 
 export const PostListNA = () => {
   
-    const { posts, getAllNonAppPosts } = useContext(PostContext);
+    const { nonAppPosts, getAllNonAppPosts } = useContext(PostContext);
   
     useEffect(() => {
       getAllNonAppPosts();
     }, []);
-console.log(posts)
+console.log(nonAppPosts)
     return (
         <>
         {/* <Link to={`/posts/cor/create`}>
@@ -23,7 +23,7 @@ console.log(posts)
           <div className="row justify-content-center">
             <div className="col-sm-10 col-lg-10">
               <Accordion defaultActiveKey="0">
-                {posts.map((p) => (
+                {nonAppPosts.map((p) => (
                   <PostNA key={p.id} post={p} />
                 ))}
               </Accordion>

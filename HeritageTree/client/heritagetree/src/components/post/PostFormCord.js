@@ -19,7 +19,6 @@ export const PostFormCord = () => {
     const {maintenances, getAllMaintenances} = useContext( MaintenanceContext);
     const { wards, getAllWards} = useContext(WardContext);
     const { treeCommonNames, getAllTreeCommonNames } = useContext(TreeCommonNameContext);
-    const { heritageStatuses, getAllHeritageStatuses } = useContext(HeritageStatusContext);
     const { ownerships, getAllOwnerships } = useContext(OwnershipContext);
     const {healthStatuses, getAllHealthStatuses} = useContext(HealthStatusContext);
 
@@ -27,13 +26,12 @@ export const PostFormCord = () => {
     getAllMaintenances()
     .then(getAllWards())
     .then(getAllTreeCommonNames())
-    .then(getAllHeritageStatuses())
     .then(getAllOwnerships())
     .then(getAllHealthStatuses())
   }, []);
 
 
-console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, healthStatuses)
+// console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, healthStatuses)
 
     const [post, setPost] = useState({
         // streetAddress: "",
@@ -118,6 +116,34 @@ console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, 
     <Form.Control name="imageLocation" value={post.imageLocation} onChange={handleControlledInputChange} type="url" autoFocus placeholder="Enter a url of an image" />
   </Form.Group>
 
+
+  <Form.Group className="mb-3" controlId="treeCommonNameId">
+            <Form.Label>Please select a type of the tree:</Form.Label>
+              <FormSelect required autoFocus name="treeCommonNameId" onChange={handleControlledInputChange}>
+        <option>Select a type of the tree</option>
+        {treeCommonNames.map((t) => {
+            return (
+                <option key={t.id} value={t.id}>{t.name}</option>
+            )
+          })
+        }
+              </FormSelect>
+          </Form.Group>
+
+
+          <Form.Group className="mb-3" controlId="ownershipId">
+            <Form.Label>Please select a type of property the tree is located:</Form.Label>
+              <FormSelect  autoFocus name="ownershipId" onChange={handleControlledInputChange}>
+        <option >Select a type of property</option>
+        {ownerships.map((o) => {
+            return (
+                <option selected={post.ownershipId} key={o.id} value={o.id}>{o.name}</option>
+            )
+          })
+        }
+              </FormSelect>
+              </Form.Group>
+
   <Form.Group className="mb-3" controlId="healthStatusId">
             <Form.Label>Please select a health status of the tree:</Form.Label>
               <FormSelect required autoFocus name="healthStatusId" onChange={handleControlledInputChange}>
@@ -133,7 +159,13 @@ console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, 
 
   <Button onClick={handleClickSavePost} variant="primary" size="md" type="submit">
     Save Post
-  </Button>
+  </Button>{"  "}
+
+<Link to={"/posts"}>
+  <Button  variant="secondary" size="md" type="submit">
+    Back to List
+  </Button> 
+  </Link>
 </Form>
 </div>  </>
     )
