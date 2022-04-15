@@ -38,7 +38,7 @@ export const PostDetails = () => {
         getAllMaintenancesByPostId(id)
         .then(setMaintenanceByP);
     }, [])
-debugger
+
 
     console.log(id, maintenancesByP);
     if (!post) {

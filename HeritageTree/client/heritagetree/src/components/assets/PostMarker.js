@@ -18,7 +18,7 @@ const MapEvents = () => {
 //All pictures needs to be in the public folder for react.  Relative path for the pic is set at the public holder location 
 
 export const PostMarker = ({post}) => {
-    var myIcon = L.icon({
+    let myIcon = L.icon({
         iconUrl: '/images/treeIcon.png',
         iconSize: [20, 30],
         iconAnchor: [22, 94],
@@ -27,6 +27,11 @@ export const PostMarker = ({post}) => {
         // shadowSize: [10, 10],
         // shadowAnchor: [22, 94]
     });
+
+if(!post.isApproved){
+//    console.log(myIcon)
+    myIcon.options.iconUrl = '/images/redtreeicon.png' 
+}
 
     return (
         <div>
