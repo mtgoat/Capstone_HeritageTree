@@ -43,9 +43,9 @@ export const ManageMaintenanceForm = () => {
     return(
         <Form className="postMaintenance">
             
-            <Form.Group className="mb-3" controlId="maintenaceId">
+            <Form.Group className="mb-3" controlId="maintenanceId">
             <Form.Label>Please select a Maintenance category:</Form.Label>
-              <Form.Select required autoFocus name="maintenaceId" onChange={handleControlledInputChange}>
+              <Form.Select required autoFocus name="maintenanceId" onChange={handleControlledInputChange}>
         <option>select a Maintenance category</option>
         {maintenances.map((m) => {
             return (

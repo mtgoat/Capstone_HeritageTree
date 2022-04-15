@@ -66,8 +66,7 @@ export const PostProvider = (props) => {
   }
   
   const addMaintenanceToPost = (maintenance) => {
-    debugger
-    return fetch(`${apiUrl}/api/Post/AddMaintenanceToPost`, {
+        return fetch(`${apiUrl}/api/Post/AddMaintenanceToPost`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

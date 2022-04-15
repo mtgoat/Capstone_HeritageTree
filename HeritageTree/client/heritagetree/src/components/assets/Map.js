@@ -55,12 +55,15 @@ const Map = ({ apikey }) => {
 
     const testcordi = [38.92771909929851, -79.84325808489746]
 
-	const { posts, getAllPosts } = useContext(PostContext);
+	const { posts, getAllPosts, nonAppPosts, getAllNonAppPosts } = useContext(PostContext);
 
+
+	
   useEffect(() => {
-    getAllPosts();
+    getAllPosts().then(()=>getAllNonAppPosts());
   }, []);
 
+  console.log(nonAppPosts)
 	return (
 		
 		<MapContainer 
@@ -71,12 +74,11 @@ const Map = ({ apikey }) => {
 			{posts.map((p) => (
               <PostMarker key={p.id} post={p} />
             ))}
-			{/* <MapEvents />
-            <Marker position={testcordi}>
-        <Popup>
-          Big tree in the wetland by the US Forestry Building <br /> This is a test
-        </Popup>
-      </Marker> */}
+			
+			{nonAppPosts.map((p) => (
+              <PostMarker key={p.id} post={p} />
+            ))}
+
 			<LayersControl position="topleft" collapsed={false}>
 				<LayersControl.BaseLayer name="Tiled Map Layer">
 					<TiledMapLayer url="https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WUI_2010_01/MapServer" />
