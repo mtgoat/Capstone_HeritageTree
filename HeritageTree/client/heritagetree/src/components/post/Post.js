@@ -44,3 +44,10 @@ export const Post = ({post}) => {
       </Accordion.Item>
     )
 }
+
+export const Maint = ({MaintProp}) => {
+
+return (<Row key={MaintProp.id}> 
+                <Col xs={5} >Maintenance Item {MaintProp.id}: </Col><Col >{ MaintProp.name }</Col>
+                  </Row>)
+}

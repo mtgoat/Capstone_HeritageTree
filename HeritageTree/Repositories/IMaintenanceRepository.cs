@@ -12,6 +12,7 @@ namespace HeritageTree.Repositories
         void Update(Maintenance maintenance);
 
         public void Delete(int id);
+        public List<Maintenance> GetAllByPostId(int id);
 
     }
 }

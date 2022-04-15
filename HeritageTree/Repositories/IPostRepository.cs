@@ -18,5 +18,7 @@ namespace HeritageTree.Repositories
 
         public void AddMaintenanceToPost(PostMaintenance postMaintenance);
 
+        List<Post> GetAllByMaintenanceId(int id);
+
     }
 }

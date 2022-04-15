@@ -1,30 +1,29 @@
 import React, { useContext, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Accordion, Button } from "react-bootstrap";
-import { Post } from "./Post";
+import { Post } from "../post/Post";
 import "../../index.css";
 import { Link } from "react-router-dom";
 
 
-export const PostList = () => {
+export const PostByMList = ({PostMaintenanceProp}) => {
   
-    const { posts, getAllPosts } = useContext(PostContext);
+    const { postsByM, getPostsByMaintenanceId } = useContext(PostContext);
   
+const PMid = PostMaintenanceProp.id
     useEffect(() => {
-      getAllPosts();
+        getPostsByMaintenanceId(PMid);
     }, []);
-    console.log("posts ", posts);
+    console.log("posts ", postsByM);
     return (
         <>
-        <Link to={`/posts/cor/create`}>
-          <Button className="post__create">Nominate a heritage tree</Button>
-        </Link>
+        
         <div className="container">
         <h3 className="post__title">List of Heritage Trees:</h3>
           <div className="row justify-content-center">
             <div className="col-sm-10 col-lg-10">
               <Accordion defaultActiveKey="0">
-                {posts.map((p) => (
+                {postsByM.map((p) => (
                   <Post key={p.id} post={p} />
                 ))}
               </Accordion>
