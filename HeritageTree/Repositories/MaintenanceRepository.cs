@@ -40,7 +40,40 @@ namespace HeritageTree.Repositories
             }
         }
 
+        //this is to get all maintenace by the same post.  NO post Id in this quarey 
+        public List<Maintenance> GetAllByPostId(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"  
+                         SELECT pm.Id AS PostMaintenanceId, pm.MaintenanceId, m.[Name] as MaintenanceName 
+                FROM PostMaintenance pm
+                LEFT JOIN Maintenance m on pm.MaintenanceId = m.id
+                WHERE pm.PostId = @Id";
 
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var maintenances = new List<Maintenance>();
+                    while (reader.Read())
+                    {
+                        maintenances.Add(new Maintenance()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("MaintenanceId")),
+                            Name = reader.GetString(reader.GetOrdinal("MaintenanceName")),
+                        });
+                    }
+
+                    reader.Close();
+
+                    return maintenances;
+                }
+            }
+        }
         public Maintenance GetById(int id)
         {
             using (var conn = Connection)

@@ -19,6 +19,12 @@ export function MaintenanceProvider(props) {
             .then(res => res.json())
     }
 
+    const getAllMaintenancesByPostId = (id) => {
+      return fetch(`${apiUrl}/api/Maintenance/GetAllByPostId/${id}`)
+          .then(res => res.json())
+  }
+    
+
     const addMaintenance = (maintenance) => {
         return fetch(`${apiUrl}/api/Maintenance`, {
           method: "POST",
@@ -54,7 +60,7 @@ export function MaintenanceProvider(props) {
 
 
       return (
-        <MaintenanceContext.Provider value={{maintenances, getAllMaintenances, getMaintenanceById, addMaintenance, hardDeleteMaintenance, updateMaintenance
+        <MaintenanceContext.Provider value={{maintenances, getAllMaintenances, getMaintenanceById, addMaintenance, hardDeleteMaintenance, updateMaintenance, getAllMaintenancesByPostId
          }}>
           {props.children}
         </MaintenanceContext.Provider>
