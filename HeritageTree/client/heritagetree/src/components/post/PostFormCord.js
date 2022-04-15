@@ -69,10 +69,23 @@ export const PostFormCord = () => {
         <div className="postForm">
         <h3 className="postForm__title">Report Heritage Tree Form </h3>
         <p> This form requires geographic coordinates of a tree, such as latitude and longitude.  If you would like to report with a street address, click the button below </p>
+        
         <Link to={`/posts/st/create`}>
           <Button className="post__create">Report a Heritage Tree with a street address</Button>
         </Link>
-
+        <br></br>
+        <Form.Group className="mb-3" controlId="treeCommonNameId">
+            <Form.Label>Please select a type of the tree:</Form.Label>
+              <FormSelect required autoFocus name="treeCommonNameId" onChange={handleControlledInputChange}>
+        <option>Select a type of the tree</option>
+        {treeCommonNames.map((t) => {
+            return (
+                <option key={t.id} value={t.id}>{t.name}</option>
+            )
+          })
+        }
+              </FormSelect>
+          </Form.Group>
         <Form className="post__form">
           <Form.Group className="mb-3" controlId="latitude">
             <Form.Label>Latitude:</Form.Label>
@@ -98,38 +111,12 @@ export const PostFormCord = () => {
               <Form.Text>If you do not know which ward, please visit <a href="https://coewv.maps.arcgis.com/apps/webappviewer/index.html?id=15246ac759c345babbbbb8a5f7c11490" target="_blank" rel="noopener noreferrer">here</a></Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="treeCommonNameId">
-            <Form.Label>Please select a type of the tree:</Form.Label>
-              <FormSelect required autoFocus name="treeCommonNameId" onChange={handleControlledInputChange}>
-        <option>Select a type of the tree</option>
-        {treeCommonNames.map((t) => {
-            return (
-                <option key={t.id} value={t.id}>{t.name}</option>
-            )
-          })
-        }
-              </FormSelect>
-          </Form.Group>
+         
 
   <Form.Group className="mb-3" controlId="imageLocation">
     <Form.Label>Image URL(optional):</Form.Label>
     <Form.Control name="imageLocation" value={post.imageLocation} onChange={handleControlledInputChange} type="url" autoFocus placeholder="Enter a url of an image" />
   </Form.Group>
-
-
-  <Form.Group className="mb-3" controlId="treeCommonNameId">
-            <Form.Label>Please select a type of the tree:</Form.Label>
-              <FormSelect required autoFocus name="treeCommonNameId" onChange={handleControlledInputChange}>
-        <option>Select a type of the tree</option>
-        {treeCommonNames.map((t) => {
-            return (
-                <option key={t.id} value={t.id}>{t.name}</option>
-            )
-          })
-        }
-              </FormSelect>
-          </Form.Group>
-
 
           <Form.Group className="mb-3" controlId="ownershipId">
             <Form.Label>Please select a type of property the tree is located:</Form.Label>
@@ -158,7 +145,7 @@ export const PostFormCord = () => {
           </Form.Group>
 
   <Button onClick={handleClickSavePost} variant="primary" size="md" type="submit">
-    Save Post
+   Submit
   </Button>{"  "}
 
 <Link to={"/posts"}>

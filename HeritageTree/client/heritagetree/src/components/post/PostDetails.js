@@ -6,11 +6,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
 import { ManageMaintenanceForm } from "./ManageMaintenanceForm";
+import { PostTks } from "../slide/slide";
+import { MaintenanceContext } from "../../providers/MaintenanceProvider";
+import { Maint } from "./Post"
 
 export const PostDetails = () => {
     const [post, setPost] = useState();
     const {getPostById} = useContext(PostContext);
     const {id} = useParams();
+    
+    const [maintenancesByP, setMaintenanceByP] = 
+    useState();
+    const {getAllMaintenancesByPostId } = useContext(MaintenanceContext)
     
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserType = currentUser.userTypeId;
@@ -18,15 +25,22 @@ export const PostDetails = () => {
     //this is for the add maintenance button
     const [showA, setShowA] = useState(false);
     const toggleShowA = () => setShowA(!showA);
-
+   
 
     useEffect(() => {
-        console.log(currentUser.userTypeId);
+        // console.log(currentUser.userTypeId);
         getPostById(id)
         .then(setPost);
+        
     }, [])
 
-    console.log(currentUser.userTypeId);
+    useEffect(() => {
+        getAllMaintenancesByPostId(id)
+        .then(setMaintenanceByP);
+    }, [])
+debugger
+
+    console.log(id, maintenancesByP);
     if (!post) {
         return null;
     }
@@ -39,7 +53,7 @@ export const PostDetails = () => {
     return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-sm-12 col-lg-6">
+        <div className="col-sm-12 col-lg-6" >
        
         <Card border="success"  style={{ width: '30rem', margin: '3em auto' }}>
             <Badge bg="secondary">{post.createDateTime}</Badge>
@@ -82,10 +96,18 @@ export const PostDetails = () => {
              <Col xs={5}>Heritage Status: </Col>
             <Col>{ post.heritageStatusName } </Col>   
             </Row>
+
+             {(currentUserType !==2 && maintenancesByP !== undefined ) &&
+                <div>
+                {maintenancesByP.map((m) => (
+                   <Maint key={m.id} MaintProp ={m}/>
+                ))}</div>
+                }
             </Card.Body>
             <div className="d-grid gap-2">
 
-            {currentUserType !==2 ? 
+           
+            {(currentUserType !==2 && post.id !==15 )? 
                 <Row>
                     <Col md={6} className="mb-2">
                     {/* <Button variant="primary" size="md" disabled>
@@ -111,6 +133,9 @@ export const PostDetails = () => {
                     </Col>
                 </Row>: null}
 
+                {(currentUserType !==2 && post.id ===15 )? 
+                <PostTks/>
+               : null}
             </div>
             </Card.Body>
         </Card>

@@ -6,7 +6,8 @@ import "./Maintenance.css";
 import { MaintenanceContext } from "../../providers/MaintenanceProvider";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-//we're just using the Card component that comes with reactstrap to organize some of the category details.
+import {PostByMList} from "./PostMaintenance"
+
 export const Maintenance = ({MaintenanceProp}) => {
     const {hardDeleteCategory } = useContext(MaintenanceContext); 
     
@@ -63,9 +64,11 @@ export const Maintenance = ({MaintenanceProp}) => {
 
 <Modal show={show2} onHide={handleClose2}>
 <Modal.Header closeButton>
-<Modal.Title>List of Reports with this Maintenance</Modal.Title>
+<Modal.Title>List of Reports with {MaintenanceProp.name} </Modal.Title>
 </Modal.Header>
-<Modal.Body>Maintenance Name: {MaintenanceProp.name}</Modal.Body>
+<Modal.Body>
+  <PostByMList PostMaintenanceProp={MaintenanceProp}/>
+</Modal.Body>
 <Modal.Footer>
  
   <Button variant="primary" onClick={handleClose2}>

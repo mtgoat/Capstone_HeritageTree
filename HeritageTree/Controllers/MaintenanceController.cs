@@ -37,6 +37,18 @@ namespace HeritageTree.Controllers
             return Ok(maintenance);
         }
 
+        //this is to get maintenance info by postId  
+        [HttpGet("GetAllByPostId/{id}")]
+        public IActionResult GetAllByPostId(int id)
+        {
+            var maintenance = _maintenanceRepository.GetAllByPostId(id);
+            if (maintenance == null)
+            {
+                return NotFound();
+            }
+            return Ok(maintenance);
+        }
+
         // POST api/<MaintenanceController>
         [HttpPost]
         public IActionResult Post(Maintenance maintenance)

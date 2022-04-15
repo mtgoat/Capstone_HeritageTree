@@ -12,6 +12,7 @@ import {
 } from 'react-esri-leaflet';
 
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
+import "./PostMaker.css";
 
 // import HeatmapLayer from 'react-esri-leaflet/plugins/HeatmapLayer';
 // import ClusterLayer from 'react-esri-leaflet/plugins/ClusterLayer';
@@ -61,7 +62,8 @@ const Map = ({ apikey }) => {
   }, []);
 
 	return (
-		<MapContainer
+		
+		<MapContainer 
 			id="mapId"
 			zoom={11}
 			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
@@ -131,7 +133,7 @@ const Map = ({ apikey }) => {
 				</LayersControl.Overlay> */}
 			</LayersControl>
 
-			<EsriLeafletGeoSearch
+			{/* <EsriLeafletGeoSearch
 				position="topleft"
 				useMapBounds={false}
 				placeholder={
@@ -163,7 +165,7 @@ const Map = ({ apikey }) => {
 					results: (r) => console.log(r),
 				}}
 				key={apikey}
-			/>
+			/> */}
 		</MapContainer>
 	);
 };
