@@ -52,7 +52,8 @@ namespace HeritageTree.Repositories
                          SELECT pm.Id AS PostMaintenanceId, pm.MaintenanceId, m.[Name] as MaintenanceName 
                 FROM PostMaintenance pm
                 LEFT JOIN Maintenance m on pm.MaintenanceId = m.id
-                WHERE pm.PostId = @Id";
+                WHERE pm.PostId = @Id
+                ORDER BY pm.MaintenanceId";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
