@@ -9,7 +9,7 @@ import { Modal } from "react-bootstrap";
 import {PostByMList} from "./PostMaintenance"
 
 export const Maintenance = ({MaintenanceProp}) => {
-    const {hardDeleteCategory } = useContext(MaintenanceContext); 
+    const { hardDeleteMaintenance } = useContext(MaintenanceContext); 
     
     const navigate = useNavigate();
 
@@ -22,8 +22,7 @@ export const Maintenance = ({MaintenanceProp}) => {
 
     const onClickHandler = () => {
        
-        hardDeleteCategory(MaintenanceProp.id).then(
-        navigate(handleClose)).then(navigate('/maintenances')); 
+      hardDeleteMaintenance(MaintenanceProp.id).then(navigate('/maintenances')); 
     };
 
 

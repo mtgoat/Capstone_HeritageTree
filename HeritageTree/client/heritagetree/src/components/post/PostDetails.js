@@ -110,9 +110,9 @@ export const PostDetails = () => {
             {(currentUserType !==2 && post.id !==15 )? 
                 <Row>
                     <Col md={6} className="mb-2">
-                    {/* <Button variant="primary" size="md" disabled>
+                    <Button variant="primary" size="md" >
                         Edit
-                    </Button> */}
+                    </Button>
                     </Col>
                     <Col md={6} className="mb-2">
                     <Button onClick={toggleShowA} className="mb-2">

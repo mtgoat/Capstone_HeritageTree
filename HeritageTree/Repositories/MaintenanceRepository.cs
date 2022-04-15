@@ -158,11 +158,11 @@ namespace HeritageTree.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        DETELE FROM Maintenance
+                        Delete FROM Maintenance
                                                 
                         WHERE Id = @Id";
 
-                    DbUtils.AddParameter(cmd, "@Id", id);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
                 }

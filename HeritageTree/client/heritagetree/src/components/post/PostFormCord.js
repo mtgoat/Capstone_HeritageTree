@@ -85,6 +85,9 @@ export const PostFormCord = () => {
           })
         }
               </FormSelect>
+              <Form.Text>
+              To identify the tree species, please visit <a href="              https://www.inaturalist.org/pages/seek_app" target="_blank" rel="noopener noreferrer">here</a>
+              </Form.Text>
           </Form.Group>
         <Form className="post__form">
           <Form.Group className="mb-3" controlId="latitude">
