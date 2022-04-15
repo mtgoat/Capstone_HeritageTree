@@ -28,7 +28,10 @@ export const PostMarker = ({post}) => {
         // shadowAnchor: [22, 94]
     });
 
-if(!post.isApproved){
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const currentUserType = currentUser.userTypeId;
+
+if(!post.isApproved && currentUserType ===1 ){
 //    console.log(myIcon)
     myIcon.options.iconUrl = '/images/redtreeicon.png' 
 }
@@ -58,9 +61,13 @@ if(!post.isApproved){
                                    
                                     </Row>
                         </Card.Text>
-                        <Link to={`/posts/${post.id}`}>
+                        {!post.isApproved? <Link to={`/postsNA/${post.id}`}>
                     <Button className="mt-2" variant="secondary">More Info</Button>
-                    </Link>
+                        </Link>: <Link to={`/posts/${post.id}`}>
+                    <Button className="mt-2" variant="secondary">More Info</Button>
+                        </Link>
+                        }
+                        
                         </Card.Body>
                         
                     </Card>
