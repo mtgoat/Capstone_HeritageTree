@@ -12,14 +12,14 @@ export default function Home() {
 
 	return (
     <>
-    <div><p>Map</p></div>
+    <div><p className="mapTitle">Map</p></div>
 		<div className="App">
 			<Map apikey={apikey } />
-			<UI
+			{/* <UI
 				setApikey={setApikey}
 				keyModalOpen={keyModalOpen}
 				setKeyModalOpen={setKeyModalOpen}
-			/> 
+			/>  */}
 		 </div>
     </>
 	);

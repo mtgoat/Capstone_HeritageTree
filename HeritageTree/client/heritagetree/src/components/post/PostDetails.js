@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
 import { ManageMaintenanceForm } from "./ManageMaintenanceForm";
+import { PostTks } from "../slide/slide";
+
 
 export const PostDetails = () => {
     const [post, setPost] = useState();
@@ -18,7 +20,7 @@ export const PostDetails = () => {
     //this is for the add maintenance button
     const [showA, setShowA] = useState(false);
     const toggleShowA = () => setShowA(!showA);
-
+   
 
     useEffect(() => {
         console.log(currentUser.userTypeId);
@@ -85,7 +87,7 @@ export const PostDetails = () => {
             </Card.Body>
             <div className="d-grid gap-2">
 
-            {currentUserType !==2 ? 
+            {(currentUserType !==2 && post.id !==15 )? 
                 <Row>
                     <Col md={6} className="mb-2">
                     {/* <Button variant="primary" size="md" disabled>
@@ -111,6 +113,9 @@ export const PostDetails = () => {
                     </Col>
                 </Row>: null}
 
+                {(currentUserType !==2 && post.id ===15 )? 
+                <PostTks/>
+               : null}
             </div>
             </Card.Body>
         </Card>
