@@ -2,3 +2,16 @@
     margin: 1rem;
 }
 
+
+.postList__LeftContainer{
+    padding: 5rem;
+}
+
+.postList__welcome{
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.postList__title{
+    margin: 1rem 1rem 1rem 12rem;
+}

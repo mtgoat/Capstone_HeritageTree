@@ -71,6 +71,7 @@ const Map = ({ apikey }) => {
 			zoom={11}
 			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
 		>
+			
 			{posts.map((p) => (
               <PostMarker key={p.id} post={p} />
             ))}

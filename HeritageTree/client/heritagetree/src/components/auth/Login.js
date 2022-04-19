@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, Link } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
+import './auth.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -24,8 +25,17 @@ export default function Login() {
   };
 
   return (
-    <Form onSubmit={loginSubmit}>
-      <fieldset>
+    <div className="login__container">
+         <img
+        src={require("../../logo/app-logo.png")}
+        alt="Heritage Tree Logo"
+        className="app-logo__login"
+      />
+        <div className="screen">
+        <div className="screen__content">
+        <h4 className="screen__content__title"><b >Log In</b></h4>
+    <Form className="login" onSubmit={loginSubmit}>
+      
         <FormGroup>
           <Label for="email">Email</Label>
           <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
@@ -40,7 +50,10 @@ export default function Login() {
         <em>
           Not registered? <Link to="/register">Register</Link>
         </em>
-      </fieldset>
+    
     </Form>
+    </div>
+    </div>
+    </div>
   );
 }

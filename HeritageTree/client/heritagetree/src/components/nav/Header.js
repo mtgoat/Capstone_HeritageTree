@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand,
- Nav, NavItem, NavLink} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container} from 'reactstrap';
 import { UserProfileContext } from "../../providers/UserProfileProvider";
+import './header.css'
 
 export const Header = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -15,8 +15,9 @@ export const Header = () => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">Heritage Trees </NavbarBrand>
+      <Navbar className='nav' color="light" light expand="lg" >
+      <Container fluid>
+        <NavbarBrand tag={RRNavLink} to="/">Heritage Tree </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -56,6 +57,7 @@ export const Header = () => {
             }
           </Nav>
         </Collapse>
+        </Container>
       </Navbar>
     </div>
   );
