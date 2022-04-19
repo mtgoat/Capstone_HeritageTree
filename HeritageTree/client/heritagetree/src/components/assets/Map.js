@@ -37,7 +37,7 @@ import "./PostMaker.css";
 // 	ImageMapLayer,
 // } from '../../../build';
 
-// import EsriLeafletGeoSearch from '../../../plugins/EsriLeafletGeoSearch';
+//import EsriLeafletGeoSearch from '../../../plugins/EsriLeafletGeoSearch';
 // import HeatmapLayer from '../../../plugins/HeatmapLayer';
 // import ClusterLayer from '../../../plugins/ClusterLayer';
 // import VectorBasemapLayer from '../../../plugins/VectorBasemapLayer';
@@ -88,9 +88,9 @@ const Map = ({ apikey }) => {
 				<LayersControl.BaseLayer name="Base Map Layer" checked>
 					<BasemapLayer name="DarkGray" />
 				</LayersControl.BaseLayer>
-				<LayersControl.BaseLayer name="Dynamic Map Layer">
+				{/* <LayersControl.BaseLayer name="Dynamic Map Layer">
 					<DynamicMapLayer url="https://services.arcgisonline.com/arcgis/rest/services/Specialty/Soil_Survey_Map/MapServer" />
-				</LayersControl.BaseLayer>
+				</LayersControl.BaseLayer> */}
 				<LayersControl.BaseLayer name="Image Map Layer">
 					<ImageMapLayer
 						url="https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer"
