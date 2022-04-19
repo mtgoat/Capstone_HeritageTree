@@ -11,6 +11,7 @@ export const Post = ({post}) => {
     console.log("post is approved?", post.isApproved);
 
     return (
+        <div className="postList__items">
         <Accordion.Item eventKey={post.id}>
          <Badge bg="secondary">{post.createDateTime}</Badge>
         <Accordion.Header>{post.treeCommonNameName}</Accordion.Header>
@@ -42,6 +43,7 @@ export const Post = ({post}) => {
             </Row> */}
         </Accordion.Body>
       </Accordion.Item>
+      </div>
     )
 }
 

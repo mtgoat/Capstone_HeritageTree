@@ -12,7 +12,7 @@ export default function Home() {
 
 	return (
     <>
-    <div><p className="mapTitle">Map</p></div>
+    <div><p className="mapTitle"></p></div>
 		<div className="App">
 			<Map apikey={apikey } />
 			{/* <UI

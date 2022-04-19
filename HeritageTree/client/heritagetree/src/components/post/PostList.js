@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
-import { Accordion, Button } from "react-bootstrap";
+import { Accordion, Button, Row, Col } from "react-bootstrap";
 import { Post } from "./Post";
-import "../../index.css";
+// import "../../index.css";
 import { Link } from "react-router-dom";
-
+import "./post.css"
 
 export const PostList = () => {
   
@@ -15,12 +15,18 @@ export const PostList = () => {
     }, []);
     console.log("posts ", posts);
     return (
-        <>
+      <article id="postList__container">
+       <Row >
+          
+          <Col xs={6} md={4} ><div className="postList__LeftContainer">
+          <h5 className="postList__welcome"> Welcome to the Heritage tree page</h5>
         <Link to={`/posts/cor/create`}>
-          <Button className="post__create">Nominate a heritage tree</Button>
-        </Link>
-        <div className="container">
-        <h3 className="post__title">List of Heritage Trees:</h3>
+          <Button className="postList__createButton">Nominate a heritage tree</Button>
+        </Link></div>
+          </Col>
+          
+          <Col xs={12} md={8}>
+          <h3 className="postList__title">List of Heritage Trees:</h3>
           <div className="row justify-content-center">
             <div className="col-sm-10 col-lg-10">
               <Accordion defaultActiveKey="0">
@@ -30,7 +36,8 @@ export const PostList = () => {
               </Accordion>
             </div>
           </div>
-        </div>
-        </>
+          </Col>
+       </Row>
+        </article>
       );
     };

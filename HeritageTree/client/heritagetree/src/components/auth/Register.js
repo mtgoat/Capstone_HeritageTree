@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
@@ -26,16 +26,31 @@ export default function Register() {
  };
 
   return (
+    <div className="login__container">
+         <img
+        src={require("../../logo/app-logo.png")}
+        alt="Heritage Tree Logo"
+        className="app-logo__login"
+      />
+
+<div className="screen2">
+        <div className="screen__content2">
+          <h4 className="screen__content2__title"><b >Registration Form</b></h4>
     <Form onSubmit={registerClick}>
-      <fieldset>
-        <FormGroup>
+    <Row>
+      <Col><FormGroup>
           <Label htmlFor="firstName">First Name</Label>
           <Input id="firstName" type="text" onChange={e => setFirstName(e.target.value)} />
         </FormGroup>
-        <FormGroup>
+      </Col>
+      <Col>
+      <FormGroup>
           <Label htmlFor="lastName">Last Name</Label>
           <Input id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
         </FormGroup>
+      </Col>
+    </Row>
+
         <FormGroup>
           <Label htmlFor="displayName">Display Name</Label>
           <Input id="displayName" type="text" onChange={e => setDisplayName(e.target.value)} />
@@ -56,7 +71,8 @@ export default function Register() {
         <FormGroup>
           <Button>Register</Button>
         </FormGroup>
-      </fieldset>
+      
     </Form>
+    </div> </div> </div>
   );
 }
