@@ -1,7 +1,7 @@
-import React, { useContext, useEffect} from 'react';
+import React, { useContext, useEffect, Component, createRef} from 'react';
 import { PostContext } from '../../providers/PostProvider'; 
 import { PostMarker } from './PostMarker';
-import { MapContainer, LayersControl, useMapEvents, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, LayersControl, useMapEvents, TileLayer } from 'react-leaflet';
 
 import {
 	BasemapLayer,
@@ -13,6 +13,11 @@ import {
 
 import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
 import "./PostMaker.css";
+import L from 'leaflet';
+import * as ELG from 'esri-leaflet-geocoder';
+
+
+
 
 // import HeatmapLayer from 'react-esri-leaflet/plugins/HeatmapLayer';
 // import ClusterLayer from 'react-esri-leaflet/plugins/ClusterLayer';
@@ -50,7 +55,21 @@ const MapEvents = () => {
 	return null;
 };
 
-const Map = ({ apikey }) => {
+// const  componentDidMount = () => {
+// 	//   this is for geosearch
+// 	this.mapContainerRef = React.createRef();
+//   const map = this.mapContainerRef.current.leafletElement;
+//   const searchControl = new ELG.Geosearch().addTo(map);
+//   const results = new L.LayerGroup().addTo(map);
+  
+//   searchControl.on('results', function(data){
+// 	  results.clearLayers();
+// 	  for (let i = data.results.length - 1; i >= 0; i--) {
+// 		  results.addLayer(L.marker(data.results[i].latlng));
+// 	  }
+//   });
+//}
+export const Map = ({ apikey }) => {
 	const featureLayerRef = React.useRef();
 
     const testcordi = [38.92771909929851, -79.84325808489746]
@@ -64,14 +83,20 @@ const Map = ({ apikey }) => {
   }, []);
 
   console.log(nonAppPosts)
+
+
+
+
 	return (
 		
-		<MapContainer 
+		<MapContainer
+		    // ref={this.mapContainerRef}
 			id="mapId"
-			zoom={11}
+			zoom={13}
+			scrollWheelZoom={true}
 			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
 		>
-			
+			 
 			{posts.map((p) => (
               <PostMarker key={p.id} post={p} />
             ))}
@@ -83,8 +108,10 @@ const Map = ({ apikey }) => {
 			<LayersControl position="topleft" collapsed={false}>
 				<LayersControl.BaseLayer name="Tiled Map Layer">
 					<TiledMapLayer url="https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WUI_2010_01/MapServer" />
-                    
-				</LayersControl.BaseLayer>
+                </LayersControl.BaseLayer>
+
+
+
 				<LayersControl.BaseLayer name="Base Map Layer" checked>
 					<BasemapLayer name="DarkGray" />
 				</LayersControl.BaseLayer>
@@ -96,6 +123,13 @@ const Map = ({ apikey }) => {
 						url="https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer"
 						attribution="United States Geological Survey (USGS), National Aeronautics and Space Administration (NASA)"
 					/>
+				</LayersControl.BaseLayer>
+
+				<LayersControl.BaseLayer name="Street Map Layer">
+				<TileLayer
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
 				</LayersControl.BaseLayer>
 				{/* <LayersControl.BaseLayer name="Vector Basemap Layer (token required)">
 					{apikey && (
@@ -135,8 +169,8 @@ const Map = ({ apikey }) => {
 					<VectorTileLayer url="https://vectortileservices3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Santa_Monica_Mountains_Parcels_VTL/VectorTileServer" />
 				</LayersControl.Overlay> */}
 			</LayersControl>
-
-			{/* <EsriLeafletGeoSearch
+			<div className='pointer'></div>
+			 <EsriLeafletGeoSearch
 				position="topleft"
 				useMapBounds={false}
 				placeholder={
@@ -168,9 +202,10 @@ const Map = ({ apikey }) => {
 					results: (r) => console.log(r),
 				}}
 				key={apikey}
-			/> */}
+			/> 
+			
 		</MapContainer>
 	);
 };
 
-export default Map;
+

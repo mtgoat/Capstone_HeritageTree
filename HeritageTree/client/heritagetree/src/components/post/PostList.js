@@ -4,7 +4,7 @@ import { Accordion, Button, Row, Col } from "react-bootstrap";
 import { Post } from "./Post";
 // import "../../index.css";
 import { Link } from "react-router-dom";
-import "./post.css"
+import "./post.css";
 
 export const PostList = () => {
   
