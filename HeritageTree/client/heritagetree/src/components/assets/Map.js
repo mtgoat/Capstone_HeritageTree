@@ -174,9 +174,7 @@ export const Map = ({ apikey }) => {
 				position="topleft"
 				useMapBounds={false}
 				placeholder={
-					apikey
-						? 'Search for places or addresses'
-						: 'Enter an API key in the upper right corner'
+					'Search for places or addresses'
 				}
 				providers={{
 					arcgisOnlineProvider: {
@@ -203,7 +201,6 @@ export const Map = ({ apikey }) => {
 				}}
 				key={apikey}
 			/> 
-			
 		</MapContainer>
 	);
 };
