@@ -126,7 +126,7 @@ export const PostFormCord = () => {
         <option >Select a type of property</option>
         {ownerships.map((o) => {
             return (
-                <option selected={post.ownershipId} key={o.id} value={o.id}>{o.name}</option>
+                <option defaultValue={post.ownershipId} key={o.id} value={o.id}>{o.name}</option>
             )
           })
         }

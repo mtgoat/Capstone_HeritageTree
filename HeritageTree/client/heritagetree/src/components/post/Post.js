@@ -18,29 +18,26 @@ export const Post = ({post}) => {
         <Accordion.Body>
             <Row>
                 <Col>
-                <h5>Heritage Status</h5>
-                {post.heritageStatusName} Tree
+                    <h5>Heritage Status</h5>
+                    {post.heritageStatusName} Tree
                 </Col> 
+                {
+                    
+                }
                 <Col>
-               
+                    <Link to={`/posts/${post.id}`}>
+                        <Button className="mt-2" variant="secondary">Edit</Button>
+                    </Link>
+                </Col>
+                
+                <Col>
                     <Link to={`/posts/${post.id}`}>
                     <Button className="mt-2" variant="secondary">More Info</Button>
                     </Link>
-                    
-                
-                </Col> 
+                </Col>
+
             </Row>
-            {/* <Row>
-                <Col>
-                <h5>Heritage Status</h5>
-                {post.heritageStatusName} Tree
-                </Col> 
-                <Col>
-                <Link to={`/posts/${post.id}`}>
-                    <Button className="mt-2" variant="secondary">More Info</Button>
-                </Link>
-                </Col> 
-            </Row> */}
+           
         </Accordion.Body>
       </Accordion.Item>
       </div>

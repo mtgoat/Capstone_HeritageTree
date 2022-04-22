@@ -1,6 +1,6 @@
 import React, { useContext, useEffect} from 'react';
 import { PostContext } from '../../providers/PostProvider'; 
-import { MapContainer, LayersControl, useMapEvents, Marker, Popup, } from 'react-leaflet';
+import { MapContainer, LayersControl, useMapEvents, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,13 +11,16 @@ import Button from "react-bootstrap/Button"
 
 const MapEvents = () => {
 	const map = useMapEvents({
-		click: (e) => console.log(e.latlng, map.getZoom()),
+		click: (e) => console.log(map.getZoom()),
 	});
 	return null;
 };
-//All pictures needs to be in the public folder for react.  Relative path for the pic is set at the public holder location 
+// All pictures needs to be in the public folder for react.  Relative path for the pic is set at the public holder location 
 
 export const PostMarker = ({post}) => {
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const currentUserTypeId = currentUser?.userTypeId;
+
     let myIcon = L.icon({
         iconUrl: '/images/treeIcon.png',
         iconSize: [20, 30],
@@ -27,8 +30,10 @@ export const PostMarker = ({post}) => {
         // shadowSize: [10, 10],
         // shadowAnchor: [22, 94]
     });
-
-if(!post.isApproved){
+if(post.treeCommonNameId ===26){
+    myIcon.options.iconUrl = '/images/whiteOak26.png'
+}
+if(!post.isApproved && currentUserTypeId!==2 ){
 //    console.log(myIcon)
     myIcon.options.iconUrl = '/images/redtreeicon.png' 
 }

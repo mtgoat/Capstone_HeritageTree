@@ -89,12 +89,12 @@ const [query, setQuery] = useState ({
       const newQuery = { ...query }
       newQuery[e.target.name] = e.target.value
       setQuery(newQuery)
+      //console.log(query.city)
   }
 
     const handleClickSavePost = (e) => {
         e.preventDefault();
         getGeoCoordinate(query.streetAddress, query.city, query.state, query.zip)
-        
         .then( addPost(post))
         .then(() => navigate('/posts'));  
         
@@ -178,7 +178,7 @@ const [query, setQuery] = useState ({
         <option >Select a type of property</option>
         {ownerships.map((o) => {
             return (
-                <option selected={post.ownershipId} key={o.id} value={o.id}>{o.name}</option>
+                <option key={o.id} value={o.id}>{o.name}</option>
             )
           })
         }

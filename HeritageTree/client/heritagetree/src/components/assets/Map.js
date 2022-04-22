@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, Component, createRef} from 'react';
 import { PostContext } from '../../providers/PostProvider'; 
 import { PostMarker } from './PostMarker';
-import { MapContainer, LayersControl, useMapEvents, TileLayer } from 'react-leaflet';
+import { MapContainer, LayersControl, useMapEvents, TileLayer, Marker, Popup} from 'react-leaflet';
 
 import {
 	BasemapLayer,
@@ -48,33 +48,18 @@ import * as ELG from 'esri-leaflet-geocoder';
 // import VectorBasemapLayer from '../../../plugins/VectorBasemapLayer';
 // import VectorTileLayer from '../../../plugins/VectorTileLayer';
 
-const MapEvents = () => {
-	const map = useMapEvents({
-		click: (e) => console.log(e.latlng, map.getZoom()),
-	});
-	return null;
-};
+// const MapEvents = () => {
+// 	const map = useMapEvents({
+// 		click: (e) => console.log(e.latlng, map.getZoom()),
+// 	});
+// 	return null;
+// };
 
-// const  componentDidMount = () => {
-// 	//   this is for geosearch
-// 	this.mapContainerRef = React.createRef();
-//   const map = this.mapContainerRef.current.leafletElement;
-//   const searchControl = new ELG.Geosearch().addTo(map);
-//   const results = new L.LayerGroup().addTo(map);
-  
-//   searchControl.on('results', function(data){
-// 	  results.clearLayers();
-// 	  for (let i = data.results.length - 1; i >= 0; i--) {
-// 		  results.addLayer(L.marker(data.results[i].latlng));
-// 	  }
-//   });
-//}
+
 export const Map = ({ apikey }) => {
 	const featureLayerRef = React.useRef();
 
-    const testcordi = [38.92771909929851, -79.84325808489746]
-
-	const { posts, getAllPosts, nonAppPosts, getAllNonAppPosts } = useContext(PostContext);
+	const { posts, getAllPosts, nonAppPosts, getAllNonAppPosts, setPosts, result, setResult } = useContext(PostContext);
 
 
 	
@@ -83,6 +68,20 @@ export const Map = ({ apikey }) => {
   }, []);
 
   console.log(nonAppPosts)
+
+//   const addToState = (response) => {
+// 	console.log(response)
+// 	let copyOfState = result
+// 	console.log(copyOfState)
+// 	let newObjectToAdd = {
+// 		latitude: response.latlng.lat,
+// 		longitude:response.latlng.lng,
+// 		address: response
+// 	}
+// 	copyOfState.push(newObjectToAdd)
+// 	console.log("thisis copy of state after you added something", copyOfState)
+// 	setPosts(copyOfState)
+//   }
 
 
 
@@ -97,13 +96,20 @@ export const Map = ({ apikey }) => {
 			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
 		>
 			 
-			{posts.map((p) => (
+			 {posts.map((p) => (
               <PostMarker key={p.id} post={p} />
             ))}
 			
 			{nonAppPosts.map((p) => (
               <PostMarker key={p.id} post={p} />
-            ))}
+            ))} 
+			
+			{/* this is for a map search result*/}
+			{/*<Marker position={[result.lat, result.lng]}>
+				<Popup>
+					{result.address}
+				</Popup>
+			</Marker> */}
 
 			<LayersControl position="topleft" collapsed={false}>
 				<LayersControl.BaseLayer name="Tiled Map Layer">
@@ -170,7 +176,7 @@ export const Map = ({ apikey }) => {
 				</LayersControl.Overlay> */}
 			</LayersControl>
 			<div className='pointer'></div>
-			 <EsriLeafletGeoSearch
+			 {/* <EsriLeafletGeoSearch
 				position="topleft"
 				useMapBounds={false}
 				placeholder={
@@ -197,10 +203,11 @@ export const Map = ({ apikey }) => {
 				eventHandlers={{
 					requeststart: () => console.log('Started request...'),
 					requestend: () => console.log('Ended request...'),
-					results: (r) => console.log(r),
+					results: (r) => console.log(r)
+					// results: (r) => addToState(r)
 				}}
 				key={apikey}
-			/> 
+			/>  */}
 		</MapContainer>
 	);
 };
