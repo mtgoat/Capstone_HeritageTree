@@ -7,6 +7,7 @@ export const PostProvider = (props) => {
     const [posts, setPosts] = useState([]);
     const [nonAppPosts, setNonAppPosts ] = useState([]);
     const [postsByM, setPostsByM] = useState([]);
+    const [result, setResult] = useState([]);
     const apiUrl = "https://localhost:5001";
 
   const getAllPosts = () => {
@@ -85,7 +86,7 @@ export const PostProvider = (props) => {
   }
 
   return (
-    <PostContext.Provider value={{ posts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, addMaintenanceToPost, postsByM, getPostsByMaintenanceId }}>
+    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult }}>
       {props.children}
     </PostContext.Provider>
   );

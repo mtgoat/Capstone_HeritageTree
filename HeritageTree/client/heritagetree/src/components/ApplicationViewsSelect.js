@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { UserList } from "./auth/UserList";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Home from "./Home";
@@ -8,23 +9,24 @@ import { PostList } from "./post/PostList";
 import { PostDetails } from "./post/PostDetails";
 import { PostFormCord } from "./post/PostFormCord";
 import { PostFormSt } from "./post/PostFormSt";
+import { PostListNA } from "./post/PostListNA";
+import { PostDetailsNA } from "./post/PostDetailsNA";
+import { PostFormCordNA } from "./post/PostFormNA";
+import { PostFormEdit } from "./post/PostFormEdit";
+
 import { MaintenanceProvider } from "../providers/MaintenanceProvider";
 import { MaintenanceList } from "./maintenance/MaintenanceList";
 import { MaintenanceForm } from "./maintenance/MaintenanceForm";
 import { MaintenanceFormEdit } from "./maintenance/MaintenanceFormEdit";
+
 import { WardProvider } from "../providers/WardProvider";
 import { WardList } from "./ward/WardList";
 import { Sorry } from "./Sorry";
+
 import { TreeCommonNameProvider } from "../providers/TreeCommonNameProvider";
 import { HeritageStatusProvider } from "../providers/HeritageStatusProvider";
 import { OwnershipProvider } from "../providers/OwnershipProvider";
 import { HealthStatusProvider } from "../providers/HealthStatusProvider";
-import { PostListNA } from "./post/PostListNA";
-import { PostDetailsNA } from "./post/PostDetailsNA";
-import { PostFormCordNA } from "./post/PostFormNA";
-import { UserProfileProvider } from "../providers/UserProfileProvider";
-import { UserList } from "./auth/UserList";
-
 
 export const ApplicationViewsNotLogIn = () => {
     
@@ -39,7 +41,8 @@ export const ApplicationViewsNotLogIn = () => {
 
 export const ApplicationViewsPub = () => {
   return (
-    <HealthStatusProvider>
+    <> 
+      <HealthStatusProvider>
     <OwnershipProvider>
     <HeritageStatusProvider>
     <TreeCommonNameProvider>
@@ -50,18 +53,21 @@ export const ApplicationViewsPub = () => {
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/:id" element={<PostDetails />} />
+        <Route path="/posts/edit/:id/*" element={<PostFormEdit />} />
         <Route path="/posts/cor/create" element={<PostFormCord />} />
         <Route path="/posts/st/create" element={<PostFormSt />} />
         <Route path="/maintenances/*" element={<Sorry />} />
         {/* <Route path="/ward/*" element={<Sorry />} /> */}
       </Routes>
-  </PostProvider>
-  </MaintenanceProvider>
+      </PostProvider>
+      </MaintenanceProvider>
   </WardProvider>
   </TreeCommonNameProvider>
   </HeritageStatusProvider>
   </OwnershipProvider>
   </HealthStatusProvider>
+
+    </>
   )
 }
 
@@ -75,7 +81,7 @@ export const ApplicationViewsArb = () => {
       <Route path="/maintenances/create" element={<MaintenanceForm />} />
       <Route path="/maintenances/edit/:maintenanceId/*" element={<MaintenanceFormEdit />} />
     </Routes>
-  </PostProvider>
+    </PostProvider>
   </MaintenanceProvider>
   
   )
@@ -83,7 +89,6 @@ export const ApplicationViewsArb = () => {
 
 export const ApplicationViewsAdmin = () => {
   return (
-    <UserProfileProvider>
     <HealthStatusProvider>
     <OwnershipProvider>
     <HeritageStatusProvider>
@@ -99,12 +104,11 @@ export const ApplicationViewsAdmin = () => {
       {/* to edit and approve report */}
       {/* to change the user type Id to admin or arbor */}
         </Routes>
-      </PostProvider>
+        </PostProvider>
  </WardProvider>
  </TreeCommonNameProvider>
   </HeritageStatusProvider>
   </OwnershipProvider> 
   </HealthStatusProvider> 
-  </UserProfileProvider>
   )
 }

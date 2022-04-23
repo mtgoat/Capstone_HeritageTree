@@ -5,13 +5,25 @@
 
 .postList__LeftContainer{
     padding: 5rem;
+    text-align: center;
 }
 
 .postList__welcome{
     text-align: center;
-    padding-bottom: 1rem;
+    padding: 3rem;
+    font-size: 26px;
 }
 
-.postList__title{
-    margin: 1rem 1rem 1rem 12rem;
+.postList__title, .postNAList__title{
+    text-align: center;
+    margin: 1rem; 
+}
+
+.postNAListColumn, .postListColumn{
+    height: 50vh;
+    overflow:scroll;
+}
+.noImageAvailable{
+    height: 350px;
+    width:400px;
 }

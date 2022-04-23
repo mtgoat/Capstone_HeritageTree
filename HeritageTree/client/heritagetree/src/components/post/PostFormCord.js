@@ -67,13 +67,14 @@ export const PostFormCord = () => {
     return (
         <>
         <div className="postForm">
-        <h3 className="postForm__title">Report Heritage Tree Form </h3>
+        <h3 className="postForm__title">Nominate Heritage Tree with coordinates </h3>
         <p> This form requires geographic coordinates of a tree, such as latitude and longitude.  If you would like to report with a street address, click the button below </p>
         
         <Link to={`/posts/st/create`}>
           <Button className="post__create">Report a Heritage Tree with a street address</Button>
         </Link>
         <br></br>
+        <Form className="post__form">
         <Form.Group className="mb-3" controlId="treeCommonNameId">
             <Form.Label>Please select a type of the tree:</Form.Label>
               <FormSelect required autoFocus name="treeCommonNameId" onChange={handleControlledInputChange}>
@@ -86,7 +87,8 @@ export const PostFormCord = () => {
         }
               </FormSelect>
           </Form.Group>
-        <Form className="post__form">
+
+        
           <Form.Group className="mb-3" controlId="latitude">
             <Form.Label>Latitude:</Form.Label>
               <Form.Control name="latitude" value={post.latitude} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a latitude" />
@@ -124,7 +126,7 @@ export const PostFormCord = () => {
         <option >Select a type of property</option>
         {ownerships.map((o) => {
             return (
-                <option selected={post.ownershipId} key={o.id} value={o.id}>{o.name}</option>
+                <option defaultValue={post.ownershipId} key={o.id} value={o.id}>{o.name}</option>
             )
           })
         }

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
-import { Accordion, Button } from "react-bootstrap";
+import { Accordion, Button, Row, Col } from "react-bootstrap";
 import { PostNA } from "./PostNA";
 import "../../index.css";
-import { Link } from "react-router-dom";
+
 
 export const PostListNA = () => {
   
@@ -19,9 +19,10 @@ console.log(nonAppPosts)
           <Button className="post__create">Create Post</Button>
         </Link> */}
         <div className="container">
-        <h3 className="post__title">List of Non Approved Posts:</h3>
-          <div className="row justify-content-center">
-            <div className="col-sm-10 col-lg-10">
+          <Row>
+            <Col xs={9} md={6}>
+            <h3 className="postNAList__title">List of Non-Approved Trees</h3> <div className="row justify-content-center">
+            <div className="col-sm-10 col-lg-10 postNAListColumn">
               <Accordion defaultActiveKey="0">
                 {nonAppPosts.map((p) => (
                   <PostNA key={p.id} post={p} />
@@ -29,6 +30,13 @@ console.log(nonAppPosts)
               </Accordion>
             </div>
           </div>
+            </Col>
+            <Col xs={9} md={6}> <h3 className="postNAList__title">List of  Approved and Non-Heritage Trees </h3>
+            
+            </Col>
+          </Row>
+       
+         
         </div>
         </>
       );

@@ -1,9 +1,10 @@
 import React, {useState, useEffect, useContext} from "react";
 import { PostContext } from "../../providers/PostProvider";
-import { useParams, useNavigate  } from "react-router-dom";
+import { useParams, useNavigate, Link  } from "react-router-dom";
 import { Card, Button, Badge } from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
 import Toast from 'react-bootstrap/Toast';
 import { ManageMaintenanceForm } from "./ManageMaintenanceForm";
 import { PostTks } from "../slide/slide";
@@ -49,7 +50,8 @@ export const PostDetails = () => {
     // let day = post.publishDateTime.slice(0,10).split("-")[2]
     // let year = post.publishDateTime.slice(0,10).split("-")[0]
     // const formattedDate = `${month}-${day}-${year}`;
-
+    //<img src='/images/whiteOak26.png' alt='tree'></img>
+    
     return (
     <div className="container">
       <div className="row justify-content-center">
@@ -57,7 +59,11 @@ export const PostDetails = () => {
        
         <Card border="success"  style={{ width: '30rem', margin: '3em auto' }}>
             <Badge bg="secondary">{post.createDateTime}</Badge>
-            <Card.Img variant="top" src={post.imageLocation} />
+            
+           { post.imageLocation === ""?  <Card.Img variant="top" src='/images/noImageAvailable.png' alt='No Image Available'className="noImageAvailable"/> : <Card.Img variant="top" src={post.imageLocation} /> 
+            } 
+            
+            
             <Card.Body>
             <Card.Title>{post.treeCommonNameName}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
@@ -110,9 +116,9 @@ export const PostDetails = () => {
             {(currentUserType !==2 && post.id !==15 )? 
                 <Row>
                     <Col md={6} className="mb-2">
-                    {/* <Button variant="primary" size="md" disabled>
-                        Edit
-                    </Button> */}
+                    <Link to={`/posts/edit/${post.id}`}>
+                        <Button className="mt-2" variant="secondary">Edit</Button>
+                    </Link>
                     </Col>
                     <Col md={6} className="mb-2">
                     <Button onClick={toggleShowA} className="mb-2">
