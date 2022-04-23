@@ -23,7 +23,9 @@ namespace HeritageTree.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"  SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
+                    cmd.CommandText = @"
+                  
+                  SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
                               p.State, p.Zip, p.[Location].Lat as Lat, p.[Location].Long as Lon,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
                                
                               w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,

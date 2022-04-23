@@ -21,14 +21,8 @@ export const Post = ({post}) => {
                     <h5>Heritage Status</h5>
                     {post.heritageStatusName} Tree
                 </Col> 
-                {
-                    
-                }
-                <Col>
-                    <Link to={`/posts/${post.id}`}>
-                        <Button className="mt-2" variant="secondary">Edit</Button>
-                    </Link>
-                </Col>
+               
+               
                 
                 <Col>
                     <Link to={`/posts/${post.id}`}>

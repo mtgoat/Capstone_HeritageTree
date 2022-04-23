@@ -12,6 +12,7 @@ import { PostFormSt } from "./post/PostFormSt";
 import { PostListNA } from "./post/PostListNA";
 import { PostDetailsNA } from "./post/PostDetailsNA";
 import { PostFormCordNA } from "./post/PostFormNA";
+import { PostFormEdit } from "./post/PostFormEdit";
 
 import { MaintenanceProvider } from "../providers/MaintenanceProvider";
 import { MaintenanceList } from "./maintenance/MaintenanceList";
@@ -52,6 +53,7 @@ export const ApplicationViewsPub = () => {
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/:id" element={<PostDetails />} />
+        <Route path="/posts/edit/:id/*" element={<PostFormEdit />} />
         <Route path="/posts/cor/create" element={<PostFormCord />} />
         <Route path="/posts/st/create" element={<PostFormSt />} />
         <Route path="/maintenances/*" element={<Sorry />} />
