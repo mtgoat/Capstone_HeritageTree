@@ -175,7 +175,7 @@ export const Map = ({ apikey }) => {
 					<VectorTileLayer url="https://vectortileservices3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Santa_Monica_Mountains_Parcels_VTL/VectorTileServer" />
 				</LayersControl.Overlay> */}
 			</LayersControl>
-			<div className='pointer'></div>
+		
 			 {/* <EsriLeafletGeoSearch
 				position="topleft"
 				useMapBounds={false}
