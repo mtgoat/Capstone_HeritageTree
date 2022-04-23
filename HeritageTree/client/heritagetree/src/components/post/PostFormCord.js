@@ -34,10 +34,10 @@ export const PostFormCord = () => {
 // console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, healthStatuses)
 
     const [post, setPost] = useState({
-        // streetAddress: "",
-        // city:"",
-        // state:"",
-        // zip: "",
+        streetAddress: "",
+        city:"",
+        state:"",
+        zip: "",
         latitude: "",
         longitude: "",
         wardId: "",
@@ -88,7 +88,30 @@ export const PostFormCord = () => {
               </FormSelect>
           </Form.Group>
 
-        
+          <Form.Group className="mb-3" controlId="streetAddress">
+    <Form.Label>Street Address:</Form.Label>
+    <Form.Control required autoFocus name="streetAddress" onChange={handleControlledInputChange}/>
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="city">
+    <Form.Label>City:</Form.Label>
+    <Form.Control required autoFocus name="city" onChange={handleControlledInputChange}/>
+  </Form.Group>
+
+
+  <Form.Group className="mb-3" controlId="state">
+    <Form.Label>State:</Form.Label>
+    <Form.Control required autoFocus name="state" onChange={handleControlledInputChange}/>
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="zip">
+    <Form.Label>Zip:</Form.Label>
+    <Form.Control required autoFocus name="zip" onChange={handleControlledInputChange}/>
+  </Form.Group>
+          
+          <Button onclick = {somefunc} >
+            Generate coordinates for latitude and longitude
+          </Button>
           <Form.Group className="mb-3" controlId="latitude">
             <Form.Label>Latitude:</Form.Label>
               <Form.Control name="latitude" value={post.latitude} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a latitude" />
