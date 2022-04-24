@@ -9,6 +9,7 @@ export const PostProvider = (props) => {
     const [nonAppPosts, setNonAppPosts ] = useState([]);
     const [postsByM, setPostsByM] = useState([]);
     const [result, setResult] = useState([]);
+    const [coordResults, setCoordResults] = useState([]);
     const apiUrl = "https://localhost:5001";
 
   const getAllPosts = () => {
@@ -92,8 +93,16 @@ export const PostProvider = (props) => {
 
   }
 
+  const getGeoCoordinate = (streetAddress, city, state, zip) => {
+    
+    return fetch(`https://nominatim.openstreetmap.org/?street=${streetAddress}&city=${city}&state=${state}&postalcode=${zip}&format=jsonv2`)
+    .then((res) => res.json())
+    .then(setCoordResults);
+  }
+
+
   return (
-    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId }}>
+    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId, getGeoCoordinate,  }}>
       {props.children}
     </PostContext.Provider>
   );

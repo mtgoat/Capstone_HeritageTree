@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 export const PostFormCord = () => {
     
-    const {addPost} = useContext(PostContext);
+    const {addPost, getGeoCoordinate} = useContext(PostContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserId = currentUser.id;
    
@@ -47,7 +47,10 @@ export const PostFormCord = () => {
         ownershipId:4, 
         healthStatusId: ""
     });
-
+    const [results, setResults] = useState({
+      latitude: "",
+      longitude: ""
+    });
     const navigate = useNavigate();
 
     const handleControlledInputChange = (e) => {
@@ -62,6 +65,15 @@ export const PostFormCord = () => {
         addPost(post)
         .then(() => navigate('/posts'));  
         
+    }
+
+    const latlng = (streetAddress, city, state, zip) => {
+      const newPost2 = { ...post }
+      getGeoCoordinate(streetAddress, city, state, zip)
+      newPost2.latitude = results.latitude
+      newPost2.longitude = results.longitude
+      setPost(newPost2)
+      
     }
 
     return (
@@ -109,7 +121,7 @@ export const PostFormCord = () => {
     <Form.Control required autoFocus name="zip" onChange={handleControlledInputChange}/>
   </Form.Group>
           
-          {/* <Button onclick = {somefunc} >
+          {/* <Button onClick = {latlng(post.streetAddress, post.city, post.state, post.zip)} >
             Generate coordinates for latitude and longitude
           </Button> */}
           <Form.Group className="mb-3" controlId="latitude">
