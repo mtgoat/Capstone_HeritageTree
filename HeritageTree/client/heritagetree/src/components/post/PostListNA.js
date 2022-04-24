@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Accordion, Button, Row, Col } from "react-bootstrap";
 import { PostNA } from "./PostNA";
@@ -7,12 +7,22 @@ import "../../index.css";
 
 export const PostListNA = () => {
   
-    const { nonAppPosts, getAllNonAppPosts } = useContext(PostContext);
-  
+    const { nonAppPosts, getAllNonAppPosts, getAllPostsByHeritageId } = useContext(PostContext);
+    
+    const [ allNonHeritagePosts, setAllNonHeritagePosts ] = useState([]);
+
+
     useEffect(() => {
       getAllNonAppPosts();
     }, []);
 console.log(nonAppPosts)
+
+useEffect(() => {
+  getAllPostsByHeritageId(2)
+  .then(setAllNonHeritagePosts);;
+}, []);
+
+console.log(allNonHeritagePosts)
     return (
         <>
         {/* <Link to={`/posts/cor/create`}>
@@ -32,7 +42,15 @@ console.log(nonAppPosts)
           </div>
             </Col>
             <Col xs={9} md={6}> <h3 className="postNAList__title">List of  Approved and Non-Heritage Trees </h3>
-            
+            <div className="row justify-content-center">
+            <div className="col-sm-10 col-lg-10 postNAListColumn">
+            <Accordion defaultActiveKey="0">
+                {allNonHeritagePosts.map((p) => (
+                  <PostNA key={p.id} post={p} />
+                ))}
+              </Accordion>
+            </div>
+            </div>
             </Col>
           </Row>
        

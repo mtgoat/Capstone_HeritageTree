@@ -109,9 +109,9 @@ export const PostFormCord = () => {
     <Form.Control required autoFocus name="zip" onChange={handleControlledInputChange}/>
   </Form.Group>
           
-          <Button onclick = {somefunc} >
+          {/* <Button onclick = {somefunc} >
             Generate coordinates for latitude and longitude
-          </Button>
+          </Button> */}
           <Form.Group className="mb-3" controlId="latitude">
             <Form.Label>Latitude:</Form.Label>
               <Form.Control name="latitude" value={post.latitude} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a latitude" />

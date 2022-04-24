@@ -64,7 +64,11 @@ export const Map = ({ apikey }) => {
 
 	
   useEffect(() => {
-    getAllPosts().then(()=>getAllNonAppPosts());
+    getAllPosts();
+  }, []);
+
+  useEffect(() => {
+    getAllNonAppPosts();
   }, []);
 
   console.log(nonAppPosts)

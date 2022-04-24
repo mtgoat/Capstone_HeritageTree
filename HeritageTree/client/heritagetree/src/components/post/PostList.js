@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, {useState, useContext, useEffect } from "react";
 import { PostContext } from "../../providers/PostProvider";
 import { Accordion, Button, Row, Col } from "react-bootstrap";
 import { Post } from "./Post";
@@ -8,12 +8,15 @@ import "./post.css";
 
 export const PostList = () => {
   
-    const { posts, getAllPosts } = useContext(PostContext);
+    const { posts, setPosts, getAllPostsByHeritageId } = useContext(PostContext);
   
+    const [ allHeritagePosts, setAllHeritagePosts ] = useState([]);
+
     useEffect(() => {
-      getAllPosts();
+      getAllPostsByHeritageId(1)
+      .then(setAllHeritagePosts);
     }, []);
-    console.log("posts ", posts);
+    console.log("allHeritagePosts", allHeritagePosts);
     return (
       <article id="postList__container">
         <h5 className="postList__welcome"> Welcome to the Heritage tree page</h5>
@@ -31,7 +34,7 @@ export const PostList = () => {
           <div className="row justify-content-center">
             <div className="col-sm-10 col-lg-10 postListColumn">
               <Accordion defaultActiveKey="0">
-                {posts.map((p) => (
+                {allHeritagePosts.map((p) => (
                   <Post key={p.id} post={p} />
                 ))}
               </Accordion>

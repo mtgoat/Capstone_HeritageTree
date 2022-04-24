@@ -15,7 +15,7 @@ namespace HeritageTree.Repositories
         public PostRepository(IConfiguration configuration) : base(configuration)
         { }
 
-        //this is to get all approved posts 
+        //this is to get all approved posts including non-heritage trees 
         public List<Post> GetAll()
         {
             using (var conn = Connection)
@@ -46,6 +46,56 @@ namespace HeritageTree.Repositories
                             LEFT JOIN UserType ut ON u.UserTypeId = ut.id
                         WHERE IsApproved = 1 AND p.CreateDateTime < SYSDATETIME()
                         ORDER BY p.CreateDateTime DESC";
+
+                    var reader = cmd.ExecuteReader();
+
+                    var posts = new List<Post>();
+                    while (reader.Read())
+                    {
+                        posts.Add(NewPostFromReaderGet(reader));
+                    }
+
+                    reader.Close();
+
+                    return posts;
+                }
+            }
+        }
+
+        //this is to get all approved posts including only heritage trees 
+
+        public List<Post> GetAllByHeritageId(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                  
+                  SELECT p.Id AS PostId, p.StreetAddress AS 'Street', p.City, 
+                              p.State, p.Zip, p.[Location].Lat as Lat, p.[Location].Long as Lon,	p.WardId,								p.CreateDateTime, p.UserProfileId, p.TreeCommonNameId, p.ImageLocation, p.HeritageStatusId, p.HeritageDateTime, p.HealthStatusId, p.OwnershipId, p.IsApproved,
+                               
+                              w.[Name] AS WardName, t.[Name] AS TreeCommonName, hrtg.[Name] AS HeritageStatusName, h.[Name] AS HealthStatusName, o.[Name] AS OwnershipName,
+
+                              u.FirstName, u.LastName, u.DisplayName, 
+                              u.Email, u.CreateDateTime, 
+                              u.UserTypeId, 
+                              ut.[Name] AS UserTypeName
+
+                         FROM Post p
+                            LEFT JOIN Ward w ON p.WardId = w.id
+  							LEFT JOIN TreeCommonName t ON p.TreeCommonNameId = t.id
+  							LEFT JOIN HeritageStatus hrtg ON p.HeritageStatusId = hrtg.id
+  							LEFT JOIN HealthStatus h ON p.HealthStatusId = h.id
+   							LEFT JOIN Ownership o ON p.OwnershipId = o.id
+
+                            LEFT JOIN UserProfile u ON p.UserProfileId = u.id
+                            LEFT JOIN UserType ut ON u.UserTypeId = ut.id
+                        WHERE IsApproved = 1 AND p.HeritageStatusId = @Id AND p.CreateDateTime < SYSDATETIME()
+                        ORDER BY p.CreateDateTime DESC";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
 
                     var reader = cmd.ExecuteReader();
 

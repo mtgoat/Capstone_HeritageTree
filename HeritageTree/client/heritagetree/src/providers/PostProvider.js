@@ -5,6 +5,7 @@ export const PostContext = createContext();
 export const PostProvider = (props) => {
 
     const [posts, setPosts] = useState([]);
+    // const [heritagePosts, setHeritagePosts] = useState([]);
     const [nonAppPosts, setNonAppPosts ] = useState([]);
     const [postsByM, setPostsByM] = useState([]);
     const [result, setResult] = useState([]);
@@ -17,7 +18,7 @@ export const PostProvider = (props) => {
   };
 
   const getAllNonAppPosts = () => {
-    return fetch(`${apiUrl}/api/Post/GetNonApp`)
+    return fetch(`${apiUrl}/api/Post/GetAllNonApp`)
       .then((res) => res.json())
       .then(setNonAppPosts);
   };
@@ -85,8 +86,14 @@ export const PostProvider = (props) => {
     .then(setPostsByM);
   }
 
+  const getAllPostsByHeritageId = (id) => {
+    return fetch(`${apiUrl}/api/Post/GetAllByHeritageId/${id}`)
+    .then((res) => res.json())
+
+  }
+
   return (
-    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult }}>
+    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId }}>
       {props.children}
     </PostContext.Provider>
   );
