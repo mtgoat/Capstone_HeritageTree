@@ -34,11 +34,19 @@ export const PostProvider = (props) => {
     .then((res) => res.json())
   }
 
-  const getPostsByUserId = (id) => {
-    return fetch(`${apiUrl}/api/Post/myposts?id=${id}`)
+  const getAllPostsByUserId = (id) => {
+     return fetch(`${apiUrl}/api/Post/GetAllByUserId/${id}`)
     .then((res) => res.json())
     .then(setPosts);
   }
+
+  const getMyPostById = (id) => {
+    debugger
+    return fetch(`${apiUrl}/api/Post/GetMyPostById/${id}`)
+   .then((res) => res.json())
+   .then(setPosts);
+ } 
+
 
   const addPost = (post) => {
     return fetch(`${apiUrl}/api/Post`, {
@@ -102,7 +110,7 @@ export const PostProvider = (props) => {
 
 
   return (
-    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId, getGeoCoordinate,  }}>
+    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getAllPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId, getGeoCoordinate,getMyPostById  }}>
       {props.children}
     </PostContext.Provider>
   );

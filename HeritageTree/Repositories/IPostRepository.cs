@@ -12,6 +12,8 @@ namespace HeritageTree.Repositories
         Post GetById(int id);
 
         Post GetByIdNotApp(int id);
+
+        Post GetMyPostById(int id);
         void Add(Post post);
 
         void UpdateNotAppPost(Post post);
@@ -21,6 +23,7 @@ namespace HeritageTree.Repositories
         void AddMaintenanceToPost(PostMaintenance postMaintenance);
 
         List<Post> GetAllByMaintenanceId(int id);
+        List<Post> GetAllByUserId(int id);
 
     }
 }

@@ -31,7 +31,7 @@ console.log(allNonHeritagePosts)
         <div className="container">
           <Row>
             <Col xs={9} md={6}>
-            <h3 className="postNAList__title">List of Non-Approved Trees</h3> <div className="row justify-content-center">
+            <h3 className="postNAList__title">List of Pending Trees</h3> <div className="row justify-content-center">
             <div className="col-sm-10 col-lg-10 postNAListColumn">
               <Accordion defaultActiveKey="0">
                 {nonAppPosts.map((p) => (
@@ -41,7 +41,7 @@ console.log(allNonHeritagePosts)
             </div>
           </div>
             </Col>
-            <Col xs={9} md={6}> <h3 className="postNAList__title">List of  Approved and Non-Heritage Trees </h3>
+            <Col xs={9} md={6}> <h3 className="postNAList__title">List of  Denied Trees </h3>
             <div className="row justify-content-center">
             <div className="col-sm-10 col-lg-10 postNAListColumn">
             <Accordion defaultActiveKey="0">

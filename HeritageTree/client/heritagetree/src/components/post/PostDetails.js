@@ -66,7 +66,7 @@ export const PostDetails = () => {
             
             <Card.Body>
             <Card.Title>{post.treeCommonNameName}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
+            <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile?.displayName}</Card.Subtitle>
             <Card.Body style={{textIndent: '2rem'}}>
                 <Row ><Col xs={4}>Address: </Col>
             <Col xs={8}>{post.streetAddress}{" "}{post.city}{", "}{post.state}{" "}{post.zip} </Col></Row>

@@ -26,6 +26,7 @@ export const Header = () => {
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home |</NavLink>
                 <NavLink tag={RRNavLink} to="/posts">Trees |</NavLink>
+                <NavLink  tag={RRNavLink} to="/myPosts">My trees </NavLink>
                 <NavLink>Account Type: {currentUser.userTypeName} </NavLink>
               </NavItem>
               

@@ -56,6 +56,19 @@ namespace HeritageTree.Controllers
             }
             return Ok(post);
         }
+
+        [HttpGet("GetMyPostById/{id}")]
+        public IActionResult GetMyPostById(int id)
+        {
+            var post = _postRepository.GetMyPostById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
+
+
         //to get all approved posts by HeritageId
         [HttpGet("GetAllByHeritageId/{id}")]
         public IActionResult GetAllByHeritageId(int id)
@@ -68,11 +81,27 @@ namespace HeritageTree.Controllers
             return Ok(post);
         }
 
+        //List<Post> GetAllByUserId(int id)
+
         //to get post by maintId
         [HttpGet("GetAllByMaintenanceId/{id}")]
         public IActionResult GetAllByMaintenanceId(int id)
         {
             var post = _postRepository.GetAllByMaintenanceId(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
+
+      
+
+        //to get all approved and nonapproved posts by userId
+        [HttpGet("GetAllByUserId/{id}")]
+        public IActionResult GetAllByUserId(int id)
+        {
+            var post = _postRepository.GetAllByUserId(id);
             if (post == null)
             {
                 return NotFound();

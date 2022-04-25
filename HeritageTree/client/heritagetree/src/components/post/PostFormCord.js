@@ -37,7 +37,7 @@ export const PostFormCord = () => {
         streetAddress: "",
         city:"",
         state:"",
-        zip: "",
+        zip: 0,
         latitude: "",
         longitude: "",
         wardId: "",
@@ -45,7 +45,7 @@ export const PostFormCord = () => {
         treeCommonNameId: "",
         imageLocation: "",
         ownershipId:4, 
-        healthStatusId: ""
+        healthStatusId: 0
     });
     const [results, setResults] = useState({
       latitude: "",
@@ -63,7 +63,7 @@ export const PostFormCord = () => {
         e.preventDefault();
         console.log(post);
         addPost(post)
-        .then(() => navigate('/posts'));  
+        .then(() => navigate('/myPosts'));  
         
     }
 
@@ -79,12 +79,12 @@ export const PostFormCord = () => {
     return (
         <>
         <div className="postForm">
-        <h3 className="postForm__title">Nominate Heritage Tree with coordinates </h3>
-        <p> This form requires geographic coordinates of a tree, such as latitude and longitude.  If you would like to report with a street address, click the button below </p>
+        <h3 className="postForm__title">Nominate Heritage Tree Form </h3>
+        {/* <p> This form requires geographic coordinates of a tree, such as latitude and longitude.  If you would like to report with a street address, click the button below </p>
         
         <Link to={`/posts/st/create`}>
           <Button className="post__create">Report a Heritage Tree with a street address</Button>
-        </Link>
+        </Link> */}
         <br></br>
         <Form className="post__form">
         <Form.Group className="mb-3" controlId="treeCommonNameId">

@@ -33,7 +33,7 @@ export const PostMarker = ({post}) => {
 if(post.treeCommonNameId ===26){
     myIcon.options.iconUrl = '/images/whiteOak26.png'
 }
-if(!post.isApproved && currentUserTypeId!==2 ){
+if(!post.isApproved && currentUserTypeId ===1 ){
 //    console.log(myIcon)
     myIcon.options.iconUrl = '/images/redtreeicon.png' 
 }
