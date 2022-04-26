@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 export const PostFormCord = () => {
     
-    const {addPost, getGeoCoordinate} = useContext(PostContext);
+    const {addPost, getGeoCoordinate, coordResults, setCoordResults  } = useContext(PostContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserId = currentUser.id;
    
@@ -47,10 +47,14 @@ export const PostFormCord = () => {
         ownershipId:4, 
         healthStatusId: 0
     });
-    const [results, setResults] = useState({
-      latitude: "",
-      longitude: ""
-    });
+
+    // const [results, setResults] = useState({
+    //   latitude: "",
+    //   longitude: ""
+    // }
+    // );
+
+  
     const navigate = useNavigate();
 
     const handleControlledInputChange = (e) => {
@@ -68,13 +72,30 @@ export const PostFormCord = () => {
     }
 
     const latlng = (streetAddress, city, state, zip) => {
-      const newPost2 = { ...post }
       getGeoCoordinate(streetAddress, city, state, zip)
-      newPost2.latitude = results.latitude
-      newPost2.longitude = results.longitude
-      setPost(newPost2)
-      
-    }
+      .then((res) => {
+        const newPost2 = { ...post }
+        newPost2.latitude = res[0].lat
+        newPost2.longitude = res[0].lon
+        setPost(newPost2)
+    debugger  }
+      // const copyOfResults = { ...results }
+      // getGeoCoordinate(streetAddress, city, state, zip)
+      // .then((res) => {
+      //   copyOfResults.latitude = res[0].lat    
+      //   copyOfResults.longitude = res[0].lon
+      //   debugger
+      //   setResults(copyOfResults)
+      //   
+      //    console.log("this is Coordi from the provider", results )
+      //   }
+
+      // // console.log("this is Coordi from the provider", coordResults[0].lat )
+      // // newPost2.latitude = coordResults.lat
+      // // newPost2.longitude = coordResults.lon
+      // // setPost(newPost2)
+      // debugger}
+    )}
 
     return (
         <>
@@ -102,28 +123,29 @@ export const PostFormCord = () => {
 
           <Form.Group className="mb-3" controlId="streetAddress">
     <Form.Label>Street Address:</Form.Label>
-    <Form.Control required autoFocus name="streetAddress" onChange={handleControlledInputChange}/>
+    <Form.Control  autoFocus name="streetAddress" onChange={handleControlledInputChange}/>
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="city">
     <Form.Label>City:</Form.Label>
-    <Form.Control required autoFocus name="city" onChange={handleControlledInputChange}/>
+    <Form.Control  autoFocus name="city" onChange={handleControlledInputChange}/>
   </Form.Group>
 
 
   <Form.Group className="mb-3" controlId="state">
     <Form.Label>State:</Form.Label>
-    <Form.Control required autoFocus name="state" onChange={handleControlledInputChange}/>
+    <Form.Control  autoFocus name="state" onChange={handleControlledInputChange}/>
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="zip">
     <Form.Label>Zip:</Form.Label>
-    <Form.Control required autoFocus name="zip" onChange={handleControlledInputChange}/>
+    <Form.Control  autoFocus name="zip" onChange={handleControlledInputChange}/>
   </Form.Group>
           
-          {/* <Button onClick = {latlng(post.streetAddress, post.city, post.state, post.zip)} >
+          <Button onClick = { () => latlng(post.streetAddress, post.city, post.state, post.zip)} >
             Generate coordinates for latitude and longitude
-          </Button> */}
+          </Button>
+
           <Form.Group className="mb-3" controlId="latitude">
             <Form.Label>Latitude:</Form.Label>
               <Form.Control name="latitude" value={post.latitude} onChange={handleControlledInputChange} type="text" required autoFocus placeholder="Enter a latitude" />

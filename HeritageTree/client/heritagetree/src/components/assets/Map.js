@@ -72,7 +72,8 @@ export const Map = ({ apikey }) => {
   }, []);
 
   console.log(nonAppPosts)
-
+  const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+  const currentUserType = currentUser?.userTypeId;
 //   const addToState = (response) => {
 // 	console.log(response)
 // 	let copyOfState = result
@@ -100,13 +101,16 @@ export const Map = ({ apikey }) => {
 			center={{ lat: 38.92667399199813, lng: -79.85139309567089 }}
 		>
 			 
-			 {posts.map((p) => (
+			{posts.map((p) => (
               <PostMarker key={p.id} post={p} />
             ))}
 			
-			{nonAppPosts.map((p) => (
+			{
+			currentUserType !== 2 ? nonAppPosts.map((p) => (
               <PostMarker key={p.id} post={p} />
-            ))} 
+            ))
+			:<></> 		
+			}
 			
 			{/* this is for a map search result*/}
 			{/*<Marker position={[result.lat, result.lng]}>

@@ -102,15 +102,20 @@ export const PostProvider = (props) => {
   }
 
   const getGeoCoordinate = (streetAddress, city, state, zip) => {
+    let streetAddressPlus = streetAddress.split(' ').join('+')
     
-    return fetch(`https://nominatim.openstreetmap.org/?street=${streetAddress}&city=${city}&state=${state}&postalcode=${zip}&format=jsonv2`)
+
+    debugger
+    return fetch(`https://nominatim.openstreetmap.org/search?street=${streetAddressPlus}&city=${city}&state=${state}&postalcode=${zip}&country=US&format=jsonv2&accept-language=en&limit=1`)
     .then((res) => res.json())
-    .then(setCoordResults);
+   
+   
   }
 
+  
 
   return (
-    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getAllPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId, getGeoCoordinate,getMyPostById  }}>
+    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getAllPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId, getGeoCoordinate,getMyPostById, coordResults, setCoordResults  }}>
       {props.children}
     </PostContext.Provider>
   );
