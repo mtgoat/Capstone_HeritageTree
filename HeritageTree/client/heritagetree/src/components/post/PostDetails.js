@@ -116,9 +116,9 @@ export const PostDetails = () => {
             {(currentUserType !==2 && post.id !==15 )? 
                 <Row>
                     <Col md={6} className="mb-2">
-                    <Link to={`/posts/edit/${post.id}`}>
+                    {/* <Link to={`/posts/edit/${post.id}`}>
                         <Button className="mt-2" variant="secondary">Edit</Button>
-                    </Link>
+                    </Link> */}
                     </Col>
                     <Col md={6} className="mb-2">
                     <Button onClick={toggleShowA} className="mb-2">

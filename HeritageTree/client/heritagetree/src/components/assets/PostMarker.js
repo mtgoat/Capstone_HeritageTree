@@ -21,6 +21,8 @@ export const PostMarker = ({post}) => {
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserTypeId = currentUser?.userTypeId;
 
+    let navLink = `/posts/${post.id}` 
+
     let myIcon = L.icon({
         iconUrl: '/images/treeIcon.png',
         iconSize: [20, 30],
@@ -36,7 +38,12 @@ if(post.treeCommonNameId ===26){
 if(!post.isApproved && currentUserTypeId ===1 ){
 //    console.log(myIcon)
     myIcon.options.iconUrl = '/images/redtreeicon.png' 
+
+    navLink = `/postsNA/${post.id}` 
 }
+
+
+
 
     return (
         <div>
@@ -63,7 +70,7 @@ if(!post.isApproved && currentUserTypeId ===1 ){
                                    
                                     </Row>
                         </Card.Text>
-                        <Link to={`/posts/${post.id}`}>
+                        <Link to={navLink}>
                     <Button className="mt-2" variant="secondary">More Info</Button>
                     </Link>
                         </Card.Body>
