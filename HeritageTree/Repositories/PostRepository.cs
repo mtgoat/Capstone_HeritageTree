@@ -112,6 +112,8 @@ namespace HeritageTree.Repositories
             }
         }
 
+        //this is to get approved and non-approved by maintenanceId
+
         public List<Post> GetAllByMaintenanceId(int id)
         {
             using (var conn = Connection)
@@ -161,6 +163,9 @@ namespace HeritageTree.Repositories
                 }
             }
         }
+
+
+        //this is to get approved and non-approved by UserId
 
         public List<Post> GetAllByUserId(int id)
         {

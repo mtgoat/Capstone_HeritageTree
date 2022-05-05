@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, NavItem, NavLink, Container} from 'reactstrap';
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import './header.css'
 
@@ -14,7 +14,7 @@ export const Header = () => {
   
 
   return (
-    <div>
+    <div >
       <Navbar className='nav' color="light" light expand="lg" >
       <Container fluid>
         <NavbarBrand tag={RRNavLink} to="/">Heritage Tree </NavbarBrand>
@@ -23,13 +23,16 @@ export const Header = () => {
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */ }
             {   isLoggedIn &&
+            <>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home |</NavLink>
+                </NavItem>
+                <NavItem>
                 <NavLink tag={RRNavLink} to="/posts">Trees |</NavLink>
                 <NavLink  tag={RRNavLink} to="/myPosts">My trees </NavLink>
                 <NavLink>Account Type: {currentUser.userTypeName} </NavLink>
               </NavItem>
-              
+              </>
             }
             { (isLoggedIn && currentUserType !==2)  && 
               <NavItem>

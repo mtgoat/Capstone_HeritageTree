@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export default function Register() {
@@ -69,10 +69,15 @@ export default function Register() {
           <Input id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
         </FormGroup>
         <FormGroup>
-          <Button>Register</Button>
+       
+            <Button>Register</Button>
+           
+          
         </FormGroup>
       
     </Form>
+    <Link to="/login">
+    <Button > Go back to Login</Button></Link>
     </div> </div> </div>
   );
 }
