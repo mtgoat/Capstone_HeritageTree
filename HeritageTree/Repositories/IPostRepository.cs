@@ -6,19 +6,24 @@ namespace HeritageTree.Repositories
     public interface IPostRepository
     {
         List<Post> GetAll();
-        public List<Post> GetAllNotApp();
+
+        List<Post> GetAllByHeritageId(int id);
+        List<Post> GetAllNotApp();
         Post GetById(int id);
 
         Post GetByIdNotApp(int id);
+
+        Post GetMyPostById(int id);
         void Add(Post post);
 
-        public void UpdateNotAppPost(Post post);
+        void UpdateNotAppPost(Post post);
 
-        public void Delete(int postId);
+        void Delete(int postId);
 
-        public void AddMaintenanceToPost(PostMaintenance postMaintenance);
+        void AddMaintenanceToPost(PostMaintenance postMaintenance);
 
         List<Post> GetAllByMaintenanceId(int id);
+        List<Post> GetAllByUserId(int id);
 
     }
 }

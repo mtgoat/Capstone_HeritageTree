@@ -49,7 +49,8 @@ const [query, setQuery] = useState ({
       });
 
     const [results, setResults] = useState({
-
+      latitude: "",
+      longitude: ""
     });
 
     const [post, setPost] = useState({

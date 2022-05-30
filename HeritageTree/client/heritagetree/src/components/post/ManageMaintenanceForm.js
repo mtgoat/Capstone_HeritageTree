@@ -35,7 +35,9 @@ export const ManageMaintenanceForm = () => {
         event.preventDefault()
         postMaintenance.postId = id
         addMaintenanceToPost(postMaintenance)
-            .then(navigate(`/posts/${id}`));
+            .then(navigate(`/posts/${id}`))
+            window.location.reload(false);
+;
      }
       
     

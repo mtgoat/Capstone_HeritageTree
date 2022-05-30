@@ -14,7 +14,7 @@ export const Header = () => {
   
 
   return (
-    <div>
+    <div >
       <Navbar className='nav' color="light" light expand="lg" >
       <Container fluid>
         <NavbarBrand tag={RRNavLink} to="/">Heritage Tree </NavbarBrand>
@@ -23,12 +23,16 @@ export const Header = () => {
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */ }
             {   isLoggedIn &&
+            <>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home |</NavLink>
+                </NavItem>
+                <NavItem>
                 <NavLink tag={RRNavLink} to="/posts">Trees |</NavLink>
+                <NavLink  tag={RRNavLink} to="/myPosts">My trees </NavLink>
                 <NavLink>Account Type: {currentUser.userTypeName} </NavLink>
               </NavItem>
-              
+              </>
             }
             { (isLoggedIn && currentUserType !==2)  && 
               <NavItem>

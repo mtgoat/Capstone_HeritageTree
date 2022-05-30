@@ -5,9 +5,11 @@ export const PostContext = createContext();
 export const PostProvider = (props) => {
 
     const [posts, setPosts] = useState([]);
+    // const [heritagePosts, setHeritagePosts] = useState([]);
     const [nonAppPosts, setNonAppPosts ] = useState([]);
     const [postsByM, setPostsByM] = useState([]);
     const [result, setResult] = useState([]);
+    const [coordResults, setCoordResults] = useState([]);
     const apiUrl = "https://localhost:5001";
 
   const getAllPosts = () => {
@@ -17,7 +19,7 @@ export const PostProvider = (props) => {
   };
 
   const getAllNonAppPosts = () => {
-    return fetch(`${apiUrl}/api/Post/GetNonApp`)
+    return fetch(`${apiUrl}/api/Post/GetAllNonApp`)
       .then((res) => res.json())
       .then(setNonAppPosts);
   };
@@ -32,11 +34,19 @@ export const PostProvider = (props) => {
     .then((res) => res.json())
   }
 
-  const getPostsByUserId = (id) => {
-    return fetch(`${apiUrl}/api/Post/myposts?id=${id}`)
+  const getAllPostsByUserId = (id) => {
+     return fetch(`${apiUrl}/api/Post/GetAllByUserId/${id}`)
     .then((res) => res.json())
     .then(setPosts);
   }
+
+  const getMyPostById = (id) => {
+    debugger
+    return fetch(`${apiUrl}/api/Post/GetMyPostById/${id}`)
+   .then((res) => res.json())
+   .then(setPosts);
+ } 
+
 
   const addPost = (post) => {
     return fetch(`${apiUrl}/api/Post`, {
@@ -85,8 +95,27 @@ export const PostProvider = (props) => {
     .then(setPostsByM);
   }
 
+  const getAllPostsByHeritageId = (id) => {
+    return fetch(`${apiUrl}/api/Post/GetAllByHeritageId/${id}`)
+    .then((res) => res.json())
+
+  }
+
+  const getGeoCoordinate = (streetAddress, city, state, zip) => {
+    let streetAddressPlus = streetAddress.split(' ').join('+')
+    
+
+    debugger
+    return fetch(`https://nominatim.openstreetmap.org/search?street=${streetAddressPlus}&city=${city}&state=${state}&postalcode=${zip}&country=US&format=jsonv2&accept-language=en&limit=1`)
+    .then((res) => res.json())
+   
+   
+  }
+
+  
+
   return (
-    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult }}>
+    <PostContext.Provider value={{ posts, setPosts, getAllPosts, getPostById, addPost, getAllPostsByUserId, getAllNonAppPosts, getNPPostById, updatePostNA, hardDeletePost, nonAppPosts, setNonAppPosts, addMaintenanceToPost, postsByM, setPostsByM, getPostsByMaintenanceId, result, setResult, getAllPostsByHeritageId, getGeoCoordinate,getMyPostById, coordResults, setCoordResults  }}>
       {props.children}
     </PostContext.Provider>
   );

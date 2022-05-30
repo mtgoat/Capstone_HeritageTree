@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 export const PostFormEdit = () => {
     
-    const {addPost} = useContext(PostContext);
+    const {addPost,  getPostById } = useContext(PostContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserId = currentUser.id;
    
@@ -34,18 +34,18 @@ export const PostFormEdit = () => {
 // console.log(wards, maintenances, treeCommonNames, heritageStatuses, ownerships, healthStatuses)
 
     const [post, setPost] = useState({
-        // streetAddress: "",
-        // city:"",
-        // state:"",
-        // zip: "",
+        streetAddress: "",
+        city:"",
+        state:"",
+        zip: 0,
         latitude: "",
         longitude: "",
-        wardId: "",
+        wardId: 0,
         userProfileId: currentUserId,
-        treeCommonNameId: "",
+        treeCommonNameId: 0,
         imageLocation: "",
         ownershipId:4, 
-        healthStatusId: ""
+        healthStatusId: 0
     });
 
     const navigate = useNavigate();

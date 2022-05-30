@@ -66,7 +66,7 @@ export const PostDetails = () => {
             
             <Card.Body>
             <Card.Title>{post.treeCommonNameName}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile.displayName}</Card.Subtitle>
+            <Card.Subtitle className="mb-2 text-muted">Reported by: {post.userProfile?.displayName}</Card.Subtitle>
             <Card.Body style={{textIndent: '2rem'}}>
                 <Row ><Col xs={4}>Address: </Col>
             <Col xs={8}>{post.streetAddress}{" "}{post.city}{", "}{post.state}{" "}{post.zip} </Col></Row>
@@ -116,9 +116,9 @@ export const PostDetails = () => {
             {(currentUserType !==2 && post.id !==15 )? 
                 <Row>
                     <Col md={6} className="mb-2">
-                    <Link to={`/posts/edit/${post.id}`}>
+                    {/* <Link to={`/posts/edit/${post.id}`}>
                         <Button className="mt-2" variant="secondary">Edit</Button>
-                    </Link>
+                    </Link> */}
                     </Col>
                     <Col md={6} className="mb-2">
                     <Button onClick={toggleShowA} className="mb-2">

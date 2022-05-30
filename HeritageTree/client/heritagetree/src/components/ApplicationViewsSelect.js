@@ -5,7 +5,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Home from "./Home";
 import { PostProvider } from "../providers/PostProvider";
-import { PostList } from "./post/PostList";
+import { PostList, MyPostList } from "./post/PostList";
 import { PostDetails } from "./post/PostDetails";
 import { PostFormCord } from "./post/PostFormCord";
 import { PostFormSt } from "./post/PostFormSt";
@@ -13,6 +13,7 @@ import { PostListNA } from "./post/PostListNA";
 import { PostDetailsNA } from "./post/PostDetailsNA";
 import { PostFormCordNA } from "./post/PostFormNA";
 import { PostFormEdit } from "./post/PostFormEdit";
+import { MyPostDetails } from "./post/MyPostDetails";
 
 import { MaintenanceProvider } from "../providers/MaintenanceProvider";
 import { MaintenanceList } from "./maintenance/MaintenanceList";
@@ -53,6 +54,8 @@ export const ApplicationViewsPub = () => {
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/:id" element={<PostDetails />} />
+        <Route path="/myPosts" element={<MyPostList />} />
+        <Route path="/myPosts/:id" element={<MyPostDetails />} />
         <Route path="/posts/edit/:id/*" element={<PostFormEdit />} />
         <Route path="/posts/cor/create" element={<PostFormCord />} />
         <Route path="/posts/st/create" element={<PostFormSt />} />
