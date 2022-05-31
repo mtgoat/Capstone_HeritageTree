@@ -1,4 +1,4 @@
-<h1> :deciduous_tree: ``` diff +Heritage Tree``` </h1>
+<h1> :deciduous_tree: Heritage Tree </h1>
 
 ## Overview
 This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
@@ -7,9 +7,10 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 
 Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on youtube
 
+<h2>:book: How to Install and Run the App </h2>
+
+
 <h2>:wrench: Built with </h2>
-
-
 - HTML5
 - CSS3
 - JavaScript
@@ -45,7 +46,7 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 
 ## Resources 
 ---
-- ( [Portland City Heritage Tree Database](https://pdx.maps.arcgis.com/apps/webappviewer/index.html?id=3f9c3e9018bb4ee890b4a66595d75027))
+- [Portland City Heritage Tree Database](https://pdx.maps.arcgis.com/apps/webappviewer/index.html?id=3f9c3e9018bb4ee890b4a66595d75027)
 -
 -
 ## Next Futures
