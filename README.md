@@ -1,5 +1,5 @@
-# Heritage Tree
----
+<h1> :deciduous_tree: Heritage Tree </h1>
+
 ## Overview
 This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
 
@@ -7,7 +7,9 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 
 Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on youtube
 
-:wrench: ## Built with
+<h2>:wrench: Built with </h2>
+
+
 - HTML5
 - CSS3
 - JavaScript
@@ -26,16 +28,16 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 - Visual Studio 2019
 - Free ArcGIS Developer account: [sign up here](https://developers.arcgis.com/sign-up/)
 
-:triangular_ruler: ## ERD (Entity Relationship Diagram)
-![Main](https://dbdiagram.io/d/620a8d0685022f4ee590793c)
+<h2>:triangular_ruler: ERD (Entity Relationship Diagram) </h2>
+![ERD Pictures](https://dbdiagram.io/d/620a8d0685022f4ee590793c)
 
 ## API Reference 
----
+
 # Controls
 
 ## Special Thanks
 ---
-- My capstone mentor Sarah [![](https://github.com/sarahebrooks12.png?size=50)](https://github.com/sarahebrooks12)
+- My capstone mentor Sarah [![](https://github.com/sarahebrooks12.png?size=50?shape=circle)](https://github.com/sarahebrooks12)
 - My NewForce instructor Jordan  [![](https://github.com/jordan-castelloe.png?size=50)](https://github.com/jordan-castelloe) and Tommy [![](https://github.com/Tommy-Spurlock.png?size=50)](https://github.com/Tommy-Spurlock) 
 - My Cohort5 colleges, Andy[![](https://github.com/andy-birt.png?size=50)](https://github.com/andy-birt), Heaven [![](https://github.com/heavenburdette1988?size=50)](https://github.com/heavenburdette1988), and [many others](http://newforce-recent-grads.co/) 
 - example codes provided by [Esri/esri-leaflet-geocoder](https://github.com/Esri/esri-leaflet-geocoder), 
