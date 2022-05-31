@@ -7,7 +7,8 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 
 Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on youtube
 
-:wrench: ## Built with
+:wrench: 
+## Built with
 - HTML5
 - CSS3
 - JavaScript
