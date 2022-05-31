@@ -3,7 +3,7 @@
 ## Overview
 This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
 
-![Video](https://youtu.be/c7a0HabwyIM)
+![Video](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/GitHubDemo.gif)
 
 Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on youtube
 
@@ -59,5 +59,5 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 - the public to add comments on the tree
 
 ## Licensing 
-Copyright (c) 2022 Aki Endo 
-MIT License - a copy of the license is available in the repository's [LICENSE] file (./LICENSE)
+Copyright :copyright: 2022 Aki Endo 
+MIT License - a copy of the license is available in the repository's [LICENSE] file (/LICENSE)
