@@ -1,7 +1,7 @@
 # Heritage Tree
 ---
 ## Overview
-This app is to keep track of heritage trees in a neighborhood or town.  The app services to three roles. First, the app lets the general public submit a heritage tree candidate to a tree board who will decide whether the reported tree will be considered to be a heritage tree.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree.  Then the app will display the heritage trees in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
+This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
 
 ![Main](https://youtu.be/c7a0HabwyIM)
 
