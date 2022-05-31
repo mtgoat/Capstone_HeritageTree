@@ -1,9 +1,9 @@
-<h1> :deciduous_tree: Heritage Tree </h1>
+<h1> :deciduous_tree: ``` diff +Heritage Tree``` </h1>
 
 ## Overview
 This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
 
-![Main](https://youtu.be/c7a0HabwyIM)
+![Video](https://youtu.be/c7a0HabwyIM)
 
 Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on youtube
 
@@ -27,6 +27,7 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 - SQL
 - Visual Studio 2019
 - Free ArcGIS Developer account: [sign up here](https://developers.arcgis.com/sign-up/)
+- 
 
 <h2>:triangular_ruler: ERD (Entity Relationship Diagram) </h2>
 ![ERD Pictures](https://dbdiagram.io/d/620a8d0685022f4ee590793c)
@@ -39,7 +40,7 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 ---
 - My capstone mentor Sarah [![](https://github.com/sarahebrooks12.png?size=50?shape=circle)](https://github.com/sarahebrooks12)
 - My NewForce instructor Jordan  [![](https://github.com/jordan-castelloe.png?size=50)](https://github.com/jordan-castelloe) and Tommy [![](https://github.com/Tommy-Spurlock.png?size=50)](https://github.com/Tommy-Spurlock) 
-- My Cohort5 colleges, Andy[![](https://github.com/andy-birt.png?size=50)](https://github.com/andy-birt), Heaven [![](https://github.com/heavenburdette1988?size=50)](https://github.com/heavenburdette1988), and [many others](http://newforce-recent-grads.co/) 
+- My Cohort5 colleges, Andy [![](https://github.com/andy-birt.png?size=50)](https://github.com/andy-birt), Heaven [![](https://github.com/heavenburdette1988.png?size=50)](https://github.com/heavenburdette1988), and [many others](http://newforce-recent-grads.co/) 
 - example codes provided by [Esri/esri-leaflet-geocoder](https://github.com/Esri/esri-leaflet-geocoder), 
 
 ## Resources 
@@ -55,3 +56,7 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 - let a user add walking route on the map 
 - the tree board and the arborists to add a common name for a tree
 - the public to add comments on the tree
+
+## Licensing 
+Copyright (c) 2022 Aki Endo 
+MIT License - a copy of the license is available in the repository's [LICENSE] file (./LICENSE)
