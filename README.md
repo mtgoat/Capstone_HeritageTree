@@ -46,11 +46,9 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 - The search API by [Nominatim](https://nominatim.org/release-docs/latest/api/Search/, 'more information')
 
 <h2>:triangular_ruler: ERD (Entity Relationship Diagram) </h2>
-![ERD Pictures](https://dbdiagram.io/d/620a8d0685022f4ee590793c)
 
-## API Reference 
+![ERD Pictures](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/HeritageTreeERD.png)
 
-### Controls
 
 ## Special Thanks
 ---
@@ -75,4 +73,5 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 
 ## Licensing 
 Copyright :copyright: 2022 Aki Endo 
-MIT License - a copy of the license is available in the repository's [LICENSE] file (/LICENSE)
+MIT License - a copy of the license is available in the repository's [LICENSE] file 
+
