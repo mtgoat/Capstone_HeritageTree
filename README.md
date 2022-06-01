@@ -3,12 +3,15 @@
 ## Overview
 This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
 
-
+---
 :fast_forward: Quick view below
 
 ![Main](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/GitHubDemov2.gif)
 
+---
+
 :arrow_forward: For a longer video, click [here](https://youtu.be/c7a0HabwyIM) to view a demonstration on youtube
+---
 
 <h2>:book: Developer instructions </h2>
 
@@ -46,26 +49,21 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 - The search API by [Nominatim](https://nominatim.org/release-docs/latest/api/Search/, 'more information')
 
 <h2>:triangular_ruler: ERD (Entity Relationship Diagram) </h2>
-![ERD Pictures](https://dbdiagram.io/d/620a8d0685022f4ee590793c)
 
-## API Reference 
+![ERD Pictures](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/HeritageTreeERD.png)
 
-### Controls
 
 ## Special Thanks
----
 - My capstone mentor Sarah [![](https://github.com/sarahebrooks12.png?size=50?shape=circle)](https://github.com/sarahebrooks12)
 - My NewForce instructor Jordan  [![](https://github.com/jordan-castelloe.png?size=50)](https://github.com/jordan-castelloe) and Tommy [![](https://github.com/Tommy-Spurlock.png?size=50)](https://github.com/Tommy-Spurlock) 
 - My Cohort5 colleges, Andy [![](https://github.com/andy-birt.png?size=50)](https://github.com/andy-birt), Heaven [![](https://github.com/heavenburdette1988.png?size=50)](https://github.com/heavenburdette1988), and [many others](http://newforce-recent-grads.co/) 
-- example codes provided by [Esri/esri-leaflet-geocoder](https://github.com/Esri/esri-leaflet-geocoder), [BeautifyMarker](https://github.com/masajid390/BeautifyMarker), [Popup with Maker for the map](https://react-leaflet.js.org/docs/example-popup-marker/), [slutske22 github](https://github.com/slutske22/react-esri-leaflet),[slutske22 codesandbox](https://codesandbox.io/s/github/slutske22/react-esri-leaflet/tree/master/examples/js?file=/src/App.js), 
+- example codes provided by [Esri/esri-leaflet-geocoder](https://github.com/Esri/esri-leaflet-geocoder), [BeautifyMarker](https://github.com/masajid390/BeautifyMarker), [Popup with Maker for the map](https://react-leaflet.js.org/docs/example-popup-marker/), [slutske22 github](https://github.com/slutske22/react-esri-leaflet),[slutske22 codesandbox](https://codesandbox.io/s/github/slutske22/react-esri-leaflet/tree/master/examples/js?file=/src/App.js) 
 
 ## Resources 
----
 - [Portland City Heritage Tree Database](https://pdx.maps.arcgis.com/apps/webappviewer/index.html?id=3f9c3e9018bb4ee890b4a66595d75027)
 
 
 ## Next Futures
----
 - Lets a public see their submissions 
 - search function
 - display random 3 trees on the homepage
@@ -75,4 +73,5 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 
 ## Licensing 
 Copyright :copyright: 2022 Aki Endo 
-MIT License - a copy of the license is available in the repository's [LICENSE] file (/LICENSE)
+MIT License - a copy of the license is available in the repository's [LICENSE](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/LICENSE) file 
+
