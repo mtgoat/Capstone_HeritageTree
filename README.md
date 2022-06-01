@@ -9,8 +9,7 @@ This app is to keep track of heritage trees in a neighborhood or town.  The app 
 ![Main](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/GitHubDemov2.gif)
 
 ---
-
-:arrow_forward: For a longer video, click [here](https://youtu.be/c7a0HabwyIM) to view a demonstration on youtube
+:arrow_forward: <p>  For a longer video, click [here](https://youtu.be/c7a0HabwyIM) to view a demonstration on youtube </p>
 ---
 
 <h2>:book: Developer instructions </h2>
