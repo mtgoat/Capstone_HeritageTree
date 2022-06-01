@@ -3,12 +3,18 @@
 ## Overview
 This app is to keep track of heritage trees in a neighborhood or town.  The app services three roles. First, the app lets the general public submit a heritage tree candidate for consideration.  Second, the app lets the tree board review and decide whether the reported tree is a heritage tree and then the app will display the heritage tree in a map.  Third, the app lets the city arborists add maintenance logs to a heritage tree.  
 
-![Video](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/GitHubDemov2.gif)
 
-Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on youtube
+:fast_forward: Quick view below
+![Main](https://github.com/mtgoat/Capstone_HeritageTree/blob/main/GitHubDemov2.gif)
 
-<h2>:book: How to Install and Run the App </h2>
+:arrow_forward: For a longer video, click [here](https://youtu.be/c7a0HabwyIM) to view a demonstration on youtube
 
+<h2>:book: Developer instructions </h2>
+1. [Fork and clone this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+2. `cd` into the Capstone_HeritageTree and install the dependencies with `npm install`, such as `npm install react`, `npm install react react-dom`, `npm install react-router-dom`, `npm install bootstrap`, `npm install react-bootstrap`,`npm install esri-leaflet --save`, `npm i esri-leaflet-geocoder`, `npm install react-esri-leaflet`, `npm install react-leaflet`, 
+
+
+3.  
 
 <h2>:wrench: Built with </h2>
 - HTML5
@@ -28,14 +34,14 @@ Or Click [here](https://youtu.be/c7a0HabwyIM) to view a quick demonstration on y
 - SQL
 - Visual Studio 2019
 - Free ArcGIS Developer account: [sign up here](https://developers.arcgis.com/sign-up/)
-- 
+- The search API by [Nominatim](https://nominatim.org/release-docs/latest/api/Search/, 'more information')
 
 <h2>:triangular_ruler: ERD (Entity Relationship Diagram) </h2>
 ![ERD Pictures](https://dbdiagram.io/d/620a8d0685022f4ee590793c)
 
 ## API Reference 
 
-# Controls
+### Controls
 
 ## Special Thanks
 ---
